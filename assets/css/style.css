@@ -6306,3 +6306,38 @@ img.mfp-img {
   color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
+
+/* user  */
+
+.user-account:hover .menu-user-hover {
+  display: block;
+}
+
+.menu-user-hover {
+  position: absolute;
+  width: 170px;
+  top: 40px;
+  right: 0;
+  text-align: center;
+  background: #454545;
+  border-radius: 5px;
+  display: none;
+  padding: 5px 0;
+}
+
+.menu-user-hover::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+}
+
+.menu-user-hover li {
+  padding: 5px 0;
+}
+
+.menu-user-hover li:hover {
+  background-color: #636363;
+}

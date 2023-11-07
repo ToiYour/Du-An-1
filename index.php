@@ -45,6 +45,10 @@ if (isset($_GET['act']) && $_GET['act']) {
             }
             include_once 'view/trang-chu/login-register.php';
             break;
+        case 'logout':
+            user_logout();
+            header('location: index.php');
+            break;
     }
 } else {
     include_once 'view/trang-chu/home.php';

@@ -17,9 +17,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
     <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/css/vendor/font-awesome.min.css" />
     <link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css" />
 
@@ -70,8 +68,7 @@
                                             </select>
                                         </div>
                                         <div class="search-field-wrap">
-                                            <input type="text" class="search-field"
-                                                placeholder="Tìm kiếm sản phẩm..." />
+                                            <input type="text" class="search-field" placeholder="Tìm kiếm sản phẩm..." />
 
                                             <div class="search-btn">
                                                 <button><i class="icon-magnifier"></i></button>
@@ -92,23 +89,27 @@
                                     <a href="#"><i class="icon-basket-loaded"></i><span class="cart-total">2</span></a>
                                 </div>
                                 <?php if (!isset($_SESSION['login'])) : ?>
-                                <div class="px-3">
-                                    <a href="?act=login"><i class="fa fa-user-o" aria-hidden="true"></i></a>
-                                </div>
+                                    <div class="px-3">
+                                        <a href="?act=login"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+                                    </div>
                                 <?php else : ?>
-                                <!-- tài khoản -->
-                                <div class="px-2 pb-2 position-relative" style="cursor: pointer;">
-                                    <img src="assets/images/avatar/<?php echo empty($_SESSION['login']['hinh_anh']) ? 'no-avatar.jpg' : $_SESSION['login']['hinh_anh'] ?>"
-                                        alt="" width="30px" height="30px" style="border-radius: 50%" />
-                                    <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor"
-                                        class="x1lliihq x1k90msu x2h7rmj x1qfuztq x198g3q0 x1kpxq89 xsmyaan position-absolute icon-down-user">
-                                        <g fill-rule="evenodd" transform="translate(-448 -544)">
-                                            <path fill-rule="nonzero"
-                                                d="M452.707 549.293a1 1 0 0 0-1.414 1.414l4 4a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L456 552.586l-3.293-3.293z">
-                                            </path>
-                                        </g>
-                                    </svg>
-                                </div>
+                                    <!-- tài khoản -->
+
+                                    <div class="px-2 pb-2 position-relative user-account" style="cursor: pointer;">
+                                        <img src="assets/images/avatar/<?php echo empty($_SESSION['login']['hinh_anh']) ? 'no-avatar.jpg' : $_SESSION['login']['hinh_anh'] ?>" alt="" width="30px" height="30px" style="border-radius: 50%" />
+                                        <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" class="x1lliihq x1k90msu x2h7rmj x1qfuztq x198g3q0 x1kpxq89 xsmyaan position-absolute icon-down-user">
+                                            <g fill-rule="evenodd" transform="translate(-448 -544)">
+                                                <path fill-rule="nonzero" d="M452.707 549.293a1 1 0 0 0-1.414 1.414l4 4a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L456 552.586l-3.293-3.293z">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                        <ul class="menu-user-hover ">
+                                            <li class="dropdown-item "><a class="fs-6" href="">Quản lý tài khoản</a></li>
+                                            <li class="dropdown-item "><a class="fs-6" href="?act=logout">Đăng xuất</a></li>
+                                        </ul>
+                                    </div>
+
+
                                 <?php endif; ?>
                             </div>
                         </div>
