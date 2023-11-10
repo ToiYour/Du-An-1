@@ -21,41 +21,65 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Tất cả danh mục
-                                <a href="?act=adddm" class="btn btn-success float-right " style="transform: translateY(-30%);"> <i class="bx bx-plus pr-1"></i>Thêm
-                                    danh
-                                    mục </a>
-                            </h4>
+                        <form action="?act=delete-dm" method="post">
+                            <div class="card-body">
+                                <h4 class="card-title">Tất cả danh mục
+                                    <a href="?act=adddm" class="btn btn-success float-right "
+                                        style="transform: translateY(-30%);"> <i class="bx bx-plus pr-1"></i>Thêm
+                                        danh
+                                        mục </a>
+                                </h4>
 
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Tên danh mục</th>
-                                        <th>Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="font-weight-bolder text-primary">1</td>
-                                        <td>Đồng hồ casio</td>
-                                        <td>
-                                            <a href="" class="btn btn-light text-center p-2 " data-toggle="tooltip" data-placement="top" title="Sửa"><i class="bx bx-pencil font-weight-bold"></i></a>
-                                            <a href="" class="btn btn-light text-center p-2" data-toggle="tooltip" data-placement="top" title="Xoá"><i class="bx bx-x font-weight-bold"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bolder text-primary">2</td>
-                                        <td>Đồng hồ casio</td>
-                                        <td>
-                                            <a href="" class="btn btn-light text-center p-2 " data-toggle="tooltip" data-placement="top" title="Sửa"><i class="bx bx-pencil font-weight-bold"></i></a>
-                                            <a href="" class="btn btn-light text-center p-2" data-toggle="tooltip" data-placement="top" title="Xoá"><i class="bx bx-x font-weight-bold"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>ID</th>
+                                            <th>Tên danh mục</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php foreach ($list_danh_muc as $value) : ?>
+                                        <tr>
+                                            <td><input type="checkbox" value="<?php echo $value['id_danh_muc'] ?>"
+                                                    <?php echo isset($_GET['checkAll']) ? 'checked' : '' ?>
+                                                    name="checkAll[]">
+                                            </td>
+                                            <td class="font-weight-bolder text-primary">
+                                                <?php echo $value['id_danh_muc'] ?>
+                                            </td>
+                                            <td><?php echo $value['ten_danh_muc'] ?></td>
+                                            <td>
+                                                <a href="?act=update-dm&id-dm=<?php echo $value['id_danh_muc'] ?>"
+                                                    class="btn btn-light text-center p-2 " data-toggle="tooltip"
+                                                    data-placement="top" title="Sửa"><i
+                                                        class="bx bx-pencil font-weight-bold"></i></a>
+                                                <a href="?act=delete-dm&id-dm=<?php echo $value['id_danh_muc'] ?>"
+                                                    class="btn btn-light text-center p-2" data-toggle="tooltip"
+                                                    data-placement="top" title="Xoá"
+                                                    onclick="return confirm('Bạn chắc chắn muốn xoá chứ?')"><i
+                                                        class=" bx bx-x font-weight-bold"></i></a>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer bg-transparent ">
+                                <div class="float-right m-2">
+                                    <input type="submit" value="Xoá các mục đã chọn" name="delete-dm"
+                                        class="btn btn-outline-danger">
+                                    <a href="?act=listdm" class="btn btn-outline-success">Bỏ chọn tất cả</a>
+                                    <a href="?act=listdm&checkAll" class="btn btn-outline-success">Chọn tất cả</a>
+                                    <a href="?act=adddm" class="btn btn-success "> <i class="bx bx-plus pr-1"></i>Thêm
+                                        danh
+                                        mục </a>
+                                </div>
+                            </div>
+                        </form>
                         <!-- end card-body-->
                     </div>
                 </div>

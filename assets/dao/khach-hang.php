@@ -1,10 +1,10 @@
 <?php
 require_once 'pdo.php';
 include_once 'toast-message.php';
-function user_insert($ho_ten, $ten_dang_nhap, $mat_khau, $email, $vai_tro)
+function user_insert($ho_ten, $ten_dang_nhap, $mat_khau, $email, $id_roles)
 {
-    $sql = "INSERT INTO user(ho_ten, ten_dang_nhap, mat_khau, email, vai_tro) VALUES (?,?,?,?,?)";
-    pdo_execute($sql, $ho_ten, $ten_dang_nhap, $mat_khau, $email, $vai_tro);
+    $sql = "INSERT INTO user(ho_ten, ten_dang_nhap, mat_khau, email, id_roles) VALUES (?,?,?,?,?)";
+    pdo_execute($sql, $ho_ten, $ten_dang_nhap, $mat_khau, $email, $id_roles);
     showSuccessToast('Bạn đã đăng ký tài khoản thành công!');
 }
 function user_login($user, $password)
@@ -72,10 +72,10 @@ function user_exist($id_kh)
     return pdo_query_value($sql, $id_kh) > 0;
 }
 
-function user_select_by_role($vai_tro)
+function user_select_by_role($id_roles)
 {
-    $sql = "SELECT * FROM user WHERE vai_tro=?";
-    return pdo_query($sql, $vai_tro);
+    $sql = "SELECT * FROM user WHERE id_roles=?";
+    return pdo_query($sql, $id_roles);
 }
 
 function user_change_password($id_kh, $mat_khau_moi)

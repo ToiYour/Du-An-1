@@ -12,7 +12,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="javascript: void(0);">Quản lý danh mục</a>
                                 </li>
-                                <li class="breadcrumb-item active">Thêm danh mục</li>
+                                <li class="breadcrumb-item active">Sửa danh mục</li>
                             </ol>
                         </div>
                     </div>
@@ -22,19 +22,20 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Thêm danh mục</h4>
-                            <form action="?act=adddm" method="post" enctype="multipart/form-data">
+                            <h4 class="card-title">Sửa danh mục</h4>
+                            <form action="?act=update-dm" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="example-password">Mã danh mục</label>
                                     <input type="text" id="example-password" class="form-control" value="" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="simpleinput">Tên danh mục</label>
-                                    <input type="text" id="simpleinput" class="form-control" placeholder="Nhập tên danh mục" name="ten_danh_muc">
+                                    <input type="text" id="simpleinput" class="form-control" placeholder="Nhập tên danh mục" name="ten_danh_muc" value="<?php echo $danh_muc_one['ten_danh_muc'] ?>">
+                                    <input type="text" value="<?php echo $danh_muc_one['id_danh_muc'] ?>" name="id_danh_muc" hidden>
                                 </div>
                                 <div class="float-right">
                                     <a href="?act=listdm" class="btn btn-outline-success">Danh sách danh mục</a>
-                                    <input type="submit" class="btn btn-success" value="Thêm danh mục" name="add-dm">
+                                    <input type="submit" class="btn btn-success" value="Sửa danh mục" name="update-dm">
                                 </div>
                             </form>
                         </div>

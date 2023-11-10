@@ -1,6 +1,9 @@
 <?php
 session_start();
 ob_start();
+include_once '../assets/dao/pdo.php';
+include_once '../assets/dao/loai.php';
+include_once '../assets/dao/toast-message.php';
 include_once 'view/header.php';
 include_once 'view/sidebar.php';
 if (isset($_GET['act']) && $_GET['act']) {
@@ -8,10 +11,49 @@ if (isset($_GET['act']) && $_GET['act']) {
   switch ($act) {
       // Quản lý danh mục start
     case 'adddm':
+      if (isset($_POST['add-dm']) && $_POST['add-dm']) {
+        $ten_danh_muc = $_POST['ten_danh_muc'];
+        if (!empty($ten_danh_muc)) {
+          loai_insert($ten_danh_muc);
+          showSuccessToast('Bạn đã thêm danh mục sản phẩm thành công!');
+        }
+      }
       include_once 'view/danh-muc/add.php';
       break;
     case 'listdm':
+      $list_danh_muc = loai_select_all();
       include_once 'view/danh-muc/list.php';
+      break;
+    case 'update-dm':
+      if (isset($_GET['id-dm'])) {
+        $danh_muc_one = loai_select_by_id($_GET['id-dm']);
+      }
+      if (isset($_POST['update-dm']) && $_POST['update-dm']) {
+        $ten_danh_muc = $_POST['ten_danh_muc'];
+        $id_danh_muc =  $_POST['id_danh_muc'];
+        if (!empty($ten_danh_muc)) {
+          loai_update($id_danh_muc, $ten_danh_muc);
+          showSuccessToast('Bạn đã sửa danh mục sản phẩm thành công!');
+          $list_danh_muc = loai_select_all();
+          include_once 'view/danh-muc/list.php';
+        }
+      } else
+        include_once 'view/danh-muc/update.php';
+      break;
+    case 'delete-dm':
+      // Xoá 1
+      if (isset($_GET['id-dm'])) {
+        loai_delete($_GET['id-dm']);
+        showSuccessToast('Bạn đã xoá danh mục sản phẩm thành công!');
+        $list_danh_muc = loai_select_all();
+        include_once 'view/danh-muc/list.php';
+      }
+      if (isset($_POST['delete-dm'])) {
+        loai_delete($_POST['checkAll']);
+        showSuccessToast('Bạn đã xoá danh mục sản phẩm thành công!');
+        $list_danh_muc = loai_select_all();
+        include_once 'view/danh-muc/list.php';
+      }
       break;
       // Quản lý danh mục end
 

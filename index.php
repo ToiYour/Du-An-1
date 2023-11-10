@@ -40,7 +40,7 @@ if (isset($_GET['act']) && $_GET['act']) {
                     }
                 }
                 if (empty($error_register)) {
-                    user_insert($arr_register['ho_ten'], $arr_register['user-name'], $arr_register['user-password'], $arr_register['user-email'], 0);
+                    user_insert($arr_register['ho_ten'], $arr_register['user-name'], $arr_register['user-password'], $arr_register['user-email'], 1);
                 }
             }
             include_once 'view/trang-chu/login-register.php';
@@ -72,9 +72,12 @@ if (isset($_GET['act']) && $_GET['act']) {
                 if (empty($error_change_user)) {
                     user_update($arr_change_user['id_kh'], $arr_change_user['ho_ten'], $arr_change_user['ten_dang_nhap'], $arr_change_user['mat_khau'], $arr_change_user['email'], $arr_change_user['phone'], $arr_change_user['hinh_anh']['name'], $arr_change_user['dia_chi']);
                     showSuccessToast('Cập nhập thông tin tài khoản thành công!');
+                    header('location: index.php?act=setting-user');
+                } else {
+                    showErrorToast('Bạn phải điền đẩy đủ thông tin!');
                 }
-            }
-            include_once 'view/trang-chu/quan-ly-user.php';
+            } else
+                include_once 'view/trang-chu/quan-ly-user.php';
             break;
         case 'logout':
             user_logout();
