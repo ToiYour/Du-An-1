@@ -1,3 +1,4 @@
+<?php $list_danh_muc = loai_select_all(); ?>
 <div class="main-content">
     <div class="page-content pt-4">
         <div class="container-fluid">
@@ -41,7 +42,8 @@
                                     </thead>
                                     <tbody>
 
-                                        <?php foreach ($list_danh_muc as $value) : ?>
+                                        <?php foreach ($list_danh_muc as $value) : if ($value['display_danh_muc'] == 0) : continue;
+                                            endif ?>
                                         <tr>
                                             <td><input type="checkbox" value="<?php echo $value['id_danh_muc'] ?>"
                                                     <?php echo isset($_GET['checkAll']) ? 'checked' : '' ?>
@@ -59,7 +61,7 @@
                                                 <a href="?act=delete-dm&id-dm=<?php echo $value['id_danh_muc'] ?>"
                                                     class="btn btn-light text-center p-2" data-toggle="tooltip"
                                                     data-placement="top" title="Xoá"
-                                                    onclick="return confirm('Bạn chắc chắn muốn xoá chứ?')"><i
+                                                    onclick="return confirm('<?php echo (loai_exist($value['id_danh_muc'])) ? 'Danh mục này đang được sử dụng bạn vẫn muốn xoá chứ?' : 'Bạn muốn xoá danh mục này chứ?' ?> ')"><i
                                                         class=" bx bx-x font-weight-bold"></i></a>
                                             </td>
                                         </tr>

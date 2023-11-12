@@ -1,4 +1,5 @@
-<?php $danh_muc_all = loai_select_all(); ?>
+<?php $danh_muc_all = loai_select_all();
+$san_pham_one = san_pham_select_by_id($_GET['id']) ?>
 <div class="main-content">
     <div class="page-content pt-4">
         <div class="container-fluid">
@@ -13,7 +14,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="javascript: void(0);">Quản lý sản phẩm</a>
                                 </li>
-                                <li class="breadcrumb-item active">Thêm sản phẩm</li>
+                                <li class="breadcrumb-item active">Sửa sản phẩm</li>
                             </ol>
                         </div>
                     </div>
@@ -23,20 +24,22 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Thêm sản phẩm</h4>
-                            <form action="?act=addsp" method="post" enctype="multipart/form-data">
+                            <h4 class="card-title">Sửa sản phẩm</h4>
+                            <form action="?act=update-sp" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tên sản phẩm</label>
-                                            <input type="text" id="" class="form-control" name="ten_san_pham">
+                                            <input type="text" id="" class="form-control" name="ten_san_pham"
+                                                value="<?php echo $san_pham_one['ten_san_pham'] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Loại sản phẩm</label>
                                             <select id="" class="form-control" name="id_danh_muc">
                                                 <option value="" hidden>--Chọn loại--</option>
                                                 <?php foreach ($danh_muc_all as $value) : ?>
-                                                <option value="<?php echo $value['id_danh_muc'] ?>">
+                                                <option value="<?php echo $value['id_danh_muc'] ?>"
+                                                    <?php echo ($value['id_danh_muc'] == $san_pham_one['id_danh_muc']) ? 'selected' : '' ?>>
                                                     <?php echo $value['ten_danh_muc'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -51,15 +54,17 @@
                                         <div class="form-group">
                                             <label for="">Mô tả</label>
                                             <textarea name="mo_ta" id="" cols="30" rows="10"
-                                                class="form-control"></textarea>
+                                                class="form-control"><?php echo $san_pham_one['mo_ta'] ?></textarea>
 
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="float-right">
+                                    <input hidden type="text" value="<?php echo $san_pham_one['id_san_pham'] ?>"
+                                        name="id_san_pham">
                                     <a href="?act=listsp" class="btn btn-outline-success">Danh sách sản phẩm</a>
-                                    <input type="submit" class="btn btn-success" value="Thêm sản phẩm" name="add-sp">
+                                    <input type="submit" class="btn btn-success" value="Sửa sản phẩm" name="update-sp">
                                 </div>
                             </form>
                         </div>

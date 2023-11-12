@@ -1,112 +1,152 @@
 <?php
 require_once 'pdo.php';
-
-function hang_hoa_insert($ten_san_pham, $don_gia, $giam_gia, $hinh_anh, $ma_loai, $dac_biet, $so_luot_xem, $ngay_nhap, $mo_ta)
+function san_pham_insert($ten_san_pham, $mo_ta, $hinh_anh, $luot_xem, $ngay_nhap, $id_danh_muc)
 {
-    $sql = "INSERT INTO hang_hoa(ten_san_pham, don_gia, giam_gia, hinh_anh, ma_loai, dac_biet, so_luot_xem, ngay_nhap, mo_ta) VALUES (?,?,?,?,?,?,?,?,?)";
-    pdo_execute($sql, $ten_san_pham, $don_gia, $giam_gia, $hinh_anh, $ma_loai, $dac_biet == 1, $so_luot_xem, $ngay_nhap, $mo_ta);
+    $sql = "INSERT INTO san_pham(ten_san_pham, mo_ta, hinh_anh, luot_xem,ngay_nhap, id_danh_muc) VALUES (?,?,?,?,?,?)";
+    pdo_execute($sql, $ten_san_pham, $mo_ta, $hinh_anh, $luot_xem, $ngay_nhap, $id_danh_muc);
 }
 
-function hang_hoa_update($ma_hh, $ten_san_pham, $don_gia, $giam_gia, $hinh_anh, $ma_loai, $dac_biet, $so_luot_xem, $ngay_nhap, $mo_ta)
+function san_pham_update($id_san_pham, $ten_san_pham, $mo_ta, $hinh_anh, $luot_xem, $id_danh_muc)
 {
-    $sql = "UPDATE hang_hoa SET ten_san_pham=?,don_gia=?,giam_gia=?,hinh_anh=?,ma_loai=?,dac_biet=?,so_luot_xem=?,ngay_nhap=?,mo_ta=? WHERE ma_hh=?";
-    pdo_execute($sql, $ten_san_pham, $don_gia, $giam_gia, $hinh_anh, $ma_loai, $dac_biet == 1, $so_luot_xem, $ngay_nhap, $mo_ta, $ma_hh);
+    $sql = "UPDATE san_pham SET ten_san_pham=?,mo_ta=?,hinh_anh=?,luot_xem=?,id_danh_muc=? WHERE  id_san_pham=?";
+    pdo_execute($sql, $ten_san_pham, $mo_ta, $hinh_anh, $luot_xem, $id_danh_muc, $id_san_pham);
 }
 
-function hang_hoa_delete($ma_hh)
+function san_pham_delete($id_san_pham)
 {
-    $sql = "DELETE FROM hang_hoa WHERE  ma_hh=?";
-    if (is_array($ma_hh)) {
-        foreach ($ma_hh as $ma) {
+    $sql = "DELETE FROM san_pham WHERE  id_san_pham=?";
+    if (is_array($id_san_pham)) {
+        foreach ($id_san_pham as $ma) {
             pdo_execute($sql, $ma);
         }
     } else {
-        pdo_execute($sql, $ma_hh);
+        pdo_execute($sql, $id_san_pham);
     }
 }
-
-function hang_hoa_select_all()
+function san_pham_delete_none($id_san_pham)
 {
-    $sql = "SELECT * FROM hang_hoa";
+    $sql = "UPDATE san_pham SET display_san_pham='0' WHERE  id_san_pham=?";
+    if (is_array($id_san_pham)) {
+        foreach ($id_san_pham as $ma) {
+            pdo_execute($sql, $ma);
+        }
+    } else {
+        pdo_execute($sql, $id_san_pham);
+    }
+}
+function san_pham_delete_by_danh_muc($id_danh_muc)
+{
+    $sql = "DELETE FROM san_pham WHERE  id_danh_muc=?";
+    if (is_array($id_danh_muc)) {
+        foreach ($id_danh_muc as $ma) {
+            pdo_execute($sql, $ma);
+        }
+    } else {
+        pdo_execute($sql, $id_danh_muc);
+    }
+}
+function san_pham_delete_by_danh_muc_none($id_danh_muc)
+{
+    $sql = "UPDATE san_pham SET display_san_pham='0' WHERE   id_danh_muc=?";
+    if (is_array($id_danh_muc)) {
+        foreach ($id_danh_muc as $ma) {
+            pdo_execute($sql, $ma);
+        }
+    } else {
+        pdo_execute($sql, $id_danh_muc);
+    }
+}
+function san_pham_select_all()
+{
+    $sql = "SELECT * FROM san_pham JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc";
     return pdo_query($sql);
 }
 
-function hang_hoa_select_by_id($ma_hh)
+function san_pham_select_by_id($id_san_pham)
 {
-    $sql = "SELECT * FROM hang_hoa WHERE ma_hh=?";
-    return pdo_query_one($sql, $ma_hh);
+    $sql = "SELECT * FROM san_pham WHERE id_san_pham=?";
+    return pdo_query_one($sql, $id_san_pham);
 }
 
-function hang_hoa_exist($ma_hh)
+function san_pham_exist($id_san_pham)
 {
-    $sql = "SELECT count(*) FROM hang_hoa WHERE ma_hh=?";
-    return pdo_query_value($sql, $ma_hh) > 0;
+    $sql = "SELECT count(*) FROM san_pham WHERE id_san_pham=?";
+    return pdo_query_value($sql, $id_san_pham) > 0;
 }
-function hang_hoa_count()
+function san_pham_count()
 {
-    $sql = "SELECT count(*) FROM hang_hoa ";
+    $sql = "SELECT count(*) FROM san_pham ";
     return pdo_query_count($sql);
 }
-function hang_hoa_count_by_ma_hh($ma_loai)
+function san_pham_count_by_id_san_pham($ma_loai)
 {
-    $sql = "SELECT count(*) FROM hang_hoa WHERE ma_loai = ?";
+    $sql = "SELECT count(*) FROM san_pham WHERE ma_loai = ?";
     return pdo_query_count($sql, $ma_loai);
 }
-function hang_hoa_tang_so_luot_xem($ma_hh)
+function san_pham_tang_so_luot_xem($id_san_pham)
 {
-    $sql = "UPDATE hang_hoa SET so_luot_xem = so_luot_xem + 1 WHERE ma_hh=?";
-    pdo_execute($sql, $ma_hh);
+    $sql = "UPDATE san_pham SET so_luot_xem = so_luot_xem + 1 WHERE id_san_pham=?";
+    pdo_execute($sql, $id_san_pham);
 }
-function hang_hoa_select_top_table($start, $end, $table)
+function san_pham_select_top_table($start, $end, $table)
 {
-    $sql = "SELECT * FROM hang_hoa ORDER BY $table  LIMIT $start, $end";
+    $sql = "SELECT * FROM san_pham ORDER BY $table  LIMIT $start, $end";
     return pdo_query($sql);
 }
-function hang_hoa_select_top_table_by_loai($start, $end, $table, $ma_loai)
+function san_pham_select_top_table_by_loai($start, $end, $table, $ma_loai)
 {
-    $sql = "SELECT * FROM hang_hoa WHERE ma_loai = ? ORDER BY $table  LIMIT $start, $end";
+    $sql = "SELECT * FROM san_pham WHERE ma_loai = ? ORDER BY $table  LIMIT $start, $end";
     return pdo_query($sql, $ma_loai);
 }
-function hang_hoa_select_don_gia($min, $max)
+function san_pham_select_don_gia($min, $max)
 {
-    $sql = "SELECT * FROM `hang_hoa` WHERE `don_gia` BETWEEN ? AND ?;";
+    $sql = "SELECT * FROM san_pham WHERE don_gia BETWEEN ? AND ?;";
     return pdo_query($sql, $min, $max);
 }
-function hang_hoa_select_top10()
+function san_pham_select_top10()
 {
-    $sql = "SELECT * FROM hang_hoa WHERE so_luot_xem > 0 ORDER BY so_luot_xem DESC LIMIT 0, 10";
+    $sql = "SELECT * FROM san_pham WHERE so_luot_xem > 0 ORDER BY so_luot_xem DESC LIMIT 0, 10";
     return pdo_query($sql);
 }
-function hang_hoa_select_top1()
+function san_pham_select_top1()
 {
-    $sql = "SELECT * FROM hang_hoa  ORDER BY giam_gia DESC LIMIT 1";
+    $sql = "SELECT * FROM san_pham  ORDER BY giam_gia DESC LIMIT 1";
     return pdo_query_one($sql);
 }
-function hang_hoa_select_dac_biet()
+function san_pham_select_dac_biet()
 {
-    $sql = "SELECT * FROM hang_hoa WHERE dac_biet=1";
+    $sql = "SELECT * FROM san_pham WHERE dac_biet=1";
     return pdo_query($sql);
 }
 
-function hang_hoa_select_by_loai($ma_loai)
+function san_pham_select_by_loai($ma_loai)
 {
-    $sql = "SELECT * FROM hang_hoa WHERE ma_loai=?";
+    $sql = "SELECT * FROM san_pham WHERE ma_loai=?";
     return pdo_query($sql, $ma_loai);
 }
 
-function hang_hoa_select_keyword($keyword)
+function san_pham_select_keyword($keyword)
 {
-    $sql = "SELECT * FROM hang_hoa " . " JOIN loai_hang  ON loai_hang.ma_loai=hang_hoa.ma_loai " . " WHERE ten_san_pham LIKE ? OR ten_loai LIKE ?";
+    $sql = "SELECT * FROM san_pham " . " JOIN loai_hang  ON loai_hang.ma_loai=san_pham.ma_loai " . " WHERE ten_san_pham LIKE ? OR ten_loai LIKE ?";
     return pdo_query($sql, '%' . $keyword . '%', '%' . $keyword . '%');
 }
 
-function hang_hoa_select_page()
+function san_pham_exist_by_danh_muc($id_danh_muc)
+{
+    $sql = "SELECT count(*) FROM san_pham WHERE id_danh_muc=?";
+    return pdo_query_value($sql, $id_danh_muc) > 0;
+}
+function exist_param($param_name)
+{
+    return isset($_REQUEST[$param_name]);
+}
+function san_pham_select_page()
 {
     if (!isset($_SESSION['page_no'])) {
         $_SESSION['page_no'] = 0;
     }
     if (!isset($_SESSION['page_count'])) {
-        $row_count = pdo_query_value("SELECT count(*) FROM hang_hoa");
+        $row_count = pdo_query_value("SELECT count(*) FROM san_pham");
         $_SESSION['page_count'] = ceil($row_count / 10.0);
     }
     if (exist_param("page_no")) {
@@ -118,6 +158,6 @@ function hang_hoa_select_page()
     if ($_SESSION['page_no'] >= $_SESSION['page_count']) {
         $_SESSION['page_no'] = 0;
     }
-    $sql = "SELECT * FROM hang_hoa ORDER BY ma_hh LIMIT " . $_SESSION['page_no'] . ", 10";
+    $sql = "SELECT * FROM san_pham ORDER BY id_san_pham LIMIT " . $_SESSION['page_no'] . ", 10";
     return pdo_query($sql);
 }

@@ -1,3 +1,4 @@
+<?php $roles = roles_select(); ?>
 <div class="main-content">
     <div class="page-content pt-4 ">
         <div class="container-fluid">
@@ -59,15 +60,19 @@
                                         <div class="form-group">
                                             <label for="kich_hoat">Kích hoạt</label>
                                             <select name="" id="kich_hoat" class="form-control">
-                                                <option value="">Khoá</option>
-                                                <option value="">Kích hoạt</option>
+                                                <option value="" hidden>--Chọn kích hoạt--</option>
+                                                <option value="0">Khoá</option>
+                                                <option value="1">Kích hoạt</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="vai_tro">Vai trò</label>
                                             <select name="" id="vai_tro" class="form-control">
-                                                <option value="">Khách hàng</option>
-                                                <option value="">Admin</option>
+                                                <option value="" hidden>--Chọn vai trò--</option>
+                                                <?php foreach ($roles as $value) : ?>
+                                                    <option value="<?php echo $value['id_roles'] ?>">
+                                                        <?php echo $value['ten_vai_tro'] ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>

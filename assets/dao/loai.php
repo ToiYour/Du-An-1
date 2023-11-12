@@ -39,7 +39,18 @@ function loai_delete($id_danh_muc)
     }
     return true;
 }
-
+function loai_delete_none($id_danh_muc)
+{
+    $sql = "UPDATE danh_muc SET display_danh_muc='0' WHERE id_danh_muc = ?";
+    if (is_array($id_danh_muc)) {
+        foreach ($id_danh_muc as $ma) {
+            pdo_execute($sql, $ma);
+        }
+    } else {
+        pdo_execute($sql, $id_danh_muc);
+    }
+    return true;
+}
 /**
  * Truy vấn tất cả các loại
  * @return array mảng loại truy vấn được
@@ -69,7 +80,7 @@ function loai_select_by_id($id_danh_muc)
  */
 function loai_exist($id_danh_muc)
 {
-    $sql = "SELECT count(*) FROM danh_muc WHERE id_danh_muc=?";
+    $sql = "SELECT count(*) FROM san_pham WHERE id_danh_muc=?";
     return pdo_query_value($sql, $id_danh_muc) > 0;
 }
 /**
