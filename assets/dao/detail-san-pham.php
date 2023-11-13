@@ -31,6 +31,17 @@ function detail_san_pham_delete($id_chi_tiet_san_pham)
         pdo_execute($sql, $id_chi_tiet_san_pham);
     }
 }
+function detail_san_pham_delete_none($id_chi_tiet_san_pham)
+{
+    $sql = "UPDATE chi_tiet_san_pham SET display_detail_san_pham = '0' WHERE  id_chi_tiet_san_pham=?";
+    if (is_array($id_chi_tiet_san_pham)) {
+        foreach ($id_chi_tiet_san_pham as $ma) {
+            pdo_execute($sql, $ma);
+        }
+    } else {
+        pdo_execute($sql, $id_chi_tiet_san_pham);
+    }
+}
 function detail_san_pham_value($id_san_pham)
 {
     $sql = "SELECT SUM(so_luong) FROM chi_tiet_san_pham WHERE id_san_pham=?";

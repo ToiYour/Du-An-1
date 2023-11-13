@@ -1,3 +1,4 @@
+<?php $detail_binh_luan = binh_luan_select_by_id($_GET['id']) ?>
 <div class="main-content">
     <div class="page-content pt-4">
         <div class="container-fluid">
@@ -12,7 +13,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="javascript: void(0);">Quản lý bình luận</a>
                                 </li>
-                                <li class="breadcrumb-item active">Tất cả bình luận</li>
+                                <li class="breadcrumb-item active">Chi tiết bình luận</li>
                             </ol>
                         </div>
                     </div>
@@ -21,42 +22,58 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Tất cả bình luận
-                                <a href="?act=list-comment" class="btn btn-success float-right " style="transform: translateY(-30%);">Danh sách bình luận</a>
-                            </h4>
+                        <form action="?act=delete-binhluan" method="post">
+                            <div class="card-body">
+                                <h4 class="card-title">Chi tiết bình luận
+                                    <a href="?act=list-comment" class="btn btn-success float-right " style="transform: translateY(-30%);">Danh sách bình luận</a>
+                                </h4>
 
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Họ tên</th>
-                                        <th>Tên đăng nhập</th>
-                                        <th>Nội dung</th>
-                                        <th>Ngày giờ bình luận</th>
-                                        <th>Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="d-flex">
-                                            <img src="https://nhadepso.com/wp-content/uploads/2023/03/suu-tam-60-hinh-anh-avatar-trang-cho-facebook-dep-doc-dao_4.jpg" alt="" width="50px" height="50px" style="border-radius: 50%; object-fit: cover;">
-                                            <div class="p-2">
-                                                <h6 class="mb-0 text-primary">Đào Ngọc Linh</h6>
-                                                <p class="">avn123@gmail.com</p>
-                                            </div>
-                                        </td>
-                                        <td>linhdn</td>
-                                        <td>Sản phẩm tuyệt vời lắm mọi người</td>
-                                        <td>9/11/2023</td>
-                                        <td>
-                                            <a href="" class="btn btn-light text-center p-2" data-toggle="tooltip" data-placement="top" title="Xoá"><i class="bx bx-x font-weight-bold"></i></a>
-                                        </td>
-                                    </tr>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Họ tên</th>
+                                            <th>Tên đăng nhập</th>
+                                            <th>Nội dung</th>
+                                            <th>Ngày bình luận</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($detail_binh_luan as $value) : if ($value['display_binh_luan'] == 0) {
+                                                continue;
+                                            } ?>
+                                            <tr>
+                                                <td><input type="checkbox" value="<?php echo $value['id_binh_luan'] ?>" <?php echo isset($_GET['checkAll']) ? 'checked' : '' ?> name="checkAll[]"></td>
+                                                <td class="d-flex">
+                                                    <img src="../assets/images/avatar/<?php echo $value['hinh_anh'] ?>" alt="" width="50px" height="50px" style="border-radius: 50%; object-fit: cover;">
+                                                    <div class="p-2">
+                                                        <h6 class="mb-0 text-primary"><?php echo $value['ho_ten'] ?></h6>
+                                                        <p class=""><?php echo $value['email'] ?></p>
+                                                    </div>
+                                                </td>
+                                                <td><?php echo $value['ten_dang_nhap'] ?></td>
+                                                <td><?php echo $value['noi_dung'] ?></td>
+                                                <td><?php echo $value['ngay_bl'] ?></td>
+                                                <td>
+                                                    <a href="?act=delete-binhluan&id=<?php echo $value['id_binh_luan'] ?>&idsp=<?php echo $value['id_san_pham'] ?>" class="btn btn-light text-center p-2" data-toggle="tooltip" data-placement="top" title="Xoá" onclick="return confirm('Bạn chắc chắc muốn xoá chứ?')"><i class="bx bx-x font-weight-bold"></i></a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer bg-transparent ">
+                                <div class="float-right m-2">
+                                    <input type="text" hidden value="<?php echo $detail_binh_luan[0]['id_san_pham'] ?>" name="id_san_pham">
+                                    <input type="submit" value="Xoá các mục đã chọn" name="delete-binhluan" class="btn btn-outline-danger" onclick="return confirm('Bạn chắc chắn muốn xoá hết tất cả chứ?')">
+                                    <a href="?act=detail-comment&id=<?php echo $_GET['id'] ?>" class="btn btn-outline-success">Bỏ chọn tất cả</a>
+                                    <a href="?act=detail-comment&id=<?php echo $_GET['id'] ?>&checkAll" class="btn btn-outline-success">Chọn tất cả</a>
 
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- end card-body-->
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </form>
                     </div>
                 </div>
             </div>

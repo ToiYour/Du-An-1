@@ -40,7 +40,7 @@ if (isset($_GET['act']) && $_GET['act']) {
                     }
                 }
                 if (empty($error_register)) {
-                    user_insert($arr_register['ho_ten'], $arr_register['user-name'], $arr_register['user-password'], $arr_register['user-email'], 1);
+                    user_insert($arr_register['ho_ten'], $arr_register['user-name'], $arr_register['user-password'], $arr_register['user-email'], '', 'no-avatar.jpg', 1, '', 1, 1, 1);
                 }
             }
             include_once 'view/trang-chu/login-register.php';
@@ -70,7 +70,7 @@ if (isset($_GET['act']) && $_GET['act']) {
                     }
                 }
                 if (empty($error_change_user)) {
-                    user_update($arr_change_user['id_kh'], $arr_change_user['ho_ten'], $arr_change_user['ten_dang_nhap'], $arr_change_user['mat_khau'], $arr_change_user['email'], $arr_change_user['phone'], $arr_change_user['hinh_anh']['name'], $arr_change_user['dia_chi']);
+                    user_update($arr_change_user['id_kh'], $arr_change_user['ho_ten'], $arr_change_user['ten_dang_nhap'], $arr_change_user['mat_khau'], $arr_change_user['email'], $arr_change_user['phone'], $arr_change_user['hinh_anh']['name'], 1, $arr_change_user['dia_chi'], 1, 1, $login['id_roles']);
                     showSuccessToast('Cập nhập thông tin tài khoản thành công!');
                     header('location: index.php?act=setting-user');
                 } else {

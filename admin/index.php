@@ -9,6 +9,10 @@ include_once '../assets/dao/san-pham.php';
 include_once '../assets/dao/size.php';
 include_once '../assets/dao/mau.php';
 include_once '../assets/dao/roles.php';
+include_once '../assets/dao/khach-hang.php';
+include_once '../assets/dao/binh-luan.php';
+include_once '../assets/dao/don-hang.php';
+include_once '../assets/dao/danh-gia.php';
 include_once '../assets/dao/detail-san-pham.php';
 include_once '../assets/dao/toast-message.php';
 include_once 'view/header.php';
@@ -196,7 +200,7 @@ if (isset($_GET['act']) && $_GET['act']) {
     case 'delete-detail-sp':
       if (isset($_GET['id'])) {
         $id_san_pham = $_GET['idsp'];
-        detail_san_pham_delete($_GET['id']);
+        detail_san_pham_delete_none($_GET['id']);
         showSuccessToast('Xoá chi tiết sản phẩm thành công!');
       }
       if (isset($_POST['delete-detail-sp'])) {
@@ -204,7 +208,7 @@ if (isset($_GET['act']) && $_GET['act']) {
         if (empty($_POST['checkAll'])) {
           showErrorToast('Chưa có mục nào được chọn!');
         } else {
-          detail_san_pham_delete($_POST['checkAll']);
+          detail_san_pham_delete_none($_POST['checkAll']);
           showSuccessToast('Xoá chi tiết sản phẩm thành công!');
         }
       }
@@ -217,22 +221,120 @@ if (isset($_GET['act']) && $_GET['act']) {
 
       // Quản lý khách hàng
     case 'addkh':
+      if (isset($_POST['addkh']) && $_POST['addkh']) {
+        $arr_kh = [
+          'ho_ten' => $_POST['ho_ten'],
+          'ten_dang_nhap' => $_POST['ten_dang_nhap'],
+          'mat_khau' => $_POST['mat_khau'],
+          'email' => $_POST['email'],
+          'phone' => $_POST['phone'],
+          'hinh_anh' => $_FILES['hinh_anh'],
+          'dia_chi' => $_POST['dia_chi'],
+          'kich_hoat' => $_POST['kich_hoat'],
+          'id_roles' => $_POST['id_roles']
+        ];
+        foreach ($arr_kh as $key => $value) {
+          if (empty($value)) {
+            $error_kh["$key"] = 'Trường dữ liệu không được bỏ trống';
+          }
+        }
+        if (empty($error_kh)) {
+          $path_file = '../assets/images/avatar/' . $arr_kh['hinh_anh']['name'];
+          move_uploaded_file($arr_kh['hinh_anh']['tmp_name'], $path_file);
+          user_insert($arr_kh['ho_ten'], $arr_kh['ten_dang_nhap'], $arr_kh['mat_khau'], $arr_kh['email'], $arr_kh['phone'], $arr_kh['hinh_anh']['name'], 1, $arr_kh['dia_chi'], $arr_kh['kich_hoat'], 1, $arr_kh['id_roles']);
+        }
+      }
       include_once 'view/user/add.php';
       break;
+      // add khách hàng end
+    case 'update-kh':
+      if (isset($_POST['update-kh']) && $_POST['update-kh']) {
+        $history_kh = user_select_by_id($_POST['id_kh']);
+        $arr_kh = [
+          'ho_ten' => $_POST['ho_ten'],
+          'ten_dang_nhap' => $_POST['ten_dang_nhap'],
+          'mat_khau' => $_POST['mat_khau'],
+          'email' => $_POST['email'],
+          'phone' => $_POST['phone'],
+          'dia_chi' => $_POST['dia_chi'],
+          'kich_hoat' => $_POST['kich_hoat'],
+          'id_roles' => $_POST['id_roles']
+        ];
+        if ($_FILES['hinh_anh']['size'] <= 0) {
+          $arr_kh['hinh_anh']['name'] = $history_kh['hinh_anh'];
+        } else {
+          $arr_kh['hinh_anh']['name'] = $_FILES['hinh_anh']['name'];
+          $path_file = '../assets/images/avatar/' . $_FILES['hinh_anh']['name'];
+          move_uploaded_file($_FILES['hinh_anh']['tmp_name'], $path_file);
+        }
+        foreach ($arr_kh as $key => $value) {
+          if (empty($value)) {
+            $error_kh["$key"] = 'Trường dữ liệu không được bỏ trống';
+          }
+        }
+        if (empty($error_kh)) {
+          user_update($_POST['id_kh'], $arr_kh['ho_ten'], $arr_kh['ten_dang_nhap'], $arr_kh['mat_khau'], $arr_kh['email'], $arr_kh['phone'], $arr_kh['hinh_anh']['name'], $history_kh['trang_thai'], $arr_kh['dia_chi'], $arr_kh['kich_hoat'], 1, $arr_kh['id_roles']);
+          showSuccessToast('Sửa thông tin khách hàng thành công!');
+          include_once 'view/user/list.php';
+        }
+      } else
+        include_once 'view/user/update.php';
+      break;
+      // update khách hàng end
+    case 'delete-kh':
+      if (isset($_GET['id'])) {
+        user_delete_none($_GET['id']);
+        showSuccessToast('Xoá khách hàng thành công!');
+      }
+      if (isset($_POST['delete-kh'])) {
+        if (empty($_POST['checkAll'])) {
+          showErrorToast('Chưa có mục nào được chọn');
+        } else {
+          user_delete_none($_POST['checkAll']);
+          showSuccessToast('Xoá khách hàng thành công!');
+        }
+      }
+      include_once 'view/user/list.php';
+      break;
+      // delete khách hàng end
     case 'listkh':
       include_once 'view/user/list.php';
       break;
     case 'history-mh':
       include_once 'view/user/history-mh.php';
       break;
+      // lịch sửa mua hàng end
+    case 'detail-history-mh':
+      include_once 'view/user/detail-history-mh.php';
+      break;
+      // chi tiết lịch sử mua hàng end
       // Quản lý khách hàng end
 
       // Quản lý bình luận
     case 'list-comment':
       include_once 'view/binh-luan/list.php';
       break;
+      // danh sách bình luận end
     case 'detail-comment':
       include_once 'view/binh-luan/detail.php';
+      break;
+      // chi tiết bình luận end
+    case 'delete-binhluan':
+      if (isset($_GET['id'])) {
+        binh_luan_delete_none($_GET['id']);
+        showSuccessToast('Xoá bình luận thành công!');
+        header('location: index.php?act=detail-comment&id=' . $_GET['idsp']);
+      }
+      if (isset($_POST['delete-binhluan'])) {
+        if (empty($_POST['checkAll'])) {
+          showErrorToast('Chưa có mục nào được chọn');
+          header('location: index.php?act=detail-comment&id=' . $_POST['id_san_pham']);
+        } else {
+          binh_luan_delete_none($_POST['checkAll']);
+          showSuccessToast('Xoá khách hàng thành công!');
+          header('location: index.php?act=detail-comment&id=' . $_POST['id_san_pham']);
+        }
+      }
       break;
       // Quản lý bình luận end
 
@@ -242,6 +344,23 @@ if (isset($_GET['act']) && $_GET['act']) {
       break;
     case 'detail-danh-gia':
       include_once 'view/danh-gia/detail.php';
+      break;
+    case 'delete-danhgia':
+      if (isset($_GET['id'])) {
+        danh_gia_delete_none($_GET['id']);
+        header('location: index.php?act=detail-danh-gia&id=' . $_GET['idsp']);
+        showSuccessToast('Xoá đánh giá thành công!');
+      }
+      if (isset($_POST['delete-danhgia'])) {
+        if (empty($_POST['checkAll'])) {
+          showErrorToast('Chưa có mục nào được chọn');
+          header('location: index.php?act=detail-danh-gia&id=' . $_POST['id_san_pham']);
+        } else {
+          danh_gia_delete_none($_POST['checkAll']);
+          header('location: index.php?act=detail-danh-gia&id=' . $_POST['id_san_pham']);
+          showSuccessToast('Xoá khách hàng thành công!');
+        }
+      }
       break;
   }
 } else {

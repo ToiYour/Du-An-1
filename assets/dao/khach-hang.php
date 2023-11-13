@@ -1,10 +1,10 @@
 <?php
 require_once 'pdo.php';
 include_once 'toast-message.php';
-function user_insert($ho_ten, $ten_dang_nhap, $mat_khau, $email, $id_roles)
+function user_insert($ho_ten, $ten_dang_nhap, $mat_khau, $email, $phone, $hinh_anh, $trang_thai, $dia_chi, $kich_hoat, $display_user, $id_roles)
 {
-    $sql = "INSERT INTO user(ho_ten, ten_dang_nhap, mat_khau, email, id_roles) VALUES (?,?,?,?,?)";
-    pdo_execute($sql, $ho_ten, $ten_dang_nhap, $mat_khau, $email, $id_roles);
+    $sql = "INSERT INTO user(ho_ten, ten_dang_nhap, mat_khau, email, phone, hinh_anh, trang_thai, dia_chi, kich_hoat, display_user, id_roles) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    pdo_execute($sql, $ho_ten, $ten_dang_nhap, $mat_khau, $email, $phone, $hinh_anh, $trang_thai, $dia_chi, $kich_hoat, $display_user, $id_roles);
     showSuccessToast('Bạn đã đăng ký tài khoản thành công!');
 }
 function user_login($user, $password)
@@ -35,10 +35,10 @@ function user_tim_pass($ten_dang_nhap, $email)
     $searchPass = pdo_query_one($sql, $ten_dang_nhap, $email);
     return $searchPass;
 }
-function user_update($id_kh, $ho_ten, $ten_dang_nhap, $mat_khau, $email, $phone, $hinh_anh,  $dia_chi)
+function user_update($id_kh, $ho_ten, $ten_dang_nhap, $mat_khau, $email, $phone, $hinh_anh, $trang_thai, $dia_chi, $kich_hoat, $display_user, $id_roles)
 {
-    $sql = "UPDATE user SET ho_ten=?, ten_dang_nhap=?,mat_khau=?,email=?,phone=?,hinh_anh=?,dia_chi=? WHERE id_kh = ?";
-    $change = pdo_execute($sql,  $ho_ten, $ten_dang_nhap, $mat_khau, $email, $phone, $hinh_anh,  $dia_chi, $id_kh);
+    $sql = "UPDATE user SET ho_ten=?,ten_dang_nhap=?,mat_khau=?,email=?,phone=?,hinh_anh=?,trang_thai=?,dia_chi=?,kich_hoat=?,display_user=?,id_roles=? WHERE id_kh = ?";
+    $change = pdo_execute($sql,  $ho_ten, $ten_dang_nhap, $mat_khau, $email, $phone, $hinh_anh, $trang_thai, $dia_chi, $kich_hoat, $display_user, $id_roles, $id_kh);
     return $change;
 }
 
@@ -53,10 +53,20 @@ function user_delete($id_kh)
         pdo_execute($sql, $id_kh);
     }
 }
-
+function user_delete_none($id_kh)
+{
+    $sql = "UPDATE user SET display_user = 0  WHERE id_kh=?";
+    if (is_array($id_kh)) {
+        foreach ($id_kh as $ma) {
+            pdo_execute($sql, $ma);
+        }
+    } else {
+        pdo_execute($sql, $id_kh);
+    }
+}
 function user_select_all()
 {
-    $sql = "SELECT * FROM user";
+    $sql = "SELECT * FROM user JOIN roles ON user.id_roles = roles.id_roles";
     return pdo_query($sql);
 }
 

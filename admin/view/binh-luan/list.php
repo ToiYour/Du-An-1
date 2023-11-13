@@ -1,3 +1,4 @@
+<?php $binh_luan_all =  binh_luan_select_thong_ke_all(); ?>
 <div class="main-content">
     <div class="page-content pt-4">
         <div class="container-fluid">
@@ -35,18 +36,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Sản phẩm 1</td>
-                                        <td>52</td>
-                                        <td>9/11/2023</td>
-                                        <td>06/11/2023</td>
-                                        <td>
-                                            <a href="?act=detail-comment" class="btn btn-light text-center p-2 "
-                                                data-toggle="tooltip" data-placement="top" title="Xem chi tiết"><i
-                                                    class="bx bx-show font-weight-bold"></i></a>
-                                        </td>
-                                    </tr>
-
+                                    <?php foreach ($binh_luan_all as $value) : ?>
+                                        <tr>
+                                            <td><?php echo $value['ten_san_pham'] ?></td>
+                                            <td><?php echo $value['tong_binh_luan'] ?></td>
+                                            <td><?php echo $value['moi_nhat'] ?></td>
+                                            <td><?php echo $value['cu_nhat'] ?></td>
+                                            <td>
+                                                <a href="?act=detail-comment&id=<?php echo $value['id_san_pham'] ?>" class="btn btn-light text-center p-2 " data-toggle="tooltip" data-placement="top" title="Xem chi tiết"><i class="bx bx-show font-weight-bold"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

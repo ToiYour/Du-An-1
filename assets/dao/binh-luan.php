@@ -24,14 +24,25 @@ function binh_luan_delete($id_binh_luan)
         pdo_execute($sql, $id_binh_luan);
     }
 }
+function binh_luan_delete_none($id_binh_luan)
+{
+    $sql = "UPDATE binh_luan SET display_binh_luan='0' WHERE id_binh_luan=?";
+    if (is_array($id_binh_luan)) {
+        foreach ($id_binh_luan as $ma) {
+            pdo_execute($sql, $ma);
+        }
+    } else {
+        pdo_execute($sql, $id_binh_luan);
+    }
+}
 function binh_luan_select_thong_ke_all()
 {
-    $sql = "SELECT binh_luan.id_san_pham, hang_hoa.ten_hh, SUM(1) AS 'tong_binh_luan', MIN(`ngay_bl`) AS 'moi_nhat', MAX(`ngay_bl`) AS 'cu_nhat' FROM binh_luan JOIN hang_hoa ON binh_luan.id_san_pham = hang_hoa.id_san_pham GROUP BY binh_luan.id_san_pham, hang_hoa.ten_hh";
+    $sql = "SELECT binh_luan.id_san_pham, san_pham.ten_san_pham, SUM(1) AS 'tong_binh_luan', MIN(ngay_bl) AS 'moi_nhat', MAX(ngay_bl) AS 'cu_nhat' FROM binh_luan JOIN san_pham ON binh_luan.id_san_pham = san_pham.id_san_pham GROUP BY binh_luan.id_san_pham, san_pham.ten_san_pham";
     return pdo_query($sql);
 }
 function binh_luan_select_all()
 {
-    $sql = "SELECT * FROM binh_luan ORDER BY ngay_bl DESC";
+    $sql = "SELECT * FROM binh_luan JOIN user ON binh_luan.id_kh = user.id_kh ORDER BY ngay_bl DESC";
     return pdo_query($sql);
 }
 function binh_luan_count_by_id($id_san_pham)
@@ -39,10 +50,10 @@ function binh_luan_count_by_id($id_san_pham)
     $sql = "SELECT COUNT(*) FROM binh_luan WHERE id_san_pham = ?";
     return pdo_query_count($sql, $id_san_pham);
 }
-function binh_luan_select_by_id($id_binh_luan)
+function binh_luan_select_by_id($id_san_pham)
 {
-    $sql = "SELECT * FROM binh_luan WHERE id_binh_luan=?";
-    return pdo_query_one($sql, $id_binh_luan);
+    $sql = "SELECT * FROM binh_luan JOIN user ON binh_luan.id_kh = user.id_kh  WHERE id_san_pham=? ORDER BY ngay_bl DESC";
+    return pdo_query($sql, $id_san_pham);
 }
 
 function binh_luan_exist($id_binh_luan)
