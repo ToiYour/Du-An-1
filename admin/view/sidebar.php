@@ -56,8 +56,8 @@
                       <li>
                           <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="bx bxs-discount"></i><span>Quản lý mã giảm giá</span></a>
                           <ul class="sub-menu" aria-expanded="false">
-                              <li><a href="javascript: void(0);">Tạo mã giảm giá</a></li>
-                              <li><a href="javascript: void(0);">Quản lý thông tin mã giảm giá</a></li>
+                              <li><a href="?act=add-gg">Tạo mã giảm giá</a></li>
+                              <li><a href="?act=list-gg">Quản lý thông tin mã giảm giá</a></li>
                           </ul>
                       </li>
 

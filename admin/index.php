@@ -13,6 +13,7 @@ include_once '../assets/dao/khach-hang.php';
 include_once '../assets/dao/binh-luan.php';
 include_once '../assets/dao/don-hang.php';
 include_once '../assets/dao/danh-gia.php';
+include_once '../assets/dao/giam-gia.php';
 include_once '../assets/dao/detail-san-pham.php';
 include_once '../assets/dao/toast-message.php';
 include_once 'view/header.php';
@@ -361,6 +362,66 @@ if (isset($_GET['act']) && $_GET['act']) {
           showSuccessToast('Xoá khách hàng thành công!');
         }
       }
+      break;
+      // Quản lý đánh giá end
+    case 'add-gg':
+      if (isset($_POST['addgg']) && $_POST['addgg']) {
+        $arr_gg = [
+          'code' => $_POST['code'],
+          'giam_gia' => $_POST['giam_gia'],
+          'so_luong' => $_POST['so_luong'],
+          'ngay_het_han' => $_POST['ngay_het_han']
+        ];
+        foreach ($arr_gg as $key => $value) {
+          if (empty($value)) {
+            $error_gg["$key"] = 'Trường dữ liệu không được bỏ trống';
+          }
+        }
+        if (empty($error_gg)) {
+          giam_gia_insert($arr_gg['code'], $arr_gg['giam_gia'], $arr_gg['so_luong'], $arr_gg['ngay_het_han']);
+          showSuccessToast('Thêm mã giảm giá thành công!');
+        }
+      }
+      include_once 'view/giam-gia/add.php';
+      break;
+    case 'list-gg':
+      include_once 'view/giam-gia/list.php';
+      break;
+    case 'update-gg':
+      if (isset($_POST['update-gg']) && $_POST['update-gg']) {
+        $arr_gg = [
+          'code' => $_POST['code'],
+          'giam_gia' => $_POST['giam_gia'],
+          'so_luong' => $_POST['so_luong'],
+          'ngay_het_han' => $_POST['ngay_het_han']
+        ];
+        foreach ($arr_gg as $key => $value) {
+          if (empty($value)) {
+            $error_gg["$key"] = 'Trường dữ liệu không được bỏ trống';
+          }
+        }
+        if (empty($error_gg)) {
+          giam_gia_update($_POST['id_ma_giam_gia'], $arr_gg['code'], $arr_gg['giam_gia'], $arr_gg['so_luong'], $arr_gg['ngay_het_han']);
+          showSuccessToast('Sửa mã giảm giá thành công!');
+          include_once 'view/giam-gia/list.php';
+        }
+      } else
+        include_once 'view/giam-gia/update.php';
+      break;
+    case 'delete-gg':
+      if (isset($_GET['id'])) {
+        giam_gia_delete_none($_GET['id']);
+        showSuccessToast('Xoá đánh giá thành công!');
+      }
+      if (isset($_POST['delete-gg'])) {
+        if (empty($_POST['checkAll'])) {
+          showErrorToast('Chưa có mục nào được chọn');
+        } else {
+          giam_gia_delete_none($_POST['checkAll']);
+          showSuccessToast('Xoá khách hàng thành công!');
+        }
+      }
+      include_once 'view/giam-gia/list.php';
       break;
   }
 } else {
