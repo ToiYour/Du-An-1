@@ -70,9 +70,10 @@
                           <a href="javascript: void(0);" class="has-arrow waves-effect"><i
                                   class="bx bx-data"></i><span>Thống kê</span></a>
                           <ul class="sub-menu" aria-expanded="false">
-                              <li><a href="pages-invoice.html">Thống kê danh mục</a></li>
-                              <li><a href="pages-starter.html">Thống kê sản phẩm</a></li>
-                              <li><a href="pages-starter.html">Lịch sử nhập xuất sản phẩm</a></li>
+                              <li><a href="?act=thong-ke-dt">Doanh thu</a></li>
+                              <li><a href="?act=thong-ke-slspbd">Số lượng sản phẩm bán được</a></li>
+                              <li><a href="?act=thong-ke-ttdh">Tình trạng đơn hàng</a></li>
+                              <li><a href="?act=thong-ke-bxh">Bảng xếp hạng sản phẩm</a></li>
                           </ul>
                       </li>
                       <li class="menu-title">Quản trị</li>

@@ -24,33 +24,39 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Thêm khách hàng</h4>
-                            <form action="?act=addkh" method="post" enctype="multipart/form-data">
+                            <form action="?act=addkh" method="post" enctype="multipart/form-data" id="myForms"
+                                onsubmit="return checkForms()">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="ho_ten">Họ tên</label>
                                             <input type="text" id="ho_ten" class="form-control" placeholder="Họ tên"
                                                 name="ho_ten">
+                                            <div class="invalid-feedback">Họ tên không được bỏ trống</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="tenDN">Tên đăng nhập</label>
                                             <input type="text" id="tenDN" class="form-control"
                                                 placeholder="Tên đăng nhập" name="ten_dang_nhap">
+                                            <div class="invalid-feedback">Tên đăng nhập không được bỏ trống</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Mật khẩu</label>
                                             <input type="text" id="password" class="form-control" placeholder="Mật khẩu"
                                                 name="mat_khau">
+                                            <div class="invalid-feedback">Mật khẩu không được bỏ trống</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             <input type="email" id="email" class="form-control" placeholder="Nhập Email"
                                                 name="email">
+                                            <div class="invalid-feedback">Email không được bỏ trống</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Số điện thoại</label>
                                             <input type="text" id="phone" class="form-control"
                                                 placeholder="Nhập Số điện thoại" name="phone">
+                                            <div class="invalid-feedback">Số điện thoại không được bỏ trống</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -62,6 +68,7 @@
                                             <label for="address">Địa chỉ</label>
                                             <input type="text" id="address" class="form-control"
                                                 placeholder="Nhập Địa chỉ" name="dia_chi">
+                                            <div class="invalid-feedback">Địa chỉ không được bỏ trống</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="kich_hoat">Kích hoạt</label>
@@ -70,6 +77,7 @@
                                                 <option value="0">Khoá</option>
                                                 <option value="1">Kích hoạt</option>
                                             </select>
+                                            <div class="invalid-feedback">Kích hoạt không được bỏ trống</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="vai_tro">Vai trò</label>
@@ -80,6 +88,7 @@
                                                     <?php echo $value['ten_vai_tro'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
+                                            <div class="invalid-feedback">Vai trò không được bỏ trống</div>
                                         </div>
                                     </div>
                                 </div>

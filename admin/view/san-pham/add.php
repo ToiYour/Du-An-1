@@ -24,12 +24,14 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Thêm sản phẩm</h4>
-                            <form action="?act=addsp" method="post" enctype="multipart/form-data">
+                            <form action="?act=addsp" method="post" enctype="multipart/form-data" id="myForms"
+                                onsubmit="return checkForms()">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tên sản phẩm</label>
                                             <input type="text" id="" class="form-control" name="ten_san_pham">
+                                            <div class="invalid-feedback">Tên sản phẩm không được bỏ trống</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Loại sản phẩm</label>
@@ -40,10 +42,12 @@
                                                     <?php echo $value['ten_danh_muc'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
+                                            <div class="invalid-feedback">Loại sản phẩm không được bỏ trống</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Ảnh sản phẩm</label>
                                             <input type="file" class="form-control" name="hinh_anh">
+                                            <div class="invalid-feedback">Ảnh sản phẩm không được bỏ trống</div>
                                         </div>
 
                                     </div>
@@ -52,7 +56,7 @@
                                             <label for="">Mô tả</label>
                                             <textarea name="mo_ta" id="" cols="30" rows="10"
                                                 class="form-control"></textarea>
-
+                                            <div class="invalid-feedback">Mô tả sản phẩm không được bỏ trống</div>
                                         </div>
 
                                     </div>
