@@ -17,6 +17,7 @@
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>

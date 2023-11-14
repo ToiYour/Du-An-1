@@ -23,26 +23,32 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Thêm mã giảm giá</h4>
-                            <form action="?act=add-gg" method="post" enctype="multipart/form-data">
+                            <form action="?act=add-gg" method="post" enctype="multipart/form-data" id="myForms"
+                                onsubmit="return checkForms()">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-password">Mã giảm giá</label>
-                                            <input type="text" id="example-password" class="form-control" value="" name="code">
+                                            <input type="text" id="example-password" class="form-control" value=""
+                                                name="code">
+                                            <div class="invalid-feedback">Mã giảm giá không được bỏ trống</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="simpleinput">Giảm giá</label>
                                             <input type="text" id="simpleinput" class="form-control" name="giam_gia">
+                                            <div class="invalid-feedback">Giảm giá không được bỏ trống</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Số lượng</label>
                                             <input type="number" id="" class="form-control" name="so_luong">
+                                            <div class="invalid-feedback">Số lượng không được bỏ trống</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Ngày hết hạn</label>
                                             <input type="date" id="" class="form-control" name="ngay_het_han">
+                                            <div class="invalid-feedback">Ngày hết hạn không được bỏ trống</div>
                                         </div>
                                     </div>
                                 </div>

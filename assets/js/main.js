@@ -2,8 +2,8 @@
   "use strict";
 
   /*--
-                                                                        Menu Sticky
-                                                                    -----------------------------------*/
+                                                                            Menu Sticky
+                                                                        -----------------------------------*/
   var windows = $(window);
   var sticky = $(".header-sticky");
 
@@ -17,8 +17,8 @@
   });
 
   /*--
-                                                                        Off Canvas
-                                                                    -------------------------------------------*/
+                                                                            Off Canvas
+                                                                        -------------------------------------------*/
   $(".off-canvas-btn").on("click", function () {
     $("body").addClass("fix");
     $(".off-canvas-wrapper").addClass("open");
@@ -30,8 +30,8 @@
   });
 
   /*-- 
-                                                                        Countdown Activation 
-                                                                    ------------------------------------*/
+                                                                            Countdown Activation 
+                                                                        ------------------------------------*/
   $("[data-countdown]").each(function () {
     var $this = $(this),
       finalDate = $(this).data("countdown");
@@ -45,8 +45,8 @@
   });
 
   /*---
-                                                                     Category Menu Active
-                                                                    ---------------------------- */
+                                                                         Category Menu Active
+                                                                        ---------------------------- */
   $(".categories_title").on("click", function () {
     $(this).toggleClass("active");
     $(".categories_menu_toggle").slideToggle("medium");
@@ -58,8 +58,8 @@
   });
 
   /* ---------------------
-                                                                     Category menu
-                                                                    --------------------- */
+                                                                         Category menu
+                                                                        --------------------- */
   function categorySubMenuToggle() {
     $(".categories_menu_toggle li.menu_item_children > a").on(
       "click",
@@ -89,8 +89,8 @@
   categorySubMenuToggle();
 
   /*-- 
-                                                                        Responsive Mobile Menu
-                                                                    --------------------------------------------------*/
+                                                                            Responsive Mobile Menu
+                                                                        --------------------------------------------------*/
   //Variables
   var $offCanvasNav = $(".mobile-menu"),
     $offCanvasNavSubMenu = $offCanvasNav.find(".dropdown");
@@ -132,8 +132,8 @@
   });
 
   /*--
-                                                                        Hero Slider
-                                                                    --------------------------------------------*/
+                                                                            Hero Slider
+                                                                        --------------------------------------------*/
 
   var heroSlider = $(".hero-slider-one");
   heroSlider.slick({
@@ -161,8 +161,8 @@
   });
 
   /*--
-                                                                        Product Slider
-                                                                    --------------------------------------------*/
+                                                                            Product Slider
+                                                                        --------------------------------------------*/
   var product_4 = $(".product-active-lg-4");
   product_4.slick({
     dots: false,
@@ -208,8 +208,8 @@
     ],
   });
   /*--
-                                                                        Product Slider
-                                                                    --------------------------------------------*/
+                                                                            Product Slider
+                                                                        --------------------------------------------*/
   var product_row_4 = $(".product-active-row-4");
   product_row_4.slick({
     dots: false,
@@ -257,8 +257,8 @@
   });
 
   /*-- 
-                                                                        brand Active Two 
-                                                                    -----------------------------*/
+                                                                            brand Active Two 
+                                                                        -----------------------------*/
   var brandActive = $(".our-brand-active");
   brandActive.slick({
     dots: false,
@@ -296,8 +296,8 @@
     ],
   });
   /*-- 
-                                                                        Testimonial Two Slider 
-                                                                    -----------------------------*/
+                                                                            Testimonial Two Slider 
+                                                                        -----------------------------*/
   var testimonialSliderTwo = $(".testimonial-two");
   testimonialSliderTwo.slick({
     arrows: false,
@@ -319,8 +319,8 @@
   });
 
   /*---------------------------
-                                                                    	Count Down Timer
-                                                                    ----------------------------*/
+                                                                        	Count Down Timer
+                                                                        ----------------------------*/
   $("[data-countdown]").each(function () {
     var $this = $(this),
       finalDate = $(this).data("countdown");
@@ -334,8 +334,8 @@
   });
 
   /*----------
-                                                                        price-slider active
-                                                                    -------------------------------*/
+                                                                            price-slider active
+                                                                        -------------------------------*/
   $("#price-slider").slider({
     range: true,
     min: 0,
@@ -350,8 +350,8 @@
   $("#max-price").val("$" + $("#price-slider").slider("values", 1));
 
   /*--
-                                                                        Category menu Activation
-                                                                    ------------------------------*/
+                                                                            Category menu Activation
+                                                                        ------------------------------*/
   $(".category-sub-menu li.has-sub > a").on("click", function () {
     $(this).removeAttr("href");
     var element = $(this).parent("li");
@@ -409,36 +409,36 @@
   });
 
   /*--
-                                                                        showlogin toggle function
-                                                                    --------------------------*/
+                                                                            showlogin toggle function
+                                                                        --------------------------*/
   $("#showlogin").on("click", function () {
     $("#checkout-login").slideToggle(500);
   });
 
   /*--
-                                                                        showcoupon toggle function
-                                                                    --------------------------*/
+                                                                            showcoupon toggle function
+                                                                        --------------------------*/
   $("#showcoupon").on("click", function () {
     $("#checkout-coupon").slideToggle(500);
   });
 
   /*--
-                                                                        Checkout 
-                                                                    --------------------------*/
+                                                                            Checkout 
+                                                                        --------------------------*/
   $("#chekout-box").on("change", function () {
     $(".account-create").slideToggle("100");
   });
 
   /*-- 
-                                                                        Checkout 
-                                                                    ---------------------------*/
+                                                                            Checkout 
+                                                                        ---------------------------*/
   $("#chekout-box-2").on("change", function () {
     $(".ship-box-info").slideToggle("100");
   });
 
   /*--
-                                                                        ScrollUp Active
-                                                                    -----------------------------------*/
+                                                                            ScrollUp Active
+                                                                        -----------------------------------*/
   $.scrollUp({
     scrollText: '<i class="fa fa-angle-up"></i>',
     easingType: "linear",
@@ -483,4 +483,36 @@ if (main) {
     }
   };
   toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+}
+// check Forms
+function checkForms() {
+  let formsElements = document.getElementById("myForms");
+  let formsData = new FormData(formsElements);
+  let emtyForms = false;
+  formsData.forEach(function (item, index) {
+    if (item == null || item == "") {
+      formsElements[index].classList.add("is-invalid");
+      emtyForms = true;
+    } else {
+      formsElements[index].classList.add("is-valid");
+      formsElements[index].classList.remove("is-invalid");
+    }
+  });
+  return !emtyForms;
+}
+
+function checkForms2() {
+  let formsElements = document.getElementById("myForms2");
+  let formsData = new FormData(formsElements);
+  let emtyForms = false;
+  formsData.forEach(function (item, index) {
+    if (item == null || item == "") {
+      formsElements[index].classList.add("is-invalid");
+      emtyForms = true;
+    } else {
+      formsElements[index].classList.add("is-valid");
+      formsElements[index].classList.remove("is-invalid");
+    }
+  });
+  return !emtyForms;
 }

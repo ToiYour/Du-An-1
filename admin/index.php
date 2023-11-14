@@ -14,6 +14,7 @@ include_once '../assets/dao/binh-luan.php';
 include_once '../assets/dao/don-hang.php';
 include_once '../assets/dao/danh-gia.php';
 include_once '../assets/dao/giam-gia.php';
+include_once '../assets/dao/thong-ke.php';
 include_once '../assets/dao/detail-san-pham.php';
 include_once '../assets/dao/toast-message.php';
 include_once 'view/header.php';
@@ -422,6 +423,20 @@ if (isset($_GET['act']) && $_GET['act']) {
         }
       }
       include_once 'view/giam-gia/list.php';
+      break;
+      // quản lý giảm giá end
+      // thống kê start
+    case 'thong-ke-dt':
+      include_once 'view/thong-ke/doanhthu.php';
+      break;
+    case 'thong-ke-slspbd':
+      include_once 'view/thong-ke/sl-sp-ban-duoc.php';
+      break;
+    case 'thong-ke-ttdh':
+      include_once 'view/thong-ke/tinh-trang.php';
+      break;
+    case 'thong-ke-bxh':
+      include_once 'view/thong-ke/bxh.php';
       break;
   }
 } else {

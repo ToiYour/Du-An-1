@@ -23,18 +23,21 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Thêm danh mục</h4>
-                            <form action="?act=adddm" method="post" enctype="multipart/form-data">
+                            <form action="?act=adddm" method="post" enctype="multipart/form-data" id="myForms" onsubmit="return checkForms()">
                                 <div class="form-group">
                                     <label for="example-password">Mã danh mục</label>
-                                    <input type="text" id="example-password" class="form-control" value="" disabled>
+                                    <input type="text" id="example-password" class="form-control " value="" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="simpleinput">Tên danh mục</label>
-                                    <input type="text" id="simpleinput" class="form-control" placeholder="Nhập tên danh mục" name="ten_danh_muc">
+                                    <input type="text" id="simpleinput" class="form-control " placeholder="Nhập tên danh mục" name="ten_danh_muc">
+                                    <div class="invalid-feedback">
+                                        Tên danh mục không được bỏ trống
+                                    </div>
                                 </div>
-                                <div class="float-right">
+                                <div class="float-right ">
                                     <a href="?act=listdm" class="btn btn-outline-success">Danh sách danh mục</a>
-                                    <input type="submit" class="btn btn-success" value="Thêm danh mục" name="add-dm">
+                                    <input type="submit" id="inputError" class="btn btn-success" value="Thêm danh mục" name="add-dm">
                                 </div>
                             </form>
                         </div>

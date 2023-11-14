@@ -57,3 +57,19 @@ if (main) {
   };
   toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
 }
+// check Forms
+function checkForms() {
+  let formsElements = document.getElementById("myForms");
+  let formsData = new FormData(formsElements);
+  let emtyForms = false;
+  formsData.forEach(function (item, index) {
+    if (item == null || item == "") {
+      formsElements[index].classList.add("is-invalid");
+      emtyForms = true;
+    } else {
+      formsElements[index].classList.add("is-valid");
+      formsElements[index].classList.remove("is-invalid");
+    }
+  });
+  return !emtyForms;
+}
