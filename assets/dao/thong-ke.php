@@ -1,6 +1,12 @@
 <?php
 require_once 'pdo.php';
-
+function thong_ke_thong_bao()
+{
+    $user = "SELECT * FROM user ORDER BY id_kh DESC LIMIT 1";
+    $don_hang = "SELECT * FROM `don_hang` JOIN user ON don_hang.id_kh = user.id_kh ORDER BY don_hang.id_don_hang DESC LIMIT 1";
+    $arr = [pdo_query_one($user), pdo_query_one($don_hang)];
+    return $arr;
+}
 function thong_ke_san_pham()
 {
     $sql = "SELECT danh_muc.ten_danh_muc, COUNT(chi_tiet_san_pham.so_luong) AS total_sl, MIN(chi_tiet_san_pham.gia_ban) AS gia_min, MAX(chi_tiet_san_pham.gia_ban) AS gia_max, AVG(chi_tiet_san_pham.gia_ban) AS gia_avg FROM san_pham JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc JOIN chi_tiet_san_pham ON san_pham.id_san_pham = chi_tiet_san_pham.id_san_pham GROUP BY san_pham.ten_san_pham, danh_muc.ten_danh_muc";

@@ -1,5 +1,5 @@
 <?php $history_dh_home = don_hang_history_home();
-$thong_ke_home = don_hang_thong_ke_home() ?>
+$thong_ke_home = don_hang_thong_ke_home(); ?>
 <div class="main-content">
     <div class="page-content pt-4">
         <div class="container-fluid">
