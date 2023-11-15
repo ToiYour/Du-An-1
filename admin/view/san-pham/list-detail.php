@@ -36,7 +36,7 @@
                                             <th></th>
                                             <th>ID</th>
                                             <th>Tên sản phẩm</th>
-                                            <th>Giá nhập</th>
+
                                             <th>Giá bán</th>
                                             <th>Số lượng</th>
                                             <th>Size</th>
@@ -57,7 +57,7 @@
                                             <td class="font-weight-bolder text-primary">
                                                 <?php echo $value['id_chi_tiet_san_pham'] ?></td>
                                             <td><?php echo $value['ten_san_pham'] ?></td>
-                                            <td><?php echo number_format($value['gia_nhap']) ?>đ</td>
+
                                             <td><?php echo number_format($value['gia_ban']) ?>đ</td>
                                             <td><?php echo $value['so_luong'] ?></td>
                                             <td class="text-info"><?php echo $value['size'] ?></td>

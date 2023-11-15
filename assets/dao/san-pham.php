@@ -61,7 +61,16 @@ function san_pham_select_all()
     $sql = "SELECT * FROM san_pham JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc";
     return pdo_query($sql);
 }
-
+function san_pham_select_product_new()
+{
+    $sql = "SELECT san_pham.id_san_pham, san_pham.ten_san_pham, MAX(san_pham.mo_ta) AS mo_ta, MAX(san_pham.hinh_anh) AS hinh_anh, MAX(san_pham.luot_xem) AS luot_xem, MAX(chi_tiet_san_pham.gia_ban) AS gia_ban, MAX(chi_tiet_san_pham.display_detail_san_pham) AS display_detail_san_pham FROM chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham GROUP BY san_pham.id_san_pham, san_pham.ten_san_pham ORDER BY san_pham.id_san_pham DESC    ";
+    return pdo_query($sql);
+}
+function san_pham_select_best_seller()
+{
+    $sql = "SELECT san_pham.id_san_pham, san_pham.ten_san_pham, MAX(san_pham.mo_ta) AS mo_ta, MAX(san_pham.hinh_anh) AS hinh_anh, MAX(san_pham.luot_xem) AS luot_xem, MAX(chi_tiet_san_pham.gia_ban) AS gia_ban, MAX(chi_tiet_san_pham.display_detail_san_pham) AS display_detail_san_pham, SUM(chi_tiet_don_hang.so_luong) AS so_luong_ban FROM chi_tiet_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham GROUP BY san_pham.id_san_pham, san_pham.ten_san_pham ORDER BY so_luong_ban DESC";
+    return pdo_query($sql);
+}
 function san_pham_select_by_id($id_san_pham)
 {
     $sql = "SELECT * FROM san_pham WHERE id_san_pham=?";

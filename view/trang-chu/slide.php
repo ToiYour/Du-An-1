@@ -7,15 +7,15 @@
              <div class="row">
                  <div class="col-lg-12 col-md-12">
                      <div class="slider-content-text text-left">
-                         <h5>Exclusive Offer -20% Off This Week</h5>
+                         <h5>Ưu đãi độc quyền -Giảm 20% trong tuần này</h5>
                          <h1>H-Vault Classico</h1>
                          <p>
-                             H-Vault Watches Are A Lot Like Classic American Muscle Cars
-                             - Expect For The American Part That Is.
+                             Đồng hồ H-Vault rất giống những chiếc xe cơ bắp cổ điển của Mỹ
+                             - Mong Đợi Phần Mỹ Đó Là.
                          </p>
-                         <p>Starting At <strong>$1.499.00</strong></p>
+                         <p>Chỉ với giá: <strong>1.499.00đ</strong></p>
                          <div class="slide-btn-group">
-                             <a href="shop.html" class="btn btn-bordered btn-style-1">Shop Now</a>
+                             <a href="shop.html" class="btn btn-bordered btn-style-1">Mua ngay</a>
                          </div>
                      </div>
                  </div>
@@ -32,15 +32,15 @@
              <div class="row">
                  <div class="col-lg-12 col-md-12">
                      <div class="slider-content-text text-left">
-                         <h5>Exclusive Offer -20% Off This Week</h5>
+                         <h5>Ưu đãi độc quyền -Giảm 20% trong tuần này</h5>
                          <h1>H-Vault Classico</h1>
                          <p>
-                             H-Vault Watches Are A Lot Like Classic American Muscle Cars
-                             - Expect For The American Part That Is.
+                             Đồng hồ H-Vault rất giống những chiếc xe cơ bắp cổ điển của Mỹ
+                             - Mong Đợi Phần Mỹ Đó Là.
                          </p>
-                         <p>Starting At <strong>$1.499.00</strong></p>
+                         <p>Chỉ với giá: <strong>1.499.00đ</strong></p>
                          <div class="slide-btn-group">
-                             <a href="shop.html" class="btn btn-bordered btn-style-1">Shop Now</a>
+                             <a href="shop.html" class="btn btn-bordered btn-style-1">Mua ngay</a>
                          </div>
                      </div>
                  </div>

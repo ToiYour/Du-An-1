@@ -31,7 +31,7 @@ function user_logout()
 }
 function user_tim_pass($ten_dang_nhap, $email)
 {
-    $sql = "SELECT * FROM user WHERE id_kh = ?  AND email = ?";
+    $sql = "SELECT * FROM user WHERE ten_dang_nhap = ?  AND email = ?";
     $searchPass = pdo_query_one($sql, $ten_dang_nhap, $email);
     return $searchPass;
 }

@@ -141,13 +141,14 @@
                                             <a href="shop.html">Danh mục <i class="fa fa-angle-down"></i></a>
                                             <ul class="mega-menu">
                                                 <li>
-                                                    <a href="#">Đồng hồ</a>
+                                                    <a href="?act=list">Đồng hồ</a>
                                                     <ul>
-                                                        <li>1</li>
-                                                        <li>2</li>
-                                                        <li>3</li>
-                                                        <li>4</li>
-                                                        <li>5</li>
+                                                        <?php foreach ($list_danhMuc as $value) : if ($value['display_danh_muc'] == 0) {
+                                                                continue;
+                                                            } ?>
+                                                            <li><a href="?act=list&category=<?php echo $value['id_danh_muc'] ?>"><?php echo $value['ten_danh_muc'] ?></a>
+                                                            </li>
+                                                        <?php endforeach; ?>
                                                     </ul>
                                                 </li>
                                             </ul>

@@ -3,7 +3,11 @@ session_start();
 ob_start();
 include_once 'assets/dao/pdo.php';
 include_once 'assets/dao/khach-hang.php';
+include_once 'assets/dao/loai.php';
+include_once 'assets/dao/san-pham.php';
+include_once 'PHPMailer-master/sendmail.php';
 include_once 'assets/dao/toast-message.php';
+$list_danhMuc = loai_select_all();
 include_once 'view/header.php';
 if (isset($_GET['act']) && $_GET['act']) {
     $act = $_GET['act'];
@@ -82,6 +86,37 @@ if (isset($_GET['act']) && $_GET['act']) {
         case 'logout':
             user_logout();
             header('location: index.php');
+            break;
+        case 'forgot_password':
+            if (isset($_POST['forgot']) && $_POST['forgot']) {
+                $arr_forgot = [
+                    'user-name' => $_POST['user-name'],
+                    'user-email' => $_POST['user-email']
+                ];
+                foreach ($arr_forgot as $key => $value) {
+                    if (empty($value)) {
+                        $error_forgot["$key"] = 'Trường dữ liệu không được bỏ trống';
+                    }
+                }
+                if (empty($error_forgot)) {
+                    $thongTin_forgot = user_tim_pass($arr_forgot['user-name'], $arr_forgot['user-email']);
+                    $_SESSION['maXacNhan'] = mt_rand(00001, 99999);
+                    $_SESSION['id_kh'] = $thongTin_forgot['id_kh'];
+                    sendMail($thongTin_forgot['email'], $thongTin_forgot['ho_ten'], $_SESSION['maXacNhan']);
+                    include_once 'view/trang-chu/new-password.php';
+                }
+            } else
+                include_once 'view/trang-chu/forgot-pass.php';
+            break;
+        case 'newPassword':
+            if (isset($_POST['xacNhan']) && $_POST['xacNhan']) {
+                if (!empty($_POST['newPassword'])) {
+                    user_change_password($_SESSION['id_kh'], $_POST['newPassword']);
+                    session_destroy();
+                    showSuccessToast('Cập nhập mật khẩu mới thành công!');
+                    include_once 'view/trang-chu/login-register.php';
+                }
+            }
             break;
             // Quản lý user end
     }

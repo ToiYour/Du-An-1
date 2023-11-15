@@ -44,8 +44,8 @@ $mau_all = mau_select();   ?>
                                             <input type="text" id="" class="form-control" name="so_luong">
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Giá nhập</label>
-                                            <input type="text" id="" class="form-control" name="gia_nhap">
+                                            <label for="">Giá bán</label>
+                                            <input type="text" id="" class="form-control" name="gia_ban">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -69,10 +69,7 @@ $mau_all = mau_select();   ?>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="">Giá bán</label>
-                                            <input type="text" id="" class="form-control" name="gia_ban">
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="float-right">
