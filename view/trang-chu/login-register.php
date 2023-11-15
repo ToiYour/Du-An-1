@@ -35,15 +35,19 @@
                                 <div id="lg1" class="tab-pane active">
                                     <div class="login-form-container">
                                         <div class="login-register-form">
-                                            <form action="?act=login" method="post" id="myForms" onsubmit="return checkForms()">
+                                            <form action="?act=login" method="post" id="myForms"
+                                                onsubmit="return checkForms()">
                                                 <div class="login-input-box">
                                                     <input type="text" name="user-name" placeholder="Tên đăng nhập">
                                                     <div class="invalid-feedback">Tên đăng nhập không được bỏ trống
                                                     </div>
                                                     <div class="position-relative">
-                                                        <input type="password" name="user-password" class="js-input-pass" placeholder="Mật khẩu">
-                                                        <i class="fa fa-eye position-absolute js-icon-eye" aria-hidden="true"></i>
-                                                        <i class="fa fa-eye-slash position-absolute js-icon-eye" aria-hidden="true"></i>
+                                                        <input type="password" name="user-password"
+                                                            class="js-input-pass" placeholder="Mật khẩu">
+                                                        <i class="fa fa-eye position-absolute js-icon-eye"
+                                                            aria-hidden="true"></i>
+                                                        <i class="fa fa-eye-slash position-absolute js-icon-eye"
+                                                            aria-hidden="true"></i>
                                                         <div class="invalid-feedback">Mật khẩu không được bỏ trống</div>
                                                     </div>
 
@@ -51,10 +55,11 @@
                                                 <div class="button-box">
                                                     <div class="login-toggle-btn">
 
-                                                        <a href="#">Quên mật khẩu?</a>
+                                                        <a href="?act=forgot_password">Quên mật khẩu?</a>
                                                     </div>
                                                     <div class="button-box">
-                                                        <button class="login-btn btn" name="login" value="login" type="submit"><span>Đăng
+                                                        <button class="login-btn btn" name="login" value="login"
+                                                            type="submit"><span>Đăng
                                                                 nhập</span></button>
                                                     </div>
                                                 </div>
@@ -65,7 +70,8 @@
                                 <div id="lg2" class="tab-pane">
                                     <div class="login-form-container">
                                         <div class="login-register-form">
-                                            <form action="?act=register" method="post" id="myForms2" onsubmit="return checkForms2()">
+                                            <form action="?act=register" method="post" id="myForms2"
+                                                onsubmit="return checkForms2()">
                                                 <div class="login-input-box">
                                                     <input type="text" name="ho_ten" placeholder="Họ và tên">
                                                     <div class="invalid-feedback">Tên không được bỏ trống</div>
@@ -73,16 +79,20 @@
                                                     <div class="invalid-feedback">Tên đăng nhập không được bỏ trống
                                                     </div>
                                                     <div class="position-relative">
-                                                        <input type="password" name="user-password" class="js-input-pass" placeholder="Mật khẩu">
-                                                        <i class="fa fa-eye position-absolute js-icon-eye" aria-hidden="true"></i>
-                                                        <i class="fa fa-eye-slash position-absolute js-icon-eye" aria-hidden="true"></i>
+                                                        <input type="password" name="user-password"
+                                                            class="js-input-pass" placeholder="Mật khẩu">
+                                                        <i class="fa fa-eye position-absolute js-icon-eye"
+                                                            aria-hidden="true"></i>
+                                                        <i class="fa fa-eye-slash position-absolute js-icon-eye"
+                                                            aria-hidden="true"></i>
                                                         <div class="invalid-feedback">Mật khẩu không được bỏ trống</div>
                                                     </div>
                                                     <input name="user-email" placeholder="Email" type="email">
                                                     <div class="invalid-feedback">Email không được bỏ trống</div>
                                                 </div>
                                                 <div class="button-box">
-                                                    <button class="register-btn btn" type="submit" name="register" value="register"><span>Đăng
+                                                    <button class="register-btn btn" type="submit" name="register"
+                                                        value="register"><span>Đăng
                                                             ký</span></button>
                                                 </div>
                                             </form>

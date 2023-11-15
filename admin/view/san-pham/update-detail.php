@@ -34,19 +34,22 @@ $mau_all = mau_select();   ?>
                                             <label for="">Sản phẩm</label>
                                             <select name="id_san_pham" id="" class="form-control">
                                                 <?php foreach ($san_pham_all as $value) : ?>
-                                                    <option value="" hidden>--Chọn sản phẩm--</option>
-                                                    <option value="<?php echo $value['id_san_pham'] ?>" <?php echo ($value['id_san_pham'] == $san_pham_one['id_san_pham']) ? 'selected' : '' ?>>
-                                                        <?php echo $value['ten_san_pham'] ?></option>
+                                                <option value="" hidden>--Chọn sản phẩm--</option>
+                                                <option value="<?php echo $value['id_san_pham'] ?>"
+                                                    <?php echo ($value['id_san_pham'] == $san_pham_one['id_san_pham']) ? 'selected' : '' ?>>
+                                                    <?php echo $value['ten_san_pham'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Số lượng</label>
-                                            <input type="text" id="" class="form-control" name="so_luong" value="<?php echo $san_pham_one['so_luong'] ?>">
+                                            <input type="text" id="" class="form-control" name="so_luong"
+                                                value="<?php echo $san_pham_one['so_luong'] ?>">
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Giá nhập</label>
-                                            <input type="text" id="" class="form-control" name="gia_nhap" value="<?php echo $san_pham_one['gia_nhap'] ?>">
+                                            <label for="">Giá bán</label>
+                                            <input type="text" id="" class="form-control" name="gia_ban"
+                                                value="<?php echo $san_pham_one['gia_ban'] ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -55,8 +58,9 @@ $mau_all = mau_select();   ?>
                                             <select name="id_size" id="" class="form-control">
                                                 <option value="" hidden>--Chọn Size--</option>
                                                 <?php foreach ($size_all as $value) : ?>
-                                                    <option value="<?php echo $value['id_size'] ?>" <?php echo ($value['id_size'] == $san_pham_one['id_size']) ? 'selected' : '' ?>>
-                                                        <?php echo $value['size'] ?></option>
+                                                <option value="<?php echo $value['id_size'] ?>"
+                                                    <?php echo ($value['id_size'] == $san_pham_one['id_size']) ? 'selected' : '' ?>>
+                                                    <?php echo $value['size'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -65,22 +69,24 @@ $mau_all = mau_select();   ?>
                                             <select name="id_mau" id="" class="form-control">
                                                 <option value="" hidden>--Chọn màu--</option>
                                                 <?php foreach ($mau_all as $value) : ?>
-                                                    <option value="<?php echo $value['id_mau'] ?>" <?php echo ($value['id_mau'] == $san_pham_one['id_mau']) ? 'selected' : '' ?>>
-                                                        <?php echo $value['mau'] ?></option>
+                                                <option value="<?php echo $value['id_mau'] ?>"
+                                                    <?php echo ($value['id_mau'] == $san_pham_one['id_mau']) ? 'selected' : '' ?>>
+                                                    <?php echo $value['mau'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="">Giá bán</label>
-                                            <input type="text" id="" class="form-control" name="gia_ban" value="<?php echo $san_pham_one['gia_ban'] ?>">
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="float-right">
-                                    <input type="text" hidden value="<?php echo $san_pham_one['id_chi_tiet_san_pham'] ?>" name="id_chi_tiet_san_pham">
-                                    <a href="?act=list-detail&id=<?php echo $san_pham_one['id_san_pham'] ?>" class="btn btn-outline-success">Danh chi tiết sản
+                                    <input type="text" hidden
+                                        value="<?php echo $san_pham_one['id_chi_tiet_san_pham'] ?>"
+                                        name="id_chi_tiet_san_pham">
+                                    <a href="?act=list-detail&id=<?php echo $san_pham_one['id_san_pham'] ?>"
+                                        class="btn btn-outline-success">Danh chi tiết sản
                                         phẩm</a>
-                                    <input type="submit" class="btn btn-success" value="Sửa chi tiết sản phẩm" name="update-detail-sp">
+                                    <input type="submit" class="btn btn-success" value="Sửa chi tiết sản phẩm"
+                                        name="update-detail-sp">
                                 </div>
                             </form>
                         </div>
