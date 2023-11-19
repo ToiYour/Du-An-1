@@ -17,7 +17,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" />
     <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/css/vendor/font-awesome.min.css" />
     <link rel="stylesheet" href="assets/css/vendor/simple-line-icons.css" />
 
@@ -58,17 +60,9 @@
                             <div class="search-box-wrapper">
                                 <div class="search-box-inner-wrap">
                                     <form class="search-box-inner">
-                                        <div class="search-select-box">
-                                            <select class="nice-select">
-                                                <optgroup label=" Watch">
-                                                    <option value="volvo">Tất cả</option>
-                                                    <option value="saab">Đồng hồ</option>
-                                                </optgroup>
-
-                                            </select>
-                                        </div>
                                         <div class="search-field-wrap">
-                                            <input type="text" class="search-field" placeholder="Tìm kiếm sản phẩm..." />
+                                            <input type="text" class="search-field rounded-start"
+                                                placeholder="Tìm kiếm sản phẩm..." />
 
                                             <div class="search-btn">
                                                 <button><i class="icon-magnifier"></i></button>
@@ -80,40 +74,41 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="right-blok-box text-white d-flex align-items-center">
-                                <div class="user-wrap">
-                                    <a href="wishlist.html"><span class="cart-total">2</span>
-                                        <i class="icon-heart"></i></a>
-                                </div>
-
                                 <div class="shopping-cart-wrap">
-                                    <a href="#"><i class="icon-basket-loaded"></i><span class="cart-total">2</span></a>
+                                    <a href="?act=cart"><i class="icon-basket-loaded"></i><span
+                                            class="cart-total">0</span></a>
                                 </div>
                                 <?php if (!isset($_SESSION['login'])) : ?>
-                                    <div class="px-3">
-                                        <a href="?act=login"><i class="fa fa-user-o" aria-hidden="true"></i></a>
-                                    </div>
+                                <div class="px-3">
+                                    <a href="?act=login"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+                                </div>
                                 <?php else : ?>
-                                    <!-- tài khoản -->
+                                <!-- tài khoản -->
 
-                                    <div class="px-2 pb-2 position-relative user-account" style="cursor: pointer;">
-                                        <img src="assets/images/avatar/<?php $login = user_select_by_id($_SESSION['login']['id_kh']);
-                                                                        echo  $login['hinh_anh'] ?>" alt="" width="30px" height="30px" style="border-radius: 50%" />
-                                        <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" class="x1lliihq x1k90msu x2h7rmj x1qfuztq x198g3q0 x1kpxq89 xsmyaan position-absolute icon-down-user">
-                                            <g fill-rule="evenodd" transform="translate(-448 -544)">
-                                                <path fill-rule="nonzero" d="M452.707 549.293a1 1 0 0 0-1.414 1.414l4 4a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L456 552.586l-3.293-3.293z">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                        <ul class="menu-user-hover ">
-                                            <?php if ($_SESSION['login']['id_roles'] == 2 || $_SESSION['login']['id_roles'] == 3) : ?>
-                                                <li class="dropdown-item "><a class="fs-6" href="admin/index.php">Vào trang quản
-                                                        trị</a></li>
-                                            <?php endif ?>
-                                            <li class="dropdown-item "><a class="fs-6" href="?act=setting-user">Quản lý tài
-                                                    khoản</a></li>
-                                            <li class="dropdown-item "><a class="fs-6" href="?act=logout">Đăng xuất</a></li>
-                                        </ul>
-                                    </div>
+                                <div class="px-2 pb-2 position-relative user-account" style="cursor: pointer;">
+                                    <img src="assets/images/avatar/<?php $login = user_select_by_id($_SESSION['login']['id_kh']);
+                                                                        echo  $login['hinh_anh'] ?>" alt=""
+                                        width="30px" height="30px" style="border-radius: 50%" />
+                                    <svg viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor"
+                                        class="x1lliihq x1k90msu x2h7rmj x1qfuztq x198g3q0 x1kpxq89 xsmyaan position-absolute icon-down-user">
+                                        <g fill-rule="evenodd" transform="translate(-448 -544)">
+                                            <path fill-rule="nonzero"
+                                                d="M452.707 549.293a1 1 0 0 0-1.414 1.414l4 4a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L456 552.586l-3.293-3.293z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                    <ul class="menu-user-hover ">
+                                        <input type="text" hidden name="id_kh"
+                                            value="<?php echo $_SESSION['login']['id_kh'] ?>">
+                                        <?php if ($_SESSION['login']['id_roles'] == 2 || $_SESSION['login']['id_roles'] == 3) : ?>
+                                        <li class="dropdown-item "><a class="fs-6" href="admin/index.php">Vào trang quản
+                                                trị</a></li>
+                                        <?php endif ?>
+                                        <li class="dropdown-item "><a class="fs-6" href="?act=setting-user">Quản lý tài
+                                                khoản</a></li>
+                                        <li class="dropdown-item "><a class="fs-6" href="?act=logout">Đăng xuất</a></li>
+                                    </ul>
+                                </div>
 
 
                                 <?php endif; ?>
@@ -146,8 +141,9 @@
                                                         <?php foreach ($list_danhMuc as $value) : if ($value['display_danh_muc'] == 0) {
                                                                 continue;
                                                             } ?>
-                                                            <li><a href="?act=list&category=<?php echo $value['id_danh_muc'] ?>"><?php echo $value['ten_danh_muc'] ?></a>
-                                                            </li>
+                                                        <li><a
+                                                                href="?act=list&category=<?php echo $value['id_danh_muc'] ?>"><?php echo $value['ten_danh_muc'] ?></a>
+                                                        </li>
                                                         <?php endforeach; ?>
                                                     </ul>
                                                 </li>
@@ -173,13 +169,9 @@
 
                         <div class="col-lg-3 col-md-6 col-7 d-block d-lg-none">
                             <div class="right-blok-box text-white d-flex">
-                                <div class="user-wrap">
-                                    <a href="wishlist.html"><span class="cart-total">2</span>
-                                        <i class="icon-heart"></i></a>
-                                </div>
-
                                 <div class="shopping-cart-wrap">
-                                    <a href="#"><i class="icon-basket-loaded"></i><span class="cart-total">0</span></a>
+                                    <a href="?act=cart"><i class="icon-basket-loaded"></i><span
+                                            class="cart-total">0</span></a>
                                 </div>
 
                                 <div class="mobile-menu-btn d-block d-lg-none">

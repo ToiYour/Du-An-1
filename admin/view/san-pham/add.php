@@ -49,7 +49,10 @@
                                             <input type="file" class="form-control" name="hinh_anh">
                                             <div class="invalid-feedback">Ảnh sản phẩm không được bỏ trống</div>
                                         </div>
-
+                                        <div class="form-group">
+                                            <label for="">Giá </label>
+                                            <input type="text" id="" class="form-control" name="price">
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">

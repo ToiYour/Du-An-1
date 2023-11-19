@@ -5,9 +5,14 @@ include_once 'assets/dao/pdo.php';
 include_once 'assets/dao/khach-hang.php';
 include_once 'assets/dao/loai.php';
 include_once 'assets/dao/san-pham.php';
+include_once 'assets/dao/size.php';
+include_once 'assets/dao/mau.php';
+include_once 'assets/dao/gio-hang.php';
 include_once 'PHPMailer-master/sendmail.php';
 include_once 'assets/dao/toast-message.php';
 $list_danhMuc = loai_select_all();
+$list_size = size_select();
+$list_color = mau_select();
 include_once 'view/header.php';
 if (isset($_GET['act']) && $_GET['act']) {
     $act = $_GET['act'];
@@ -119,6 +124,18 @@ if (isset($_GET['act']) && $_GET['act']) {
             }
             break;
             // Quản lý user end
+            // Chi tiết sản phẩm start
+        case 'product-details':
+            include_once 'view/page/product-detail.php';
+            break;
+            // Chi tiết sản phẩm end
+        case 'cart':
+            if (!isset($_SESSION['login'])) {
+                include_once 'view/trang-chu/login-register.php';
+                showErrorToast('Bạn cần đăng nhập để sử dụng được giỏ hàng');
+            } else
+                include_once 'view/page/cart.php';
+            break;
     }
 } else {
     include_once 'view/trang-chu/home.php';

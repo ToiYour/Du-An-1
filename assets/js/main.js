@@ -2,8 +2,8 @@
   "use strict";
 
   /*--
-                                                                                        Menu Sticky
-                                                                                    -----------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Menu Sticky
+                                                                                                                                                                                                                                                                                                                                                                                                        -----------------------------------*/
   var windows = $(window);
   var sticky = $(".header-sticky");
 
@@ -17,8 +17,8 @@
   });
 
   /*--
-                                                                                        Off Canvas
-                                                                                    -------------------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Off Canvas
+                                                                                                                                                                                                                                                                                                                                                                                                        -------------------------------------------*/
   $(".off-canvas-btn").on("click", function () {
     $("body").addClass("fix");
     $(".off-canvas-wrapper").addClass("open");
@@ -30,8 +30,8 @@
   });
 
   /*-- 
-                                                                                        Countdown Activation 
-                                                                                    ------------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Countdown Activation 
+                                                                                                                                                                                                                                                                                                                                                                                                        ------------------------------------*/
   $("[data-countdown]").each(function () {
     var $this = $(this),
       finalDate = $(this).data("countdown");
@@ -45,8 +45,8 @@
   });
 
   /*---
-                                                                                     Category Menu Active
-                                                                                    ---------------------------- */
+                                                                                                                                                                                                                                                                                                                                                                                                         Category Menu Active
+                                                                                                                                                                                                                                                                                                                                                                                                        ---------------------------- */
   $(".categories_title").on("click", function () {
     $(this).toggleClass("active");
     $(".categories_menu_toggle").slideToggle("medium");
@@ -58,8 +58,8 @@
   });
 
   /* ---------------------
-                                                                                     Category menu
-                                                                                    --------------------- */
+                                                                                                                                                                                                                                                                                                                                                                                                         Category menu
+                                                                                                                                                                                                                                                                                                                                                                                                        --------------------- */
   function categorySubMenuToggle() {
     $(".categories_menu_toggle li.menu_item_children > a").on(
       "click",
@@ -89,8 +89,8 @@
   categorySubMenuToggle();
 
   /*-- 
-                                                                                        Responsive Mobile Menu
-                                                                                    --------------------------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Responsive Mobile Menu
+                                                                                                                                                                                                                                                                                                                                                                                                        --------------------------------------------------*/
   //Variables
   var $offCanvasNav = $(".mobile-menu"),
     $offCanvasNavSubMenu = $offCanvasNav.find(".dropdown");
@@ -132,8 +132,8 @@
   });
 
   /*--
-                                                                                        Hero Slider
-                                                                                    --------------------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Hero Slider
+                                                                                                                                                                                                                                                                                                                                                                                                        --------------------------------------------*/
 
   var heroSlider = $(".hero-slider-one");
   heroSlider.slick({
@@ -161,8 +161,8 @@
   });
 
   /*--
-                                                                                        Product Slider
-                                                                                    --------------------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Product Slider
+                                                                                                                                                                                                                                                                                                                                                                                                        --------------------------------------------*/
   var product_4 = $(".product-active-lg-4");
   product_4.slick({
     dots: false,
@@ -208,8 +208,8 @@
     ],
   });
   /*--
-                                                                                        Product Slider
-                                                                                    --------------------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Product Slider
+                                                                                                                                                                                                                                                                                                                                                                                                        --------------------------------------------*/
   var product_row_4 = $(".product-active-row-4");
   product_row_4.slick({
     dots: false,
@@ -257,8 +257,8 @@
   });
 
   /*-- 
-                                                                                        brand Active Two 
-                                                                                    -----------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            brand Active Two 
+                                                                                                                                                                                                                                                                                                                                                                                                        -----------------------------*/
   var brandActive = $(".our-brand-active");
   brandActive.slick({
     dots: false,
@@ -296,8 +296,8 @@
     ],
   });
   /*-- 
-                                                                                        Testimonial Two Slider 
-                                                                                    -----------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Testimonial Two Slider 
+                                                                                                                                                                                                                                                                                                                                                                                                        -----------------------------*/
   var testimonialSliderTwo = $(".testimonial-two");
   testimonialSliderTwo.slick({
     arrows: false,
@@ -319,8 +319,8 @@
   });
 
   /*---------------------------
-                                                                                    	Count Down Timer
-                                                                                    ----------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                        	Count Down Timer
+                                                                                                                                                                                                                                                                                                                                                                                                        ----------------------------*/
   $("[data-countdown]").each(function () {
     var $this = $(this),
       finalDate = $(this).data("countdown");
@@ -334,8 +334,8 @@
   });
 
   /*----------
-                                                                                        price-slider active
-                                                                                    -------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            price-slider active
+                                                                                                                                                                                                                                                                                                                                                                                                        -------------------------------*/
   $("#price-slider").slider({
     range: true,
     min: 0,
@@ -350,8 +350,8 @@
   $("#max-price").val("$" + $("#price-slider").slider("values", 1));
 
   /*--
-                                                                                        Category menu Activation
-                                                                                    ------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Category menu Activation
+                                                                                                                                                                                                                                                                                                                                                                                                        ------------------------------*/
   $(".category-sub-menu li.has-sub > a").on("click", function () {
     $(this).removeAttr("href");
     var element = $(this).parent("li");
@@ -409,36 +409,36 @@
   });
 
   /*--
-                                                                                        showlogin toggle function
-                                                                                    --------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            showlogin toggle function
+                                                                                                                                                                                                                                                                                                                                                                                                        --------------------------*/
   $("#showlogin").on("click", function () {
     $("#checkout-login").slideToggle(500);
   });
 
   /*--
-                                                                                        showcoupon toggle function
-                                                                                    --------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            showcoupon toggle function
+                                                                                                                                                                                                                                                                                                                                                                                                        --------------------------*/
   $("#showcoupon").on("click", function () {
     $("#checkout-coupon").slideToggle(500);
   });
 
   /*--
-                                                                                        Checkout 
-                                                                                    --------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Checkout 
+                                                                                                                                                                                                                                                                                                                                                                                                        --------------------------*/
   $("#chekout-box").on("change", function () {
     $(".account-create").slideToggle("100");
   });
 
   /*-- 
-                                                                                        Checkout 
-                                                                                    ---------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            Checkout 
+                                                                                                                                                                                                                                                                                                                                                                                                        ---------------------------*/
   $("#chekout-box-2").on("change", function () {
     $(".ship-box-info").slideToggle("100");
   });
 
   /*--
-                                                                                        ScrollUp Active
-                                                                                    -----------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                            ScrollUp Active
+                                                                                                                                                                                                                                                                                                                                                                                                        -----------------------------------*/
   $.scrollUp({
     scrollText: '<i class="fa fa-angle-up"></i>',
     easingType: "linear",
@@ -446,7 +446,22 @@
     animation: "fade",
   });
 })(jQuery);
-
+// click size
+$(document).on(
+  "click",
+  ".product__color__select label, .shop__sidebar__size label, .product__details__option__size label",
+  function () {
+    $(
+      ".product__color__select label, .shop__sidebar__size label, .product__details__option__size label"
+    ).removeClass("active");
+    $(this).addClass("active");
+  }
+);
+// click màu
+$(document).on("click", ".product__details__option__color label", function () {
+  $(".product__details__option__color label").removeClass("active_color");
+  $(this).addClass("active_color");
+});
 // ẩn hiện mật khẩu
 let faEyes = document.querySelectorAll(".fa-eye");
 let faEyeSlashs = document.querySelectorAll(".fa-eye-slash");
@@ -516,3 +531,231 @@ function checkForms2() {
   });
   return !emtyForms;
 }
+// popup thêm giỏ hàng
+/* .single-product-area => vị trí muốn áp dụng sự kiện
+"click", ".quick-view" => khi click vào .quick-view
+$(this).attr("href");  => lấy ra href của đối tượng được click
+ "assets/dao/popup-product.php", => file sử lý về php & giao diện
+ id_san_pham: idSanPham  => name và giá trị để file php nhận $_POST['id_san_pham']
+ $(".modal-content").html(data); => .modal-content nơi load data
+*/
+$(document).on("click", ".single-product-area .quick-view", function () {
+  var idSanPham = $(this).attr("href");
+  $.post(
+    "assets/jquery/popup-product.php",
+    { id_san_pham: idSanPham },
+    function (data, textStatus, jqXHR) {
+      $(".modal-content").html(data);
+    }
+  );
+});
+// load số lượng icon cart
+function loadSoLuongIconCart() {
+  $(document).ready(function () {
+    var id_kh = $('.menu-user-hover input[name="id_kh"]').val();
+    if (id_kh != undefined) {
+      $.post(
+        "assets/jquery/so-luong-cart.php",
+        {
+          id_kh: id_kh,
+        },
+        function (data, textStatus, jqXHR) {
+          $(".cart-total").text(data);
+        }
+      );
+    }
+  });
+}
+loadSoLuongIconCart();
+//  ấn thêm vào giỏ hàng
+$(document).on("click", ".product-details-inner .addCart", function () {
+  var id_kh = $('.menu-user-hover input[name="id_kh"]').val();
+  if (id_kh != undefined || id_kh != null) {
+    var id_san_pham = $(".product-sku").children("span").text();
+    var id_size = $(
+      '.product__details__option__size input[name="id_size"]:checked'
+    ).val();
+    var id_mau = $(
+      '.product__details__option__color input[name="id_mau"]:checked'
+    ).val();
+    var so_luong = $('.cart-plus-minus input[name="quantity"]').val();
+    $.post(
+      "assets/jquery/add-cart.php",
+      {
+        id_san_pham: id_san_pham,
+        id_size: id_size,
+        id_mau: id_mau,
+        so_luong: so_luong,
+        id_kh: id_kh,
+      },
+      function (params) {
+        console.log(params);
+      }
+    );
+    loadSoLuongIconCart();
+    alert("Thêm thành công");
+  } else alert("Bạn phải đăng nhập mới thêm được sản phẩm vào giỏ hàng");
+});
+// check size sản phẩm còn không
+$(document).on(
+  "click",
+  '.product__details__option__size input[name="id_size"]',
+  function () {
+    var id_size = $(this).val();
+    var id_san_pham = $(".product-sku").children("span").text();
+    $.post(
+      "assets/jquery/check-size-mau/check-size.php",
+      {
+        id_san_pham: id_san_pham,
+        id_size: id_size,
+      },
+      function (data, textStatus, jqXHR) {
+        if (data == undefined || data == null || data == "") {
+          alert("Hiện tại sản phẩm đang hết size này");
+        }
+      }
+    );
+  }
+);
+// check màu sản phẩm còn không
+$(document).on(
+  "click",
+  '.product__details__option__color input[name="id_mau"]',
+  function () {
+    var id_mau = $(this).val();
+    var id_san_pham = $(".product-sku").children("span").text();
+    $.post(
+      "assets/jquery/check-size-mau/check-mau.php",
+      {
+        id_san_pham: id_san_pham,
+        id_mau: id_mau,
+      },
+      function (data, textStatus, jqXHR) {
+        if (data == undefined || data == null || data == "") {
+          alert("Hiện tại sản phẩm đang hết màu này");
+        }
+      }
+    );
+  }
+);
+// check số lượng sản phẩm còn không
+$(document).on("input", '.cart-plus-minus input[name="quantity"]', function () {
+  var so_luong = $(this).val();
+  var id_san_pham = $(".product-sku").children("span").text();
+  var id_size = $(
+    '.product__details__option__size input[name="id_size"]:checked'
+  ).val();
+  var id_mau = $(
+    '.product__details__option__color input[name="id_mau"]:checked'
+  ).val();
+  $.post(
+    "assets/jquery/check-size-mau/check-soluong.php",
+    {
+      id_san_pham: id_san_pham,
+      id_mau: id_mau,
+      id_size: id_size,
+    },
+    function (data, textStatus, jqXHR) {
+      console.table({
+        "Id size": id_size,
+        "Id màu": id_mau,
+        "Id sản phẩm": id_san_pham,
+        "Số lượng nhập": so_luong,
+        "Số lượng còn trong kho": data,
+      });
+      if (parseInt(so_luong, 10) > parseInt(data, 10)) {
+        console.log("Hello");
+        let slTon = data == "" ? 0 : data;
+        alert(
+          `Hiện tại số lượng còn: ${slTon} sản phẩm đối với sản phẩm có size,màu này`
+        );
+      }
+    }
+  );
+});
+// load giỏ hàng
+function loadPageCart() {
+  var id_kh = $('.menu-user-hover input[name="id_kh"]').val();
+  $.post(
+    "assets/jquery/cart.php",
+    {
+      id_kh: id_kh,
+    },
+    function (data, textStatus, jqXHR) {
+      $(".main-content-wrap.section-ptb.cart-page").html(data);
+    }
+  );
+}
+let elementCart = document.querySelector(
+  ".main-content-wrap.section-ptb.cart-page"
+);
+// nếu tồn tại pageCart thì load danh sách sản phẩm giỏ hàng
+if (elementCart) {
+  loadPageCart();
+}
+// thay đổi số lượng trong giỏ hàng
+$(".main-content-wrap.section-ptb.cart-page").on(
+  "input",
+  ".quantity .inputQuantity",
+  function () {
+    var quantity = $(this).val();
+    var id_gio_hang = $(this)
+      .closest(".cart-form")
+      .find('input[name="id_gio_hang"]')
+      .val();
+    $.post(
+      "assets/jquery/cart.php",
+      {
+        so_luong: quantity,
+        id_gio_hang: id_gio_hang,
+      },
+      function (data, textStatus, jqXHR) {
+        loadPageCart();
+      }
+    );
+  }
+);
+// xoá sản phẩm trong giỏ hàng
+$(".main-content-wrap.section-ptb.cart-page").on(
+  "click",
+  "#delete",
+  function (e) {
+    e.preventDefault();
+    let href = $(this).attr("href");
+    $.post(
+      "assets/jquery/cart.php",
+      {
+        delete: href,
+      },
+      function (data, textStatus, jqXHR) {
+        loadPageCart();
+        loadSoLuongIconCart();
+      }
+    );
+  }
+);
+$(".main-content-wrap.section-ptb.cart-page").on(
+  "click",
+  "#btn-delete",
+  function () {
+    let inputCheckbox = document.querySelectorAll("input[type=checkbox]");
+    let arr_id_gio_hang = [];
+    inputCheckbox.forEach(function (item) {
+      if (item.checked) {
+        console.log(item.value);
+        arr_id_gio_hang.push(item.value);
+      }
+    });
+    console.log(arr_id_gio_hang);
+    $.post(
+      "assets/jquery/cart.php",
+      {
+        delete: arr_id_gio_hang,
+      },
+      function (data, textStatus, jqXHR) {
+        loadPageCart();
+        loadSoLuongIconCart();
+      }
+    );
+  }
+);

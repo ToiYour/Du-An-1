@@ -38,6 +38,7 @@ $san_pham_all = san_pham_select_all();
                                             <th></th>
                                             <th>ID</th>
                                             <th>Tên sản phẩm</th>
+                                            <th>Giá</th>
                                             <th>Mô tả</th>
                                             <th>Hình ảnh</th>
                                             <th>Lượt xem</th>
@@ -58,6 +59,7 @@ $san_pham_all = san_pham_select_all();
                                                 <?php echo $value['id_san_pham'] ?>
                                             </td>
                                             <td><?php echo $value['ten_san_pham'] ?></td>
+                                            <td><?php echo number_format($value['price']) ?></td>
                                             <td><?php echo $value['mo_ta'] ?></td>
                                             <td><img src="../assets/images/product/<?php echo $value['hinh_anh'] ?>"
                                                     width="50px" height="50px" alt="">

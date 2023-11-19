@@ -30,17 +30,15 @@ $san_pham_one = san_pham_select_by_id($_GET['id']) ?>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tên sản phẩm</label>
-                                            <input type="text" id="" class="form-control" name="ten_san_pham"
-                                                value="<?php echo $san_pham_one['ten_san_pham'] ?>">
+                                            <input type="text" id="" class="form-control" name="ten_san_pham" value="<?php echo $san_pham_one['ten_san_pham'] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Loại sản phẩm</label>
                                             <select id="" class="form-control" name="id_danh_muc">
                                                 <option value="" hidden>--Chọn loại--</option>
                                                 <?php foreach ($danh_muc_all as $value) : ?>
-                                                <option value="<?php echo $value['id_danh_muc'] ?>"
-                                                    <?php echo ($value['id_danh_muc'] == $san_pham_one['id_danh_muc']) ? 'selected' : '' ?>>
-                                                    <?php echo $value['ten_danh_muc'] ?></option>
+                                                    <option value="<?php echo $value['id_danh_muc'] ?>" <?php echo ($value['id_danh_muc'] == $san_pham_one['id_danh_muc']) ? 'selected' : '' ?>>
+                                                        <?php echo $value['ten_danh_muc'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -48,21 +46,22 @@ $san_pham_one = san_pham_select_by_id($_GET['id']) ?>
                                             <label for="">Ảnh sản phẩm</label>
                                             <input type="file" class="form-control" name="hinh_anh">
                                         </div>
-
+                                        <div class="form-group">
+                                            <label for="">Giá </label>
+                                            <input type="text" id="" class="form-control" name="price" value="<?php echo $san_pham_one['price'] ?>">
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Mô tả</label>
-                                            <textarea name="mo_ta" id="" cols="30" rows="10"
-                                                class="form-control"><?php echo $san_pham_one['mo_ta'] ?></textarea>
+                                            <textarea name="mo_ta" id="" cols="30" rows="10" class="form-control"><?php echo $san_pham_one['mo_ta'] ?></textarea>
 
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="float-right">
-                                    <input hidden type="text" value="<?php echo $san_pham_one['id_san_pham'] ?>"
-                                        name="id_san_pham">
+                                    <input hidden type="text" value="<?php echo $san_pham_one['id_san_pham'] ?>" name="id_san_pham">
                                     <a href="?act=listsp" class="btn btn-outline-success">Danh sách sản phẩm</a>
                                     <input type="submit" class="btn btn-success" value="Sửa sản phẩm" name="update-sp">
                                 </div>
