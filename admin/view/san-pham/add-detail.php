@@ -33,19 +33,15 @@ $mau_all = mau_select();   ?>
                                             <label for="">Sản phẩm</label>
                                             <select name="id_san_pham" id="" class="form-control">
                                                 <?php foreach ($san_pham_all as $value) : ?>
-                                                <option value="" hidden>--Chọn sản phẩm--</option>
-                                                <option value="<?php echo $value['id_san_pham'] ?>">
-                                                    <?php echo $value['ten_san_pham'] ?></option>
+                                                    <option value="" hidden>--Chọn sản phẩm--</option>
+                                                    <option value="<?php echo $value['id_san_pham'] ?>">
+                                                        <?php echo $value['ten_san_pham'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Số lượng</label>
                                             <input type="text" id="" class="form-control" name="so_luong">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Giá bán</label>
-                                            <input type="text" id="" class="form-control" name="gia_ban">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -54,8 +50,8 @@ $mau_all = mau_select();   ?>
                                             <select name="id_size" id="" class="form-control">
                                                 <option value="" hidden>--Chọn Size--</option>
                                                 <?php foreach ($size_all as $value) : ?>
-                                                <option value="<?php echo $value['id_size'] ?>">
-                                                    <?php echo $value['size'] ?></option>
+                                                    <option value="<?php echo $value['id_size'] ?>">
+                                                        <?php echo $value['size'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -64,8 +60,8 @@ $mau_all = mau_select();   ?>
                                             <select name="id_mau" id="" class="form-control">
                                                 <option value="" hidden>--Chọn màu--</option>
                                                 <?php foreach ($mau_all as $value) : ?>
-                                                <option value="<?php echo $value['id_mau'] ?>">
-                                                    <?php echo $value['mau'] ?></option>
+                                                    <option value="<?php echo $value['id_mau'] ?>">
+                                                        <?php echo $value['mau'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -75,8 +71,7 @@ $mau_all = mau_select();   ?>
                                 <div class="float-right">
                                     <a href="?act=listsp" class="btn btn-outline-success">Danh sách sản
                                         phẩm</a>
-                                    <input type="submit" class="btn btn-success" value="Thêm sản phẩm"
-                                        name="add-detail-sp">
+                                    <input type="submit" class="btn btn-success" value="Thêm sản phẩm" name="add-detail-sp">
                                 </div>
                             </form>
                         </div>

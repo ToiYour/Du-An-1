@@ -1,15 +1,15 @@
 <?php
 require_once 'pdo.php';
-function san_pham_insert($ten_san_pham, $mo_ta, $hinh_anh, $luot_xem, $ngay_nhap, $id_danh_muc)
+function san_pham_insert($ten_san_pham, $price, $mo_ta, $hinh_anh, $luot_xem, $ngay_nhap, $id_danh_muc)
 {
-    $sql = "INSERT INTO san_pham(ten_san_pham, mo_ta, hinh_anh, luot_xem,ngay_nhap, id_danh_muc) VALUES (?,?,?,?,?,?)";
-    pdo_execute($sql, $ten_san_pham, $mo_ta, $hinh_anh, $luot_xem, $ngay_nhap, $id_danh_muc);
+    $sql = "INSERT INTO san_pham(ten_san_pham,price, mo_ta, hinh_anh, luot_xem,ngay_nhap, id_danh_muc) VALUES (?,?,?,?,?,?)";
+    pdo_execute($sql, $ten_san_pham, $price, $mo_ta, $hinh_anh, $luot_xem, $ngay_nhap, $id_danh_muc);
 }
 
-function san_pham_update($id_san_pham, $ten_san_pham, $mo_ta, $hinh_anh, $luot_xem, $id_danh_muc)
+function san_pham_update($id_san_pham, $ten_san_pham, $price, $mo_ta, $hinh_anh, $luot_xem, $id_danh_muc)
 {
-    $sql = "UPDATE san_pham SET ten_san_pham=?,mo_ta=?,hinh_anh=?,luot_xem=?,id_danh_muc=? WHERE  id_san_pham=?";
-    pdo_execute($sql, $ten_san_pham, $mo_ta, $hinh_anh, $luot_xem, $id_danh_muc, $id_san_pham);
+    $sql = "UPDATE san_pham SET ten_san_pham=?,price=?,mo_ta=?,hinh_anh=?,luot_xem=?,id_danh_muc=? WHERE  id_san_pham=?";
+    pdo_execute($sql, $ten_san_pham, $price, $mo_ta, $hinh_anh, $luot_xem, $id_danh_muc, $id_san_pham);
 }
 
 function san_pham_delete($id_san_pham)
@@ -56,6 +56,11 @@ function san_pham_delete_by_danh_muc_none($id_danh_muc)
         pdo_execute($sql, $id_danh_muc);
     }
 }
+function san_pham_gia_ban_by_id($id_san_pham, $id_size)
+{
+    $sql = "SELECT chi_tiet_san_pham.gia_ban FROM `san_pham` JOIN chi_tiet_san_pham ON san_pham.id_san_pham = chi_tiet_san_pham.id_san_pham WHERE san_pham.id_san_pham =? AND chi_tiet_san_pham.id_size = ?";
+    return pdo_query_one($sql, $id_san_pham, $id_size);
+}
 function san_pham_select_all()
 {
     $sql = "SELECT * FROM san_pham JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc";
@@ -63,17 +68,18 @@ function san_pham_select_all()
 }
 function san_pham_select_product_new()
 {
-    $sql = "SELECT san_pham.id_san_pham, san_pham.ten_san_pham, MAX(san_pham.mo_ta) AS mo_ta, MAX(san_pham.hinh_anh) AS hinh_anh, MAX(san_pham.luot_xem) AS luot_xem, MAX(chi_tiet_san_pham.gia_ban) AS gia_ban, MAX(chi_tiet_san_pham.display_detail_san_pham) AS display_detail_san_pham FROM chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham GROUP BY san_pham.id_san_pham, san_pham.ten_san_pham ORDER BY san_pham.id_san_pham DESC    ";
+    $sql = "SELECT * FROM san_pham ORDER BY san_pham.id_san_pham DESC";
     return pdo_query($sql);
 }
 function san_pham_select_best_seller()
 {
-    $sql = "SELECT san_pham.id_san_pham, san_pham.ten_san_pham, MAX(san_pham.mo_ta) AS mo_ta, MAX(san_pham.hinh_anh) AS hinh_anh, MAX(san_pham.luot_xem) AS luot_xem, MAX(chi_tiet_san_pham.gia_ban) AS gia_ban, MAX(chi_tiet_san_pham.display_detail_san_pham) AS display_detail_san_pham, SUM(chi_tiet_don_hang.so_luong) AS so_luong_ban FROM chi_tiet_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham GROUP BY san_pham.id_san_pham, san_pham.ten_san_pham ORDER BY so_luong_ban DESC";
+    $sql = "SELECT san_pham.id_san_pham, san_pham.ten_san_pham, san_pham.price, san_pham.mo_ta, san_pham.hinh_anh, san_pham.display_san_pham, SUM(chi_tiet_don_hang.so_luong) AS so_luong_ban FROM chi_tiet_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham GROUP BY san_pham.id_san_pham, san_pham.ten_san_pham, san_pham.price, san_pham.mo_ta, san_pham.hinh_anh, san_pham.display_san_pham ORDER BY so_luong_ban DESC";
     return pdo_query($sql);
 }
 function san_pham_select_by_id($id_san_pham)
 {
-    $sql = "SELECT * FROM san_pham WHERE id_san_pham=?";
+    san_pham_tang_so_luot_xem($id_san_pham);
+    $sql = "SELECT san_pham.* ,danh_muc.ten_danh_muc, SUM(chi_tiet_san_pham.so_luong) AS total_quantity FROM `san_pham` JOIN chi_tiet_san_pham ON san_pham.id_san_pham = chi_tiet_san_pham.id_san_pham JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc WHERE san_pham.id_san_pham =? GROUP BY san_pham.id_san_pham";
     return pdo_query_one($sql, $id_san_pham);
 }
 
@@ -94,7 +100,7 @@ function san_pham_count_by_id_san_pham($ma_loai)
 }
 function san_pham_tang_so_luot_xem($id_san_pham)
 {
-    $sql = "UPDATE san_pham SET so_luot_xem = so_luot_xem + 1 WHERE id_san_pham=?";
+    $sql = "UPDATE san_pham SET luot_xem = luot_xem + 1 WHERE id_san_pham=?";
     pdo_execute($sql, $id_san_pham);
 }
 function san_pham_select_top_table($start, $end, $table)

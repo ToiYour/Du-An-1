@@ -3628,14 +3628,15 @@ img.mfp-img {
 }
 
 .cart-plus-minus input {
-  width: 40px;
+  width: 80px;
   height: 40px;
   border: 1px solid #ddd;
   padding: 0 0 0 10px;
+  text-align: center;
 }
 
 .single-add-to-cart {
-  max-width: 190px;
+  max-width: 100%;
 }
 
 .single-add-to-cart .add-to-cart {
@@ -3655,7 +3656,6 @@ img.mfp-img {
   border-radius: 3px;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
-  width: 100%;
 }
 
 .single-add-to-cart .add-to-cart:hover {
@@ -6341,4 +6341,104 @@ img.mfp-img {
 
 .menu-user-hover li:hover {
   background-color: #636363;
+}
+
+.product__details__option {
+  margin-bottom: 30px;
+}
+
+.product__details__option__size {
+  display: block;
+  margin-right: 50px;
+}
+
+.product__details__option__size span {
+  color: #111111;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.product__details__option__size label {
+  color: #111111;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: inline-block;
+  border: 1px solid #e5e5e5;
+  padding: 5px 12px;
+  margin-bottom: 0;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.product__details__option__size label.active {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+.product__details__option__size label input {
+  position: absolute;
+  visibility: hidden;
+}
+
+.product__details__option__color {
+  display: block;
+  position: relative;
+  top: 10px;
+}
+
+.product__details__option__color span {
+  color: #111111;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  top: -9px;
+}
+
+.product__details__option__color label {
+  height: 23px;
+  width: 23px;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.product__details__option__color label.c-1 {
+  background: #ffffff;
+}
+
+.product__details__option__color label.c-2 {
+  background: #f1af4d;
+}
+
+.product__details__option__color label.c-3 {
+  background: #333;
+}
+
+.product__details__option__color label:after {
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  height: 29px;
+  width: 29px;
+  border: 1px solid #e5e5e5;
+  content: "";
+  border-radius: 50%;
+}
+
+.product__details__option__color label input {
+  position: absolute;
+  visibility: hidden;
+}
+
+.product__details__cart__option {
+  margin-bottom: 25px;
+}
+
+.product__details__option__color label.active_color::after {
+  border-color: #353535;
 }

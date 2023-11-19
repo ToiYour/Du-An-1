@@ -25,8 +25,7 @@
                         <form action="?act=delete-detail-sp" method="post">
                             <div class="card-body">
                                 <h4 class="card-title">Chi tiết sản phẩm
-                                    <a href="?act=addsp" class="btn btn-success float-right "
-                                        style="transform: translateY(-30%);"> <i class="bx bx-plus pr-1"></i>Thêm sản
+                                    <a href="?act=addsp" class="btn btn-success float-right " style="transform: translateY(-30%);"> <i class="bx bx-plus pr-1"></i>Thêm sản
                                         phẩm</a>
                                 </h4>
 
@@ -36,8 +35,6 @@
                                             <th></th>
                                             <th>ID</th>
                                             <th>Tên sản phẩm</th>
-
-                                            <th>Giá bán</th>
                                             <th>Số lượng</th>
                                             <th>Size</th>
                                             <th>Màu</th>
@@ -48,47 +45,30 @@
                                         <?php foreach ($detail_sp_all as $value) : if ($value['display_detail_san_pham'] == 0) {
                                                 continue;
                                             } ?>
-                                        <tr>
-                                            <td><input type="checkbox"
-                                                    value="<?php echo $value['id_chi_tiet_san_pham'] ?>"
-                                                    <?php echo isset($_GET['checkAll']) ? 'checked' : '' ?>
-                                                    name="checkAll[]"></td>
+                                            <tr>
+                                                <td><input type="checkbox" value="<?php echo $value['id_chi_tiet_san_pham'] ?>" <?php echo isset($_GET['checkAll']) ? 'checked' : '' ?> name="checkAll[]"></td>
 
-                                            <td class="font-weight-bolder text-primary">
-                                                <?php echo $value['id_chi_tiet_san_pham'] ?></td>
-                                            <td><?php echo $value['ten_san_pham'] ?></td>
-
-                                            <td><?php echo number_format($value['gia_ban']) ?>đ</td>
-                                            <td><?php echo $value['so_luong'] ?></td>
-                                            <td class="text-info"><?php echo $value['size'] ?></td>
-                                            <td><?php echo $value['mau'] ?></td>
-                                            <td>
-                                                <a href="?act=update-detail-sp&id=<?php echo $value['id_chi_tiet_san_pham'] ?>&idsp=<?php echo $value['id_san_pham'] ?>"
-                                                    class="btn btn-light text-center p-2 " data-toggle="tooltip"
-                                                    data-placement="top" title="Sửa"><i
-                                                        class="bx bx-pencil font-weight-bold"></i></a>
-                                                <a href="?act=delete-detail-sp&id=<?php echo $value['id_chi_tiet_san_pham'] ?>&idsp=<?php echo $value['id_san_pham'] ?>"
-                                                    class="btn btn-light text-center p-2" data-toggle="tooltip"
-                                                    data-placement="top" title="Xoá"
-                                                    onclick="return confirm('Bạn chắc chắn muốn xoá nó chứ?')"><i
-                                                        class="bx bx-x font-weight-bold"></i></a>
-                                            </td>
-                                        </tr>
+                                                <td class="font-weight-bolder text-primary">
+                                                    <?php echo $value['id_chi_tiet_san_pham'] ?></td>
+                                                <td><?php echo $value['ten_san_pham'] ?></td>
+                                                <td><?php echo $value['so_luong'] ?></td>
+                                                <td class="text-info"><?php echo $value['size'] ?></td>
+                                                <td><?php echo $value['mau'] ?></td>
+                                                <td>
+                                                    <a href="?act=update-detail-sp&id=<?php echo $value['id_chi_tiet_san_pham'] ?>&idsp=<?php echo $value['id_san_pham'] ?>" class="btn btn-light text-center p-2 " data-toggle="tooltip" data-placement="top" title="Sửa"><i class="bx bx-pencil font-weight-bold"></i></a>
+                                                    <a href="?act=delete-detail-sp&id=<?php echo $value['id_chi_tiet_san_pham'] ?>&idsp=<?php echo $value['id_san_pham'] ?>" class="btn btn-light text-center p-2" data-toggle="tooltip" data-placement="top" title="Xoá" onclick="return confirm('Bạn chắc chắn muốn xoá nó chứ?')"><i class="bx bx-x font-weight-bold"></i></a>
+                                                </td>
+                                            </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="card-footer bg-transparent ">
                                 <div class="float-right m-2">
-                                    <input type="text" value="<?php echo  $detail_sp_all[0]['id_san_pham'] ?>" hidden
-                                        name="id_san_pham">
-                                    <input type="submit" value="Xoá các mục đã chọn" name="delete-detail-sp"
-                                        class="btn btn-outline-danger"
-                                        onclick="return confirm('Bạn chắc chắn muốn xoá hết tất cả chứ?')">
-                                    <a href="?act=list-detail&id=<?php echo  $detail_sp_all[0]['id_san_pham'] ?>"
-                                        class="btn btn-outline-success">Bỏ chọn tất cả</a>
-                                    <a href="?act=list-detail&id=<?php echo $detail_sp_all[0]['id_san_pham'] ?>&checkAll"
-                                        class="btn btn-outline-success">Chọn tất cả</a>
+                                    <input type="text" value="<?php echo  $detail_sp_all[0]['id_san_pham'] ?>" hidden name="id_san_pham">
+                                    <input type="submit" value="Xoá các mục đã chọn" name="delete-detail-sp" class="btn btn-outline-danger" onclick="return confirm('Bạn chắc chắn muốn xoá hết tất cả chứ?')">
+                                    <a href="?act=list-detail&id=<?php echo  $detail_sp_all[0]['id_san_pham'] ?>" class="btn btn-outline-success">Bỏ chọn tất cả</a>
+                                    <a href="?act=list-detail&id=<?php echo $detail_sp_all[0]['id_san_pham'] ?>&checkAll" class="btn btn-outline-success">Chọn tất cả</a>
                                     <a href="?act=addsp" class="btn btn-success "> <i class="bx bx-plus pr-1"></i>Thêm
                                         sản phẩm </a>
                                 </div>

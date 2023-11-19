@@ -82,6 +82,7 @@ if (isset($_GET['act']) && $_GET['act']) {
       if (isset($_POST['add-sp'])) {
         $arr_sp = [
           'ten_san_pham' => $_POST['ten_san_pham'],
+          'price' => $_POST['price'],
           'mo_ta' => $_POST['mo_ta'],
           'hinh_anh' => $_FILES['hinh_anh'],
           'ngay_nhap' => date('Y-m-d H:i:s', strtotime($ngay_nhap_str)),
@@ -95,7 +96,7 @@ if (isset($_GET['act']) && $_GET['act']) {
         if (empty($error_sp)) {
           $path_file = '../assets/images/product/' . $arr_sp['hinh_anh']['name'];
           move_uploaded_file($arr_sp['hinh_anh']['tmp_name'], $path_file);
-          san_pham_insert($arr_sp['ten_san_pham'], $arr_sp['mo_ta'], $arr_sp['hinh_anh']['name'], 0, $arr_sp['ngay_nhap'], $arr_sp['id_danh_muc']);
+          san_pham_insert($arr_sp['ten_san_pham'], $arr_sp['price'], $arr_sp['mo_ta'], $arr_sp['hinh_anh']['name'], 0, $arr_sp['ngay_nhap'], $arr_sp['id_danh_muc']);
           showSuccessToast('Thêm sản phẩm thành công!');
         }
       }
@@ -107,6 +108,7 @@ if (isset($_GET['act']) && $_GET['act']) {
         $history_sp = san_pham_select_by_id($_POST['id_san_pham']);
         $arr_sp = [
           'ten_san_pham' => $_POST['ten_san_pham'],
+          'price' => $_POST['price'],
           'mo_ta' => $_POST['mo_ta'],
           'id_danh_muc' => $_POST['id_danh_muc']
         ];
@@ -123,7 +125,7 @@ if (isset($_GET['act']) && $_GET['act']) {
           }
         }
         if (empty($error_sp)) {
-          san_pham_update($_POST['id_san_pham'], $arr_sp['ten_san_pham'], $arr_sp['mo_ta'], $arr_sp['hinh_anh']['name'], $history_sp['luot_xem'], $arr_sp['id_danh_muc']);
+          san_pham_update($_POST['id_san_pham'], $arr_sp['ten_san_pham'], $arr_sp['price'], $arr_sp['mo_ta'], $arr_sp['hinh_anh']['name'], $history_sp['luot_xem'], $arr_sp['id_danh_muc']);
           showSuccessToast('Sửa sản phẩm thành công!');
           include_once 'view/san-pham/list.php';
         }
@@ -154,8 +156,6 @@ if (isset($_GET['act']) && $_GET['act']) {
     case 'add-detail-sp':
       if (isset($_POST['add-detail-sp']) && $_POST['add-detail-sp']) {
         $arr_detail_sp = [
-
-          'gia_ban' => $_POST['gia_ban'],
           'so_luong' => $_POST['so_luong'],
           'ngay_nhap' => date('Y-m-d H:i:s', strtotime($ngay_nhap_str)),
           'id_san_pham' => $_POST['id_san_pham'],
@@ -168,7 +168,7 @@ if (isset($_GET['act']) && $_GET['act']) {
           }
         }
         if (empty($error_detail_sp)) {
-          detail_san_pham_insert($arr_detail_sp['gia_ban'], $arr_detail_sp['so_luong'], $arr_detail_sp['ngay_nhap'], $arr_detail_sp['id_san_pham'], $arr_detail_sp['id_size'], $arr_detail_sp['id_mau']);
+          detail_san_pham_insert($arr_detail_sp['so_luong'], $arr_detail_sp['ngay_nhap'], $arr_detail_sp['id_san_pham'], $arr_detail_sp['id_size'], $arr_detail_sp['id_mau']);
           showSuccessToast('Thêm chi tiết sản phẩm thành công!');
         }
       }
@@ -178,8 +178,6 @@ if (isset($_GET['act']) && $_GET['act']) {
     case 'update-detail-sp':
       if (isset($_POST['update-detail-sp']) && $_POST['update-detail-sp']) {
         $arr_detail_sp = [
-
-          'gia_ban' => $_POST['gia_ban'],
           'so_luong' => $_POST['so_luong'],
           'id_san_pham' => $_POST['id_san_pham'],
           'id_size' => $_POST['id_size'],
@@ -191,7 +189,7 @@ if (isset($_GET['act']) && $_GET['act']) {
           }
         }
         if (empty($error_detail_sp)) {
-          detail_san_pham_update($_POST['id_chi_tiet_san_pham'], $arr_detail_sp['gia_ban'], $arr_detail_sp['so_luong'], $arr_detail_sp['id_san_pham'], $arr_detail_sp['id_size'], $arr_detail_sp['id_mau']);
+          detail_san_pham_update($_POST['id_chi_tiet_san_pham'], $arr_detail_sp['so_luong'], $arr_detail_sp['id_san_pham'], $arr_detail_sp['id_size'], $arr_detail_sp['id_mau']);
           showSuccessToast('Sửa chi tiết sản phẩm thành công!');
           header('location: index.php?act=list-detail&id=' . $arr_detail_sp['id_san_pham']);
         }
