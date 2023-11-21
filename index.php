@@ -129,12 +129,21 @@ if (isset($_GET['act']) && $_GET['act']) {
             include_once 'view/page/product-detail.php';
             break;
             // Chi tiết sản phẩm end
+            // Giỏ hàng
         case 'cart':
             if (!isset($_SESSION['login'])) {
                 include_once 'view/trang-chu/login-register.php';
                 showErrorToast('Bạn cần đăng nhập để sử dụng được giỏ hàng');
             } else
                 include_once 'view/page/cart.php';
+            break;
+            // Thanh toán
+        case 'checkout':
+            include_once 'view/page/check-out.php';
+            break;
+            // Đơn mua
+        case 'history-carts':
+            include_once 'view/trang-chu/history-cart.php';
             break;
     }
 } else {

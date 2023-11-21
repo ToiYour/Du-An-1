@@ -21,19 +21,24 @@
 
                              <ul class="social-icons">
                                  <li>
-                                     <a class="facebook social-icon" href="#" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                                     <a class="facebook social-icon" href="#" title="Facebook" target="_blank"><i
+                                             class="fa fa-facebook"></i></a>
                                  </li>
                                  <li>
-                                     <a class="twitter social-icon" href="#" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                     <a class="twitter social-icon" href="#" title="Twitter" target="_blank"><i
+                                             class="fa fa-twitter"></i></a>
                                  </li>
                                  <li>
-                                     <a class="instagram social-icon" href="#" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
+                                     <a class="instagram social-icon" href="#" title="Instagram" target="_blank"><i
+                                             class="fa fa-instagram"></i></a>
                                  </li>
                                  <li>
-                                     <a class="linkedin social-icon" href="#" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                     <a class="linkedin social-icon" href="#" title="Linkedin" target="_blank"><i
+                                             class="fa fa-linkedin"></i></a>
                                  </li>
                                  <li>
-                                     <a class="rss social-icon" href="#" title="Rss" target="_blank"><i class="fa fa-rss"></i></a>
+                                     <a class="rss social-icon" href="#" title="Rss" target="_blank"><i
+                                             class="fa fa-rss"></i></a>
                                  </li>
                              </ul>
                          </div>
@@ -122,11 +127,14 @@
 
      <!-- Modernizer JS -->
      <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+     <!-- Api tỉnh thành -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer">
+     </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 
      <!-- jquery -->
      <script src="assets/js/vendor/jquery-3.6.1.min.js"></script>
      <script src="assets/js/vendor/jquery-migrate-3.4.0.min.js"></script>
-
      <!-- Bootstrap JS -->
      <script src="assets/js/vendor/bootstrap.min.js"></script>
 

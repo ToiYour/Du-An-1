@@ -26,31 +26,34 @@ if (isset($_POST['id_kh'])) {
                 </div>
             </div>
             <?php foreach ($list_cart as $value) : ?>
-                <div class="item-cart">
-                    <form class="cart-form">
-                        <input type="text" hidden value="<?= $value['id_gio_hang'] ?>" name="id_gio_hang">
-                        <div class="row">
-                            <div class="d-flex align-items-center justify-content-between border-top">
-                                <div class="d-flex align-items-center">
-                                    <input type="checkbox" name="" id="" value="<?php echo $value['id_gio_hang'] ?>">
-                                    <img src="assets/images/product/<?= $value['hinh_anh'] ?>" alt="" style="width: 80px; height: 80px; object-fit: cover;" class="py-2">
-                                    <div class="">
-                                        <h5><?= $value['ten_san_pham'] ?></h5>
-                                        <p class="text-black-50">Size: <?= $value['size'] ?>, Màu: <?= $value['mau'] ?>
-                                        </p>
-                                    </div>
-                                </div>
+            <div class="item-cart">
+                <form class="cart-form">
+                    <input type="text" hidden value="<?= $value['id_gio_hang'] ?>" name="id_gio_hang">
+                    <div class="row">
+                        <div class="d-flex align-items-center justify-content-between border-top">
+                            <div class="d-flex align-items-center">
+                                <input type="checkbox" name="" id="" value="<?php echo $value['id_gio_hang'] ?>">
+                                <img src="assets/images/product/<?= $value['hinh_anh'] ?>" alt=""
+                                    style="width: 80px; height: 80px; object-fit: cover;" class="py-2">
                                 <div class="">
-                                    <p class="text-danger price-product"><?= number_format($value['price']) ?>đ</p>
+                                    <h5><?= $value['ten_san_pham'] ?></h5>
+                                    <p class="text-black-50">Size: <?= $value['size'] ?>, Màu: <?= $value['mau'] ?>
+                                    </p>
                                 </div>
-                                <div class="quantity">
-                                    <input type="number" value="<?= $value['so_luong'] ?>" class="inputQuantity text-center" min="1">
-                                </div>
-                                <a href="<?= $value['id_gio_hang'] ?>" id="delete" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Xoá sản phẩm"><i class="fas fa-times"></i></a>
                             </div>
+                            <div class="">
+                                <p class="text-danger price-product"><?= number_format($value['price']) ?>đ</p>
+                            </div>
+                            <div class="quantity">
+                                <input type="number" value="<?= $value['so_luong'] ?>" class="inputQuantity text-center"
+                                    min="1">
+                            </div>
+                            <a href="<?= $value['id_gio_hang'] ?>" id="delete" data-bs-toggle="tooltip"
+                                data-bs-placement="top" data-bs-title="Xoá sản phẩm"><i class="fas fa-times"></i></a>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
+            </div>
             <?php endforeach; ?>
         </div>
         <!-- Thông tin đơn hàng -->
@@ -64,7 +67,8 @@ if (isset($_POST['id_kh'])) {
                         <?php echo (isset($sumCarts['tong_gia'])) ? number_format($sumCarts['tong_gia']) : 0 ?>đ</p>
                 </div>
                 <div class="my-2 d-flex">
-                    <input id="coupon_code" class="input-text flex-fill" name="coupon_code" value="" placeholder="Nhập mã giảm giá" type="text">
+                    <input id="coupon_code" class="input-text flex-fill" name="coupon_code" value=""
+                        placeholder="Nhập mã giảm giá" type="text">
                     <input class="button ms-2" name="apply_coupon" value="Áp dụng" type="submit">
                 </div>
                 <div class="d-flex align-items-center justify-content-between my-2">
@@ -73,7 +77,8 @@ if (isset($_POST['id_kh'])) {
                         <?php echo (isset($sumCarts['tong_gia'])) ? number_format($sumCarts['tong_gia']) : 0 ?>đ</p>
                 </div>
                 <div class="cart-page-total m-0">
-                    <a href="#" class="proceed-checkout-btn" style="width: 100%; text-align: center;">Mua hàng</a>
+                    <a href="?act=checkout" class="proceed-checkout-btn" style="width: 100%; text-align: center;">Mua
+                        hàng</a>
                 </div>
             </div>
         </div>

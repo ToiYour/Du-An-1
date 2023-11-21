@@ -106,6 +106,9 @@
                                         <?php endif ?>
                                         <li class="dropdown-item "><a class="fs-6" href="?act=setting-user">Quản lý tài
                                                 khoản</a></li>
+                                        <li class="dropdown-item "><a class="fs-6" href="?act=history-carts">Xem lịch sử
+                                                mua hàng</a>
+                                        </li>
                                         <li class="dropdown-item "><a class="fs-6" href="?act=logout">Đăng xuất</a></li>
                                     </ul>
                                 </div>
