@@ -42,6 +42,11 @@ function gio_hang_sum_by_id_kh($id_kh)
     $sql = "SELECT SUM(gio_hang.so_luong*san_pham.price) AS tong_gia, COUNT(*) AS tong_sl FROM gio_hang JOIN chi_tiet_san_pham ON gio_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham WHERE gio_hang.id_kh = ?";
     return pdo_query_one($sql, $id_kh);
 }
+function gio_hang_checkout($id_kh)
+{
+    $sql = "SELECT SUM(gio_hang.so_luong*san_pham.price) AS tong_gia, SUM(gio_hang.so_luong) AS tong_sl FROM gio_hang JOIN chi_tiet_san_pham ON gio_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham WHERE gio_hang.id_kh = ?";
+    return pdo_query_one($sql, $id_kh);
+}
 function gio_hang_select_count_sum_by_id_kh($id_kh)
 {
     $sql = "SELECT SUM(so_luong) FROM gio_hang WHERE id_kh = ?";
