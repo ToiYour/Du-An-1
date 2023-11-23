@@ -16,6 +16,7 @@ include_once '../assets/dao/danh-gia.php';
 include_once '../assets/dao/giam-gia.php';
 include_once '../assets/dao/thong-ke.php';
 include_once '../assets/dao/detail-san-pham.php';
+include_once '../assets/dao/detail-don-hang.php';
 include_once '../assets/dao/toast-message.php';
 include_once 'view/header.php';
 include_once 'view/sidebar.php';
@@ -435,6 +436,15 @@ if (isset($_GET['act']) && $_GET['act']) {
       break;
     case 'thong-ke-bxh':
       include_once 'view/thong-ke/bxh.php';
+      break;
+    case 'list-order':
+      include_once 'view/don-hang/list.php';
+      break;
+    case 'order-confirm':
+      include_once 'view/don-hang/list-confirm.php';
+      break;
+    case 'list-detail-order':
+      include_once 'view/don-hang/detail.php';
       break;
   }
 } else {

@@ -15,3 +15,23 @@ function detail_order_insert_by_khach_hang($id_kh, $id_don_hang)
     $del_gio_hang = "DELETE FROM gio_hang WHERE id_kh = ?";
     pdo_execute($del_gio_hang, $id_kh);
 }
+function don_hang_select_all()
+{
+    $sql = "SELECT don_hang.*, trang_thai_don.name_trang_thai_don, user.ho_ten FROM `don_hang` JOIN trang_thai_don ON don_hang.id_trang_thai_don = trang_thai_don.id_trang_thai_don JOIN user ON don_hang.id_kh = user.id_kh";
+    return pdo_query($sql);
+}
+function don_hang_select_all_by()
+{
+    $sql = "SELECT don_hang.*, trang_thai_don.name_trang_thai_don, user.ho_ten FROM `don_hang` JOIN trang_thai_don ON don_hang.id_trang_thai_don = trang_thai_don.id_trang_thai_don JOIN user ON don_hang.id_kh = user.id_kh WHERE don_hang.id_trang_thai_don = 1";
+    return pdo_query($sql);
+}
+function  detail_don_hang_select_all($id)
+{
+    $sql = "SELECT san_pham.ten_san_pham, san_pham.price, chi_tiet_don_hang.so_luong, mau.mau, size.size, SUM(san_pham.price*chi_tiet_don_hang.so_luong) AS total_price FROM `chi_tiet_don_hang` JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham JOIN size ON chi_tiet_san_pham.id_size = size.id_size JOIN mau ON chi_tiet_san_pham.id_mau = mau.id_mau WHERE id_don_hang = ? GROUP BY san_pham.ten_san_pham, san_pham.price, chi_tiet_don_hang.so_luong, mau.mau, size.size";
+    return pdo_query($sql, $id);
+}
+function detail_history_order($id_don_hang)
+{
+    $sql = "SELECT san_pham.ten_san_pham,don_hang.id_trang_thai_don, san_pham.hinh_anh,mau.mau,size.size, danh_muc.ten_danh_muc, chi_tiet_don_hang.so_luong, san_pham.price, chi_tiet_don_hang.so_luong * san_pham.price AS price, SUM(chi_tiet_don_hang.so_luong * san_pham.price) AS total_price FROM `chi_tiet_don_hang` JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham JOIN mau ON chi_tiet_san_pham.id_mau = mau.id_mau JOIN size ON chi_tiet_san_pham.id_size = size.id_size JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc JOIN don_hang ON chi_tiet_don_hang.id_don_hang = don_hang.id_don_hang WHERE chi_tiet_don_hang.id_don_hang = ? GROUP BY san_pham.ten_san_pham, san_pham.hinh_anh,mau.mau,size.size, danh_muc.ten_danh_muc, chi_tiet_don_hang.so_luong, san_pham.price";
+    return pdo_query($sql, $id_don_hang);
+}

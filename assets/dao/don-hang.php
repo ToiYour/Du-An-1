@@ -38,7 +38,7 @@ function don_hang_detail($id_don_hang)
 }
 function don_hang_thong_ke_home()
 {
-    $sql = "SELECT SUM(chi_tiet_don_hang.so_luong) AS total_dh, SUM(chi_tiet_don_hang.so_luong * san_pham.price) AS total_price, AVG( san_pham.price) AS avg_price FROM don_hang JOIN chi_tiet_don_hang ON don_hang.id_don_hang = chi_tiet_don_hang.id_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham WHERE don_hang.id_trang_thai_don >= 2";
+    $sql = "SELECT SUM(chi_tiet_don_hang.so_luong) AS total_dh, SUM(chi_tiet_don_hang.so_luong * san_pham.price) AS total_price, AVG( san_pham.price) AS avg_price FROM don_hang JOIN chi_tiet_don_hang ON don_hang.id_don_hang = chi_tiet_don_hang.id_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham WHERE don_hang.id_trang_thai_don = 5";
     return pdo_query_one($sql);
 }
 function don_hang_history_home()
@@ -81,4 +81,12 @@ GROUP BY
     don_hang.id_trang_thai_don;
 ";
     return pdo_query($sql);
+}
+function history_order($id_kh, $status)
+{
+    $sql = "SELECT don_hang.*, trang_thai_don.name_trang_thai_don 
+    FROM `don_hang` 
+    JOIN trang_thai_don ON don_hang.id_trang_thai_don = trang_thai_don.id_trang_thai_don 
+    WHERE id_kh = ? AND FIND_IN_SET(don_hang.id_trang_thai_don, ?)";
+    return pdo_query($sql, $id_kh, $status);
 }
