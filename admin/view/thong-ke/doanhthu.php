@@ -41,10 +41,10 @@ $bieudo = thong_ke_bieu_do() ?>
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($doanh_thu_dm as $value) : ?>
-                                                <tr>
-                                                    <td><?php echo $value['ten_danh_muc'] ?></td>
-                                                    <td><?php echo number_format($value['total_dh']) ?>đ</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td><?php echo $value['ten_danh_muc'] ?></td>
+                                                        <td><?php echo number_format($value['total_dh']) ?>đ</td>
+                                                    </tr>
                                                 <?php endforeach ?>
                                             </tbody>
                                         </table>
@@ -64,10 +64,10 @@ $bieudo = thong_ke_bieu_do() ?>
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($doanh_thu_kh as $value) : ?>
-                                                <tr>
-                                                    <td><?php echo $value['ho_ten'] ?></td>
-                                                    <td><?php echo number_format($value['total_dh']) ?>đ</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td><?php echo $value['ho_ten'] ?></td>
+                                                        <td><?php echo number_format($value['total_dh']) ?>đ</td>
+                                                    </tr>
                                                 <?php endforeach ?>
                                             </tbody>
                                         </table>
@@ -76,7 +76,7 @@ $bieudo = thong_ke_bieu_do() ?>
                                 <div class=" p-3">
                                     <span class="font-weight-bolder">Tổng doanh thu: </span>
                                     <?php $thong_ke_home = don_hang_thong_ke_home();
-                                    echo number_format($thong_ke_home['total_price']) ?>đ
+                                    echo isset($thong_ke_home['total_price']) ? number_format($thong_ke_home['total_price']) : 0 ?>đ
                                 </div>
                             </div>
                         </div>
@@ -89,31 +89,31 @@ $bieudo = thong_ke_bieu_do() ?>
                             <h4 class="card-title">Biểu đồ</h4>
                             <div id="curve_chart" style="width: 100%; height: 400px"></div>
                             <script type="text/javascript">
-                            google.charts.load('current', {
-                                'packages': ['corechart']
-                            });
-                            google.charts.setOnLoadCallback(drawChart);
+                                google.charts.load('current', {
+                                    'packages': ['corechart']
+                                });
+                                google.charts.setOnLoadCallback(drawChart);
 
-                            function drawChart() {
-                                var data = google.visualization.arrayToDataTable([
-                                    ['Ngày tháng', 'Doanh thu'],
-                                    <?php foreach($bieudo as $i): ?>['<?=$i['ngay_tao']?>',
-                                        <?=$i['total_dh']?>],
-                                    <?php endforeach; ?>
-                                ]);
+                                function drawChart() {
+                                    var data = google.visualization.arrayToDataTable([
+                                        ['Ngày tháng', 'Doanh thu'],
+                                        <?php foreach ($bieudo as $i) : ?>['<?= $i['ngay_tao'] ?>',
+                                                <?= $i['total_dh'] ?>],
+                                        <?php endforeach; ?>
+                                    ]);
 
-                                var options = {
+                                    var options = {
 
-                                    curveType: 'function',
-                                    legend: {
-                                        position: 'bottom'
-                                    }
-                                };
+                                        curveType: 'function',
+                                        legend: {
+                                            position: 'bottom'
+                                        }
+                                    };
 
-                                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-                                chart.draw(data, options);
-                            }
+                                    chart.draw(data, options);
+                                }
                             </script>
                         </div>
                     </div>

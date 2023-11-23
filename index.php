@@ -8,6 +8,7 @@ include_once 'assets/dao/san-pham.php';
 include_once 'assets/dao/size.php';
 include_once 'assets/dao/mau.php';
 include_once 'assets/dao/gio-hang.php';
+include_once 'assets/dao/detail-don-hang.php';
 include_once 'PHPMailer-master/sendmail.php';
 include_once 'assets/dao/toast-message.php';
 $list_danhMuc = loai_select_all();
@@ -144,6 +145,17 @@ if (isset($_GET['act']) && $_GET['act']) {
             // Đơn mua
         case 'history-carts':
             include_once 'view/trang-chu/history-cart.php';
+            break;
+        case 'detail-history-order':
+            include_once 'view/trang-chu/detail-order.php';
+            break;
+        case 'cancel-order':
+            if (isset($_GET['id'])) {
+                $sql = "UPDATE don_hang SET id_trang_thai_don=6 WHERE id_don_hang = ?";
+                pdo_execute($sql, $_GET['id']);
+                include_once 'view/trang-chu/detail-order.php';
+                showSuccessToast('Huỷ đơn hàng thành công!');
+            }
             break;
     }
 } else {

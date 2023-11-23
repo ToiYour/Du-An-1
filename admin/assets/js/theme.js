@@ -73,3 +73,36 @@ function checkForms() {
   });
   return !emtyForms;
 }
+//
+// Cập nhập trạng thái đơn hàng
+var id_don_hang;
+var that;
+$(document).on("click", ".order-btn button", function () {
+  that = $(this);
+  id_don_hang = $(this).val();
+  $.post(
+    "view/don-hang/popup.php",
+    {
+      id_don_hang: id_don_hang,
+    },
+    function (data, textStatus, jqXHR) {
+      $(".modal-body select").html(data);
+    }
+  );
+});
+$(".modal-footer").on("click", ".btn.btn-primary", function () {
+  let trang_thai_don = $(".modal-body .form-control")
+    .prop("selected", true)
+    .val();
+  $.post(
+    "view/don-hang/update.php",
+    {
+      trang_thai_don: trang_thai_don,
+      id_don_hang: id_don_hang,
+    },
+    function (data, textStatus, jqXHR) {
+      $(that).closest("tr").find(".badge.badge-pill.badge-info").html(data);
+      alert("Cập nhập trạng thái thành công");
+    }
+  );
+});
