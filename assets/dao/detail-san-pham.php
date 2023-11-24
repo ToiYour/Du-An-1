@@ -52,3 +52,8 @@ function detail_san_pham_update_soLuong($id_chi_tiet_san_pham, $so_luong)
     $sql = "UPDATE chi_tiet_san_pham SET so_luong=(SELECT so_luong FROM (SELECT chi_tiet_san_pham.so_luong FROM chi_tiet_san_pham WHERE id_chi_tiet_san_pham = ? LIMIT 1) AS quantyti) -? WHERE id_chi_tiet_san_pham = ?";
     return pdo_execute($sql, $id_chi_tiet_san_pham, $so_luong, $id_chi_tiet_san_pham);
 }
+function buy_now_product($id_san_pham, $id_size, $id_mau, $so_luong)
+{
+    $sql = "SELECT chi_tiet_san_pham.id_chi_tiet_san_pham, san_pham.ten_san_pham,san_pham.price, SUM(?*san_pham.price) as total_price FROM `chi_tiet_san_pham` JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham WHERE chi_tiet_san_pham.id_san_pham = ? AND id_size = ? AND id_mau = ? GROUP BY chi_tiet_san_pham.id_chi_tiet_san_pham, san_pham.ten_san_pham,san_pham.price";
+    return pdo_query_one($sql, $so_luong, $id_san_pham, $id_size, $id_mau);
+}
