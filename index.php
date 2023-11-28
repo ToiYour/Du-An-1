@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 ob_start();
 include_once 'assets/dao/pdo.php';
 include_once 'assets/dao/khach-hang.php';
@@ -11,6 +13,10 @@ include_once 'assets/dao/gio-hang.php';
 include_once 'assets/dao/detail-don-hang.php';
 include_once 'PHPMailer-master/sendmail.php';
 include_once 'assets/dao/toast-message.php';
+include_once 'assets/dao/don-hang.php';
+include_once 'assets/dao/detail-don-hang.php';
+include_once 'assets/dao/payment.php';
+
 $list_danhMuc = loai_select_all();
 $list_size = size_select();
 $list_color = mau_select();
@@ -156,6 +162,10 @@ if (isset($_GET['act']) && $_GET['act']) {
                 include_once 'view/trang-chu/detail-order.php';
                 showSuccessToast('Huỷ đơn hàng thành công!');
             }
+            break;
+        case 'order-confirm':
+            include_once 'assets/jquery/order.php';
+            unset($_SESSION['order']);
             break;
     }
 } else {

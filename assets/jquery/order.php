@@ -1,29 +1,6 @@
  <?php
-    include_once '../dao/gio-hang.php';
-    include_once '../dao/don-hang.php';
-    include_once '../dao/detail-don-hang.php';
-    include_once '../dao/payment.php';
-    date_default_timezone_set("Asia/Ho_Chi_Minh");
-    $date = date('Y-m-d H:i:s');
-    if (isset($_POST['id_kh'])) {
-        if (isset($_POST['id_chi_tiet_san_pham'])) {
-            don_hang_insert($_POST['id_don_hang'], $_POST['id_kh'], $_POST['phone'], $_POST['dia_chi_giao'], 1,  $date,  $date, 'Thanh toán khi nhận hàng', $_POST['note']);
-            $sql = "INSERT INTO chi_tiet_don_hang(id_don_hang, id_chi_tiet_san_pham, so_luong) VALUES (?,?,?)";
-            pdo_execute($sql, $_POST['id_don_hang'], $_POST['id_chi_tiet_san_pham'], $_POST['so_luong']);
-            detail_san_pham_update_soLuong($_POST['id_chi_tiet_san_pham'], $_POST['so_luong']);
-            payment_insert($_POST['id_don_hang'], $_POST['total_price'], 'Thanh toán khi nhận hàng', 0);
-        } else {
-            // Mua thông qua giỏ hàng
-            don_hang_insert($_POST['id_don_hang'], $_POST['id_kh'], $_POST['phone'], $_POST['dia_chi_giao'], 1,  $date,  $date, 'Thanh toán khi nhận hàng', $_POST['note']);
-            detail_order_insert_by_khach_hang($_POST['id_kh'], $_POST['id_don_hang']);
-            payment_insert($_POST['id_don_hang'], $_POST['total_price'], 'Thanh toán khi nhận hàng', 0);
-        }
-    } else {
-        don_hang_insert($_POST['id_don_hang'], null, $_POST['phone'], $_POST['dia_chi_giao'], 1,  $date,  $date, 'Thanh toán khi nhận hàng', $_POST['note']);
-        $sql = "INSERT INTO chi_tiet_don_hang(id_don_hang, id_chi_tiet_san_pham, so_luong) VALUES (?,?,?)";
-        pdo_execute($sql, $_POST['id_don_hang'], $_POST['id_chi_tiet_san_pham'], $_POST['so_luong']);
-        detail_san_pham_update_soLuong($_POST['id_chi_tiet_san_pham'], $_POST['so_luong']);
-        payment_insert($_POST['id_don_hang'], $_POST['total_price'], 'Thanh toán khi nhận hàng', 0);
+    if (!isset($_SESSION)) {
+        session_start();
     }
     ?>
  <!-- breadcrumb-area start -->
@@ -61,19 +38,21 @@
                              </div>
                              <h5 class="text-success text-center fw-semibold">Cảm ơn bạn. Đơn hàng của bạn đã nhận.</h5>
                              <ul class="fw-semibold">
-                                 <li>Mã đơn hàng: <span class="fw-light"><?php echo $_POST['id_don_hang'] ?></span></li>
-                                 <li>Số điện thoại: <span class="fw-light"><?php echo $_POST['phone'] ?></span></li>
-                                 <li>Địa chỉ giao: <span class="fw-light"><?php echo $_POST['dia_chi_giao'] ?></span>
+                                 <li>Mã đơn hàng: <span class="fw-light"><?php echo $_SESSION['order']['id_don_hang'] ?></span></li>
+                                 <li>Họ tên: <span class="fw-light"><?php echo $_SESSION['order']['ho_ten'] ?></span>
                                  </li>
-                                 <li>Ngày: <span class="fw-light"><?php echo $date ?></span></li>
-                                 <li>Tổng cộng: <span class="fw-light "></span><?php echo number_format($_POST['total_price']) ?>đ</span>
+                                 <li>Số điện thoại: <span class="fw-light"><?php echo $_SESSION['order']['phone'] ?></span></li>
+                                 <li>Địa chỉ giao: <span class="fw-light"><?php echo $_SESSION['order']['dia_chi_giao'] ?></span>
                                  </li>
-                                 <li>Phương thức thanh toán: <span class="fw-light">Thanh toán khi nhận hàng</span>
+                                 <li>Ngày: <span class="fw-light"><?php echo $_SESSION['order']['date'] ?></span></li>
+                                 <li>Tổng cộng: <span class="fw-light "></span><?php echo number_format($_SESSION['order']['total_price']) ?>đ</span>
+                                 </li>
+                                 <li>Phương thức thanh toán: <span class="fw-light"><?php echo $_SESSION['order']['payment_method']  ?></span>
                                  </li>
                              </ul>
                              <div class="row mt-3">
-                                 <?php if (isset($_POST['id_kh'])) : ?>
-                                     <a href="?act=history-carts" class="btn btn-outline-success px-2 py-1 justify-content-center">Xem đơn
+                                 <?php if (isset($_SESSION['login'])) : ?>
+                                     <a href="?act=detail-history-order&id=<?php echo $_SESSION['order']['id_don_hang'] ?>" class="btn btn-outline-success px-2 py-1 justify-content-center">Xem đơn
                                          hàng</a>
                                  <?php endif ?>
                              </div>
