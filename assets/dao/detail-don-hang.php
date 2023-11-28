@@ -15,6 +15,11 @@ function detail_order_insert_by_khach_hang($id_kh, $id_don_hang)
     $del_gio_hang = "DELETE FROM gio_hang WHERE id_kh = ?";
     pdo_execute($del_gio_hang, $id_kh);
 }
+function detail_order_insert($id_don_hang, $id_chi_tiet_san_pham, $so_luong)
+{
+    $sql = "INSERT INTO chi_tiet_don_hang(id_don_hang, id_chi_tiet_san_pham, so_luong) VALUES (?,?,?)";
+    pdo_execute($sql, $id_don_hang, $id_chi_tiet_san_pham, $so_luong);
+}
 function don_hang_select_all()
 {
     $sql = "SELECT don_hang.*, trang_thai_don.name_trang_thai_don, user.ho_ten FROM `don_hang` JOIN trang_thai_don ON don_hang.id_trang_thai_don = trang_thai_don.id_trang_thai_don JOIN user ON don_hang.id_kh = user.id_kh";

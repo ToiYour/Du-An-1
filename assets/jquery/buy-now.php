@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once '../dao/detail-san-pham.php';
 if (isset($_POST['byNow'])) {
     $buyNows = buy_now_product($_POST['id_san_pham'], $_POST['id_size'], $_POST['id_mau'], $_POST['so_luong']);
@@ -140,10 +142,11 @@ if (isset($_POST['byNow'])) {
                                             <label for="shipcod">Thanh toán khi nhận hàng</label>
                                             <input type="radio" id="shipcod" class="mx-2" name="payment" value="shipcod">
                                         </div>
+
                                         <div class="d-flex align-items-center">
                                             <img src="assets/images/icon/bank.png" alt="" style="width:30px; height:30px; object-fit: cover;">
                                             <label for="atm">Thẻ ATM nội địa</label>
-                                            <input type="radio" id="atm" class="mx-2" name="payment">
+                                            <input type="radio" id="atm" class="mx-2" name="payment" value="atm">
                                         </div>
                                     </div>
                                     <!-- ACCORDION END -->
