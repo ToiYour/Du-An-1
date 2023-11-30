@@ -38,6 +38,7 @@
                           <ul class="sub-menu" aria-expanded="false">
                               <li><a href="?act=order-confirm">Đơn hàng cần xác nhận</a></li>
                               <li><a href="?act=list-order">Danh sách đơn hàng</a></li>
+                              <li><a href="?act=list-order-view">Danh sách đơn hàng khách hàng ghé thăm</a></li>
                           </ul>
                       </li>
                       <li>
@@ -52,6 +53,7 @@
                           <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="bx bx-comment-dots"></i><span>Quản lý bình luận</span></a>
                           <ul class="sub-menu" aria-expanded="false">
                               <li><a href="?act=list-comment">Danh sách bình luận</a></li>
+                              <li><a href="?act=list-reply">Danh sách bình luận đã trả lời</a></li>
                           </ul>
                       </li>
                       <li>
