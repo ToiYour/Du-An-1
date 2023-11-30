@@ -77,9 +77,12 @@ function checkForms() {
 // Cập nhập trạng thái đơn hàng
 var id_don_hang;
 var that;
+var id_status;
 $(document).on("click", ".order-btn button", function () {
   that = $(this);
   id_don_hang = $(this).val();
+  id_status = $(this).closest("tr").find('input[name="status_order"]').val();
+  console.log(id_status);
   $.post(
     "view/don-hang/popup.php",
     {
@@ -94,15 +97,20 @@ $(".modal-footer").on("click", ".btn.btn-primary", function () {
   let trang_thai_don = $(".modal-body .form-control")
     .prop("selected", true)
     .val();
-  $.post(
-    "view/don-hang/update.php",
-    {
-      trang_thai_don: trang_thai_don,
-      id_don_hang: id_don_hang,
-    },
-    function (data, textStatus, jqXHR) {
-      $(that).closest("tr").find(".badge.badge-pill.badge-info").html(data);
-      alert("Cập nhập trạng thái thành công");
-    }
-  );
+  if (id_status >= trang_thai_don) {
+    alert("Không thể cập nhập trạng thái cũ của đơn hàng");
+  } else {
+    $.post(
+      "view/don-hang/update.php",
+      {
+        trang_thai_don: trang_thai_don,
+        id_don_hang: id_don_hang,
+      },
+      function (data, textStatus, jqXHR) {
+        $(that).closest("tr").find(".badge.badge-pill.badge-info").html(data);
+        alert("Cập nhập trạng thái thành công");
+        $(".modal").modal("hide");
+      }
+    );
+  }
 });

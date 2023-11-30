@@ -26,6 +26,11 @@ function don_hang_select()
     $sql = "SELECT * FROM don_hang JOIN user ON don_hang.id_kh = user.id_kh";
     return pdo_query($sql);
 }
+function don_hang_view_select()
+{
+    $sql = "SELECT don_hang.*, trang_thai_don.name_trang_thai_don FROM `don_hang` JOIN trang_thai_don ON don_hang.id_trang_thai_don = trang_thai_don.id_trang_thai_don WHERE id_kh = '' OR id_kh IS NULL";
+    return pdo_query($sql);
+}
 function don_hang_sum($id_don_hang)
 {
     $sql = "SELECT SUM(so_luong) FROM chi_tiet_don_hang WHERE id_don_hang = ?";

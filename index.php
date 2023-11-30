@@ -26,6 +26,9 @@ if (isset($_GET['act']) && $_GET['act']) {
     switch ($act) {
             // Quản lý user
         case 'login':
+            if (isset($_GET['falseAdmin'])) {
+                showErrorToast('Bạn cần phải đăng nhập với quyền admin!');
+            }
             if (isset($_POST['login']) && $_POST['login']) {
                 $arr_login = [
                     'ho_ten' => $_POST['user-name'],
@@ -157,10 +160,17 @@ if (isset($_GET['act']) && $_GET['act']) {
             break;
         case 'cancel-order':
             if (isset($_GET['id'])) {
-                $sql = "UPDATE don_hang SET id_trang_thai_don=6 WHERE id_don_hang = ?";
-                pdo_execute($sql, $_GET['id']);
-                include_once 'view/trang-chu/detail-order.php';
-                showSuccessToast('Huỷ đơn hàng thành công!');
+                $sql = "SELECT `id_trang_thai_don` FROM `don_hang` WHERE id_don_hang= ?";
+                $status = pdo_query_one($sql, $_GET['id']);
+                if ($status['id_trang_thai_don'] > 1) {
+                    include_once 'view/trang-chu/detail-order.php';
+                    showErrorToast('Xin lỗi bạn! đơn hàng đã cập nhập trạng thái không thể huỷ được!');
+                } else {
+                    $sql = "UPDATE don_hang SET id_trang_thai_don=6 WHERE id_don_hang = ?";
+                    pdo_execute($sql, $_GET['id']);
+                    include_once 'view/trang-chu/detail-order.php';
+                    showSuccessToast('Huỷ đơn hàng thành công!');
+                }
             }
             break;
         case 'order-confirm':

@@ -33,3 +33,6 @@ function showErrorToast($message)
     </div>
 </div>';
 }
+if (isset($_POST['success'])) {
+    showSuccessToast($_POST['message']);
+}

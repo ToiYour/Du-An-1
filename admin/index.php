@@ -18,6 +18,10 @@ include_once '../assets/dao/thong-ke.php';
 include_once '../assets/dao/detail-san-pham.php';
 include_once '../assets/dao/detail-don-hang.php';
 include_once '../assets/dao/toast-message.php';
+if (!isset($_SESSION['login']) && (($_SESSION['login']['id_roles'] != 2) || ($_SESSION['login']['id_roles'] != 3))) {
+  showErrorToast('Bạn cần phải đăng nhập với quyền admin!');
+  header('location: ../index.php?act=login&falseAdmin');
+}
 include_once 'view/header.php';
 include_once 'view/sidebar.php';
 if (isset($_GET['act']) && $_GET['act']) {
@@ -440,11 +444,44 @@ if (isset($_GET['act']) && $_GET['act']) {
     case 'list-order':
       include_once 'view/don-hang/list.php';
       break;
+    case 'list-order-view':
+      include_once 'view/don-hang/list-view.php';
+      break;
     case 'order-confirm':
       include_once 'view/don-hang/list-confirm.php';
       break;
     case 'list-detail-order':
       include_once 'view/don-hang/detail.php';
+      break;
+      // Phản hồi bình luận
+    case 'reply-comment':
+      if (isset($_POST['reply'])) {
+        if (!empty($_POST['content'])) {
+          detail_binh_luan_insert($_POST['id_binh_luan'], $_POST['content'], $_SESSION['login']['id_kh'], date('Y-m-d'));
+          showSuccessToast('Trả lời bình luận thành công');
+          include_once 'view/binh-luan/list-reply.php';
+        }
+      } else
+        include_once 'view/binh-luan/reply.php';
+      break;
+    case 'list-reply':
+      include_once 'view/binh-luan/list-reply.php';
+      break;
+      // Sửa trả lời bình luận
+    case 'update-reply':
+      if (isset($_POST['reply'])) {
+        if (!empty($_POST['content'])) {
+          reply_binh_luan_update($_POST['id_reply_comment'], $_POST['content']);
+          showSuccessToast('Trả lời bình luận thành công');
+          include_once 'view/binh-luan/list-reply.php';
+        }
+      } else
+        include_once 'view/binh-luan/update-reply.php';
+      break;
+    case 'delete-reply':
+      reply_binh_luan_delete($_GET['id']);
+      showSuccessToast('Xoá thành công');
+      include_once 'view/binh-luan/list-reply.php';
       break;
   }
 } else {
