@@ -14,7 +14,7 @@ function thong_ke_san_pham()
 }
 function thong_ke_da_ban()
 {
-    $sql = "SELECT san_pham.ten_san_pham, don_hang.ngay_tao, SUM(chi_tiet_don_hang.so_luong) AS so_luong FROM `san_pham` JOIN chi_tiet_san_pham ON san_pham.id_san_pham = chi_tiet_san_pham.id_san_pham JOIN chi_tiet_don_hang ON chi_tiet_san_pham.id_chi_tiet_san_pham = chi_tiet_don_hang.id_chi_tiet_san_pham JOIN don_hang ON chi_tiet_don_hang.id_don_hang = don_hang.id_don_hang WHERE don_hang.id_trang_thai_don >= 2 GROUP BY san_pham.ten_san_pham, don_hang.ngay_tao";
+    $sql = "SELECT san_pham.ten_san_pham, don_hang.ngay_tao, SUM(chi_tiet_don_hang.so_luong) AS so_luong FROM `san_pham` JOIN chi_tiet_san_pham ON san_pham.id_san_pham = chi_tiet_san_pham.id_san_pham JOIN chi_tiet_don_hang ON chi_tiet_san_pham.id_chi_tiet_san_pham = chi_tiet_don_hang.id_chi_tiet_san_pham JOIN don_hang ON chi_tiet_don_hang.id_don_hang = don_hang.id_don_hang WHERE don_hang.id_trang_thai_don = 5 GROUP BY san_pham.ten_san_pham, don_hang.ngay_tao";
     return pdo_query($sql);
 }
 function thong_ke_tinh_trang()

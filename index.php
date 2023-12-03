@@ -10,6 +10,7 @@ include_once 'assets/dao/san-pham.php';
 include_once 'assets/dao/size.php';
 include_once 'assets/dao/mau.php';
 include_once 'assets/dao/gio-hang.php';
+include_once 'assets/dao/danh-gia.php';
 include_once 'assets/dao/detail-don-hang.php';
 include_once 'PHPMailer-master/sendmail.php';
 include_once 'assets/dao/toast-message.php';
@@ -18,6 +19,13 @@ include_once 'assets/dao/detail-don-hang.php';
 include_once 'assets/dao/payment.php';
 
 $list_danhMuc = loai_select_all();
+$id_danh_muc_all = '';
+foreach ($list_danhMuc as $value) {
+    $id_danh_muc_all .= $value['id_danh_muc'] . ',';
+}
+$id_danh_muc_all = rtrim($id_danh_muc_all, ',');
+
+
 $list_size = size_select();
 $list_color = mau_select();
 include_once 'view/header.php';
@@ -176,6 +184,18 @@ if (isset($_GET['act']) && $_GET['act']) {
         case 'order-confirm':
             include_once 'assets/jquery/order.php';
             unset($_SESSION['order']);
+            break;
+        case 'feedback-order':
+            include_once 'view/trang-chu/feedback-order.php';
+            break;
+        case 'about-us':
+            include_once 'view/page/about-us.php';
+            break;
+        case 'blog-details':
+            include_once 'view/page/blog-details.php';
+            break;
+        case 'contact-us':
+            include_once 'view/page/contact-us.php';
             break;
     }
 } else {

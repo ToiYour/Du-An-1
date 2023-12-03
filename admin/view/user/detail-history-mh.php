@@ -38,17 +38,16 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($detail_history_mh as $value) : ?>
-                                    <tr>
-                                        <td class="font-weight-bolder text-primary">
-                                            <?php echo $value['id_chi_tiet_don_hang'] ?></td>
-                                        <td><?php echo $value['ten_san_pham'] ?></td>
-                                        <td><?php echo number_format($value['gia_ban']) ?>đ</td>
-                                        <td><?php echo $value['so_luong'] ?></td>
-                                        <td data-toggle="tooltip" data-placement="top"
-                                            title="<?php echo $value['kich_thuoc'] ?>"><?php echo $value['size'] ?></td>
-                                        <td><?php echo $value['mau'] ?></td>
-                                        <td><?php echo number_format($value['total_price']) ?>đ</td>
-                                    </tr>
+                                        <tr>
+                                            <td class="font-weight-bolder text-primary">
+                                                <?php echo $value['id_chi_tiet_don_hang'] ?></td>
+                                            <td><?php echo $value['ten_san_pham'] ?></td>
+                                            <td><?php echo number_format($value['price']) ?>đ</td>
+                                            <td><?php echo $value['so_luong'] ?></td>
+                                            <td data-toggle="tooltip" data-placement="top" title="<?php echo $value['kich_thuoc'] ?>"><?php echo $value['size'] ?></td>
+                                            <td><?php echo $value['mau'] ?></td>
+                                            <td><?php echo number_format($value['total_price']) ?>đ</td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>

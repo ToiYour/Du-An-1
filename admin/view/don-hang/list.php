@@ -50,6 +50,8 @@
                                         <td>
                                             <span class="badge badge-pill badge-info">
                                                 <?php echo $value['name_trang_thai_don'] ?></span>
+                                            <input type="text" hidden value="<?php echo $value['id_trang_thai_don'] ?>"
+                                                name="status_order">
                                         </td>
                                         <td><?php echo $value['ngay_tao'] ?></td>
                                         <td class="text-info"><?php echo $value['payment_method'] ?></td>

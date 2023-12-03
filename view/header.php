@@ -61,14 +61,16 @@
                                 <div class="search-box-inner-wrap">
                                     <form class="search-box-inner">
                                         <div class="search-field-wrap">
-                                            <input type="text" class="search-field rounded-start"
+                                            <input id="tags" type="text" class="search-field rounded-start"
                                                 placeholder="Tìm kiếm sản phẩm..." />
-
                                             <div class="search-btn">
-                                                <button><i class="icon-magnifier"></i></button>
+                                                <button type="button"><i class="icon-magnifier"></i></button>
                                             </div>
                                         </div>
                                     </form>
+                                    <div class="autocomplete">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,16 +138,20 @@
                                         </li>
 
                                         <li>
-                                            <a href="shop.html">Danh mục <i class="fa fa-angle-down"></i></a>
+                                            <a class="btn-list-product" href="?act=list-shop"
+                                                data-id-category="<?php echo $id_danh_muc_all ?>">Danh mục
+                                                <i class="fa fa-angle-down"></i></a>
                                             <ul class="mega-menu">
                                                 <li>
-                                                    <a href="?act=list">Đồng hồ</a>
+                                                    <a class="btn-list-product" href="?act=list-shop"
+                                                        data-id-category="<?php echo $id_danh_muc_all ?>">Đồng hồ</a>
                                                     <ul>
                                                         <?php foreach ($list_danhMuc as $value) : if ($value['display_danh_muc'] == 0) {
                                                                 continue;
                                                             } ?>
-                                                        <li><a
-                                                                href="?act=list&category=<?php echo $value['id_danh_muc'] ?>"><?php echo $value['ten_danh_muc'] ?></a>
+                                                        <li><a data-id-category="<?php echo $value['id_danh_muc'] ?>"
+                                                                class="btn-list-product"
+                                                                href="<?php echo $value['id_danh_muc'] ?>"><?php echo $value['ten_danh_muc'] ?></a>
                                                         </li>
                                                         <?php endforeach; ?>
                                                     </ul>
@@ -153,12 +159,12 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="blog-details.html">Tin tức </a>
+                                            <a href="?act=blog-details">Tin tức </a>
                                         </li>
 
 
-                                        <li><a href="about-us.html">Về chúng tôi</a></li>
-                                        <li><a href="contact-us.html">Liên hệ</a></li>
+                                        <li><a href="?act=about-us">Về chúng tôi</a></li>
+                                        <li><a href="?act=contact-us">Liên hệ</a></li>
                                     </ul>
                                 </nav>
                             </div>

@@ -3584,7 +3584,7 @@ img.mfp-img {
 
 .product-details-view-content .product-rating li {
   padding-right: 5px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .product-details-view-content .product-rating li a {
@@ -3792,6 +3792,7 @@ img.mfp-img {
 }
 
 .review_details {
+  width: 100%;
   border: 1px solid #ddd;
   margin-left: 26px;
   padding: 10px 20px;
@@ -6477,4 +6478,31 @@ img.mfp-img {
 .btn-comment:hover {
   background-color: #06c1ff !important;
   color: #fff !important;
+}
+
+.start-feedback-order li {
+  cursor: pointer;
+}
+
+.search-box-inner-wrap .autocomplete {
+  position: absolute;
+  width: 27.5%;
+  background-color: #fff;
+  border-radius: 3px;
+  z-index: 999999999999999999;
+}
+
+.search-box-inner-wrap .autocomplete ul {
+  padding: 5px 0;
+  height: 150px;
+  overflow: auto;
+}
+
+.search-box-inner-wrap .autocomplete ul li {
+  padding: 0 30px;
+}
+
+.search-box-inner-wrap .autocomplete ul li:hover {
+  background-color: #cccc;
+  cursor: pointer;
 }
