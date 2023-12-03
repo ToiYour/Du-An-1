@@ -58,6 +58,10 @@ if (isset($_GET['id'])) {
                                         </div>
                                     </div>
                                 </tr>
+                                <?php if ($value['id_trang_thai_don'] == 5) : ?>
+                                    <div class="d-flex justify-content-end"><a href="?act=feedback-order&id=<?php echo $value['id_chi_tiet_don_hang'] ?>" class="btn btn-outline-danger p-1 ">Viết đánh giá</a>
+                                    </div>
+                                <?php endif ?>
                             <?php endforeach; ?>
                         </tbody>
                         <tfoot>

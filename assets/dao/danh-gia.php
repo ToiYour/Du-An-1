@@ -1,10 +1,10 @@
 <?php
 require_once 'pdo.php';
 
-function danh_gia_insert($id_kh, $id_san_pham, $noi_dung, $ngay_danh_gia)
+function danh_gia_insert($id_kh, $id_san_pham, $danh_gia, $noi_dung, $ngay_danh_gia, $display_danh_gia)
 {
-    $sql = "INSERT INTO danh_gia(id_kh, id_san_pham, noi_dung, ngay_danh_gia) VALUES (?,?,?,?)";
-    pdo_execute($sql, $id_kh, $id_san_pham, $noi_dung, $ngay_danh_gia);
+    $sql = "INSERT INTO danh_gia(id_kh, id_san_pham, danh_gia, noi_dung, ngay_danh_gia, display_danh_gia) VALUES (?,?,?,?,?,?)";
+    pdo_execute($sql, $id_kh, $id_san_pham, $danh_gia, $noi_dung, $ngay_danh_gia, $display_danh_gia);
 }
 
 function danh_gia_update($id_danh_gia, $id_kh, $id_san_pham, $noi_dung, $ngay_danh_gia)
@@ -65,5 +65,10 @@ function danh_gia_exist($id_danh_gia)
 function danh_gia_select_by_hang_hoa($id_san_pham)
 {
     $sql = "SELECT * FROM danh_gia JOIN khach_hang ON khach_hang.id_kh = danh_gia.id_kh WHERE id_san_pham = ? ORDER BY ngay_danh_gia DESC ";
+    return pdo_query($sql, $id_san_pham);
+}
+function danh_gia_feedback($id_san_pham)
+{
+    $sql = "SELECT * FROM danh_gia JOIN user ON danh_gia.id_kh = user.id_kh WHERE danh_gia.id_san_pham = ?";
     return pdo_query($sql, $id_san_pham);
 }
