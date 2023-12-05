@@ -3,6 +3,9 @@ if (!isset($_SESSION)) {
     session_start();
 }
 include_once '../dao/detail-san-pham.php';
+include_once '../dao/giam-gia.php';
+date_default_timezone_set("Asia/Ho_Chi_Minh");
+$list_sales = giam_gia_select();
 if (isset($_POST['byNow'])) {
     $buyNows = buy_now_product($_POST['id_san_pham'], $_POST['id_size'], $_POST['id_mau'], $_POST['so_luong']);
 }
@@ -123,14 +126,52 @@ if (isset($_POST['byNow'])) {
                                             <th class="fw-semibold">Tổng số đơn
                                                 hàng(<?php echo (isset($_POST['so_luong'])) ? $_POST['so_luong'] : 0 ?>)
                                             </th>
-                                            <td><strong><span class="amount"><?php echo (isset($buyNows['total_price'])) ? number_format($buyNows['total_price']) : 0 ?>đ</span></strong>
+                                            <td>
+                                                <strong>
+                                                    <span class="amount"><?php echo (isset($buyNows['total_price'])) ? number_format($buyNows['total_price']) : 0 ?>đ</span>
+                                                    <span class="amount-new ps-3"></span>
+
+                                                </strong>
                                             </td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
                             <!-- your-order-table end -->
-
+                            <?php if (isset($_SESSION['login'])) : ?>
+                                <div class="coupon-info ps-4">
+                                    <p class="checkout-coupon">
+                                        <input readonly type="text" placeholder="Mã giảm giá" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <button type="submit" class="btn button-apply-coupon" name="apply_coupon" value="Apply coupon">Áp dụng</button>
+                                    </p>
+                                    <div class="collapse" id="collapseExample">
+                                        <div class="card card-body">
+                                            <?php foreach ($list_sales as $value) : if ($value['display_gg'] == 0) {
+                                                    continue;
+                                                } ?>
+                                                <div class="voucher d-flex align-items-center justify-content-between border-bottom py-2">
+                                                    <div class="d-flex">
+                                                        <img src="assets/images/icon/sale.png" alt="" style="width: 40px; height: 40px;">
+                                                        <div class="info-voucher ms-3">
+                                                            <h6 class="mb-1">Giảm <?= $value['giam_gia'] ?>%</h6>
+                                                            <span class="text-black-50">Số lượng còn:<?= $value['so_luong'] ?> |
+                                                                HSD: <?= $value['ngay_het_han'] ?></span>
+                                                        </div>
+                                                    </div>
+                                                    <?php if ($value['ngay_het_han'] < date('Y-m-d')) : ?>
+                                                        <span class="badge text-bg-danger">Hết hạn</span>
+                                                    <?php elseif ($value['so_luong'] <= 0) : ?>
+                                                        <span class="badge text-bg-danger">Số lượng đã hết</span>
+                                                    <?php else : ?>
+                                                        <span class="badge text-bg-success use-voucher" style="cursor: pointer;" data-id-voucher="<?= $value['id_ma_giam_gia'] ?>" data-code-voucher="<?= $value['code'] ?>" data-voucher="<?= $value['giam_gia'] ?>">Sử
+                                                            dụng</span>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif ?>
                             <!-- your-order-wrap end -->
                             <div class="payment-method">
                                 <div class="payment-accordion">

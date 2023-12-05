@@ -57,3 +57,8 @@ function buy_now_product($id_san_pham, $id_size, $id_mau, $so_luong)
     $sql = "SELECT chi_tiet_san_pham.id_chi_tiet_san_pham, san_pham.ten_san_pham,san_pham.price, SUM(?*san_pham.price) as total_price FROM `chi_tiet_san_pham` JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham WHERE chi_tiet_san_pham.id_san_pham = ? AND id_size = ? AND id_mau = ? GROUP BY chi_tiet_san_pham.id_chi_tiet_san_pham, san_pham.ten_san_pham,san_pham.price";
     return pdo_query_one($sql, $so_luong, $id_san_pham, $id_size, $id_mau);
 }
+function check_so_luong_detail_product($id_san_pham, $id_size, $id_mau)
+{
+    $sql = "SELECT COUNT(*) FROM chi_tiet_san_pham WHERE id_san_pham =? AND id_size =? AND id_mau =?";
+    return pdo_query_value($sql, $id_san_pham, $id_size, $id_mau) > 0;
+}

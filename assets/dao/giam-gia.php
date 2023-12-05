@@ -7,7 +7,7 @@ function giam_gia_insert($code, $giam_gia, $so_luong, $ngay_het_han)
 }
 function giam_gia_select()
 {
-    $sql = "SELECT * FROM ma_giam_gia";
+    $sql = "SELECT * FROM ma_giam_gia ORDER BY ngay_het_han DESC";
     return pdo_query($sql);
 }
 function giam_gia_update($id_ma_giam_gia, $code, $giam_gia, $so_luong, $ngay_het_han)
@@ -30,4 +30,9 @@ function giam_gia_delete_none($id_ma_giam_gia)
     } else {
         pdo_execute($sql, $id_ma_giam_gia);
     }
+}
+function giam_gia_update_so_luong($id_ma_giam_gia)
+{
+    $sql = "UPDATE ma_giam_gia  SET so_luong =so_luong -1 WHERE id_ma_giam_gia = ?";
+    pdo_query($sql, $id_ma_giam_gia);
 }

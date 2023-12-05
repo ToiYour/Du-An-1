@@ -18,6 +18,7 @@ include_once '../assets/dao/thong-ke.php';
 include_once '../assets/dao/detail-san-pham.php';
 include_once '../assets/dao/detail-don-hang.php';
 include_once '../assets/dao/toast-message.php';
+include_once '../assets/dao/chat.php';
 if (!isset($_SESSION['login']) && (($_SESSION['login']['id_roles'] != 2) || ($_SESSION['login']['id_roles'] != 3))) {
   showErrorToast('Bạn cần phải đăng nhập với quyền admin!');
   header('location: ../index.php?act=login&falseAdmin');
@@ -482,6 +483,9 @@ if (isset($_GET['act']) && $_GET['act']) {
       reply_binh_luan_delete($_GET['id']);
       showSuccessToast('Xoá thành công');
       include_once 'view/binh-luan/list-reply.php';
+      break;
+    case 'message':
+      include_once 'view/chat/message.php';
       break;
   }
 } else {

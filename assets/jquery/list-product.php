@@ -7,7 +7,7 @@ $list_danhMuc = loai_select_all(); //lấy ra các danh mục sản phẩm
 $min_max_price = san_pham_min_max_price(); //lấy ra giá min và max sản phẩm
 $sum_product = san_pham_count(); //lấy ra số lượng sản phẩm
 $cout_page = ceil($sum_product / 9); //tính số trang
-$id_danh_muc = isset($_POST['id_danh_muc']) ? $_POST['id_danh_muc'] : ''; // id danh mục sản phẩm
+$id_danh_muc = isset($_POST['id_danh_muc']) ? $_POST['id_danh_muc'] : '21,22,23'; // id danh mục sản phẩm
 $page = isset($_POST['page']) ? $_POST['page'] : 0; // xác định trang
 $start = $page * 9; // limit bắt đầu
 if (isset($_POST['filter_price'])) {
@@ -73,9 +73,8 @@ if (isset($_POST['filter_price'])) {
                                     <?php foreach ($list_danhMuc as $value) : if ($value['display_danh_muc'] == 0) {
                                             continue;
                                         } ?>
-                                    <li class="has-sub"><a href="#"
-                                            data-id-category="<?php echo $value['id_danh_muc'] ?>"><?php echo $value['ten_danh_muc'] ?></a>
-                                    </li>
+                                        <li class="has-sub"><a href="#" data-id-category="<?php echo $value['id_danh_muc'] ?>"><?php echo $value['ten_danh_muc'] ?></a>
+                                        </li>
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
@@ -93,13 +92,9 @@ if (isset($_POST['filter_price'])) {
                                     <div class="filter-price-wapper">
                                         <div class="slide-input-range-price ">
                                             <label for="customRange1" class="form-label">Giá thấp</label>
-                                            <input type="range" name="price_min" class="form-range" id="customRange1"
-                                                min="<?php echo $min_max_price['price_min'] ?>"
-                                                max="<?php echo $min_max_price['price_max'] ?>">
+                                            <input type="range" name="price_min" class="form-range" id="customRange1" min="<?php echo $min_max_price['price_min'] ?>" max="<?php echo $min_max_price['price_max'] ?>">
                                             <label for="customRange2" class="form-label">Giá cao</label>
-                                            <input type="range" name="price_max" class="form-range" id="customRange2"
-                                                min="<?php echo $min_max_price['price_min'] ?>"
-                                                max="<?php echo $min_max_price['price_max'] ?>">
+                                            <input type="range" name="price_max" class="form-range" id="customRange2" min="<?php echo $min_max_price['price_min'] ?>" max="<?php echo $min_max_price['price_max'] ?>">
                                         </div>
                                         <a class="add-to-cart-button btn-filter-price" href="#">
                                             <span>
@@ -130,7 +125,7 @@ if (isset($_POST['filter_price'])) {
 
                             <ul class="sidebar-tag filter-color">
                                 <?php foreach ($list_color as $value) : ?>
-                                <li><a href="<?= $value['id_mau'] ?>"><?= $value['mau'] ?></a></li>
+                                    <li><a href="<?= $value['id_mau'] ?>"><?= $value['mau'] ?></a></li>
                                 <?php endforeach ?>
                             </ul>
 
@@ -156,8 +151,7 @@ if (isset($_POST['filter_price'])) {
                                 <div class="product-mode">
                                     <!--shop-item-filter-list-->
                                     <ul class="nav shop-item-filter-list" role="tablist">
-                                        <li class="active"><a class="active grid-view" data-bs-toggle="tab"
-                                                href="#grid"><i class="fa fa-th"></i></a></li>
+                                        <li class="active"><a class="active grid-view" data-bs-toggle="tab" href="#grid"><i class="fa fa-th"></i></a></li>
                                     </ul>
                                     <!-- shop-item-filter-list end -->
                                 </div>
@@ -186,39 +180,31 @@ if (isset($_POST['filter_price'])) {
                                 <div class="shop-product-wrap">
                                     <div class="row">
                                         <?php foreach ($list_products as $value) : ?>
-                                        <div class="col-lg-4 col-md-6">
-                                            <!-- single-product-area start -->
-                                            <div class="single-product-area mt-30">
-                                                <div class="product-thumb">
-                                                    <a
-                                                        href="?act=product-details&id=<?php echo  $value['id_san_pham'] ?>&category=<?php echo  $value['id_danh_muc'] ?>">
-                                                        <img class="primary-image"
-                                                            src="assets/images/product/<?php echo $value['hinh_anh'] ?>"
-                                                            alt="" />
-                                                    </a>
-                                                    <div class="label-product label_new">Mới</div>
-                                                    <div class="action-links">
-                                                        <a href="<?php echo $value['id_san_pham'] ?>" class="quick-view"
-                                                            title="Thêm giỏ hàng" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModalCenter"><i
-                                                                class="icon-basket-loaded"></i></a>
-                                                    </div>
-
-                                                </div>
-                                                <div class="product-caption">
-                                                    <h4 class="product-name">
-                                                        <a
-                                                            href="?act=product-details&id=<?php echo  $value['id_san_pham'] ?>&category=<?php echo  $value['id_danh_muc'] ?>"><?php echo  $value['ten_san_pham'] ?></a>
-                                                    </h4>
-                                                    <div class="price-box">
-                                                        <span
-                                                            class="new-price"><?php echo number_format($value['price']) ?>đ</span>
+                                            <div class="col-lg-4 col-md-6">
+                                                <!-- single-product-area start -->
+                                                <div class="single-product-area mt-30">
+                                                    <div class="product-thumb">
+                                                        <a href="?act=product-details&id=<?php echo  $value['id_san_pham'] ?>&category=<?php echo  $value['id_danh_muc'] ?>">
+                                                            <img class="primary-image" src="assets/images/product/<?php echo $value['hinh_anh'] ?>" alt="" />
+                                                        </a>
+                                                        <div class="label-product label_new">Mới</div>
+                                                        <div class="action-links">
+                                                            <a href="<?php echo $value['id_san_pham'] ?>" class="quick-view" title="Thêm giỏ hàng" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="icon-basket-loaded"></i></a>
+                                                        </div>
 
                                                     </div>
+                                                    <div class="product-caption">
+                                                        <h4 class="product-name">
+                                                            <a href="?act=product-details&id=<?php echo  $value['id_san_pham'] ?>&category=<?php echo  $value['id_danh_muc'] ?>"><?php echo  $value['ten_san_pham'] ?></a>
+                                                        </h4>
+                                                        <div class="price-box">
+                                                            <span class="new-price"><?php echo number_format($value['price']) ?>đ</span>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                <!-- single-product-area end -->
                                             </div>
-                                            <!-- single-product-area end -->
-                                        </div>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
@@ -234,8 +220,8 @@ if (isset($_POST['filter_price'])) {
                                 <ul class="pagination-box">
                                     <li class="active" data-page="1"><a href="1">1</a></li>
                                     <?php for ($i = 2; $i <= $cout_page; $i++) : ?>
-                                    <li data-page="<?php echo $i ?>"><a href="<?php echo $i ?>"><?php echo $i ?></a>
-                                    </li>
+                                        <li data-page="<?php echo $i ?>"><a href="<?php echo $i ?>"><?php echo $i ?></a>
+                                        </li>
                                     <?php endfor ?>
 
                                 </ul>

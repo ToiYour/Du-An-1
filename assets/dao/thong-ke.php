@@ -34,7 +34,7 @@ function thong_ke_bxh_xem()
 }
 function thong_ke_doanh_thu_dm()
 {
-    $sql = "SELECT danh_muc.ten_danh_muc, SUM( chi_tiet_don_hang.so_luong * san_pham.price ) AS total_dh FROM don_hang JOIN chi_tiet_don_hang ON don_hang.id_don_hang = chi_tiet_don_hang.id_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc GROUP BY danh_muc.ten_danh_muc";
+    $sql = "SELECT danh_muc.ten_danh_muc, SUM( chi_tiet_don_hang.so_luong * san_pham.price ) AS total_dh FROM don_hang JOIN chi_tiet_don_hang ON don_hang.id_don_hang = chi_tiet_don_hang.id_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc WHERE don_hang.id_trang_thai_don = 5 GROUP BY danh_muc.ten_danh_muc";
     return pdo_query($sql);
 }
 function thong_ke_bieu_do()
@@ -44,7 +44,7 @@ function thong_ke_bieu_do()
 }
 function thong_ke_doanh_thu_kh()
 {
-    $sql = "SELECT user.ho_ten, SUM(chi_tiet_don_hang.so_luong * san_pham.price) AS total_dh FROM don_hang JOIN chi_tiet_don_hang ON don_hang.id_don_hang = chi_tiet_don_hang.id_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham JOIN user ON don_hang.id_kh = user.id_kh GROUP BY user.ho_ten";
+    $sql = "SELECT user.ho_ten, SUM(chi_tiet_don_hang.so_luong * san_pham.price) AS total_dh FROM don_hang JOIN chi_tiet_don_hang ON don_hang.id_don_hang = chi_tiet_don_hang.id_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham JOIN user ON don_hang.id_kh = user.id_kh WHERE don_hang.id_trang_thai_don = 5 GROUP BY user.ho_ten";
     return pdo_query($sql);
 }
 function thong_ke_binh_luan()
