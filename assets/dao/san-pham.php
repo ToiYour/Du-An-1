@@ -73,7 +73,7 @@ function san_pham_select_product_new()
 }
 function san_pham_select_best_seller()
 {
-    $sql = "SELECT san_pham.id_san_pham, san_pham.ten_san_pham, san_pham.price, san_pham.mo_ta, san_pham.hinh_anh, san_pham.display_san_pham, SUM(chi_tiet_don_hang.so_luong) AS so_luong_ban FROM chi_tiet_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham GROUP BY san_pham.id_san_pham, san_pham.ten_san_pham, san_pham.price, san_pham.mo_ta, san_pham.hinh_anh, san_pham.display_san_pham ORDER BY so_luong_ban DESC";
+    $sql = "SELECT danh_muc.id_danh_muc, san_pham.id_san_pham, san_pham.ten_san_pham, san_pham.price, san_pham.mo_ta, san_pham.hinh_anh, san_pham.display_san_pham, SUM(chi_tiet_don_hang.so_luong) AS so_luong_ban FROM chi_tiet_don_hang JOIN chi_tiet_san_pham ON chi_tiet_don_hang.id_chi_tiet_san_pham = chi_tiet_san_pham.id_chi_tiet_san_pham JOIN san_pham ON chi_tiet_san_pham.id_san_pham = san_pham.id_san_pham JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc GROUP BY danh_muc.id_danh_muc,san_pham.id_san_pham, san_pham.ten_san_pham, san_pham.price, san_pham.mo_ta, san_pham.hinh_anh, san_pham.display_san_pham ORDER BY so_luong_ban DESC";
     return pdo_query($sql);
 }
 function san_pham_select_by_id($id_san_pham)

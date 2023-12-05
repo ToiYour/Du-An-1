@@ -59,15 +59,15 @@
                         <div class="col-lg-6">
                             <div class="search-box-wrapper">
                                 <div class="search-box-inner-wrap">
-                                    <form class="search-box-inner">
+                                    <div class="search-box-inner">
                                         <div class="search-field-wrap">
-                                            <input id="tags" type="text" class="search-field rounded-start"
-                                                placeholder="Tìm kiếm sản phẩm..." />
+                                            <input id="tags" autocomplete="off" type="text"
+                                                class="search-field rounded-start" placeholder="Tìm kiếm sản phẩm..." />
                                             <div class="search-btn">
                                                 <button type="button"><i class="icon-magnifier"></i></button>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                     <div class="autocomplete">
 
                                     </div>

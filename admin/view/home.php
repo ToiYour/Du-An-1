@@ -34,22 +34,21 @@ $thong_ke_home = don_hang_thong_ke_home(); ?>
                         </div>
                     </div>
                 </div>
+                <?php if (isset($_SESSION['login']['id_roles']) && $_SESSION['login']['id_roles'] == 3) : ?>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="bx bx-dollar-circle float-right m-0 h2 text-muted"></i>
+                                <h6 class="text-muted text-uppercase mt-0">Doanh thu</h6>
+                                <h3 class="mb-3">
+                                    <span data-plugin="counterup"><?php echo isset($thong_ke_home['total_price']) ? number_format($thong_ke_home['total_price']) : 0 ?></span>
+                                    VNĐ
+                                </h3>
 
-                <div class="col-xl-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <i class="bx bx-dollar-circle float-right m-0 h2 text-muted"></i>
-                            <h6 class="text-muted text-uppercase mt-0">Doanh thu</h6>
-                            <h3 class="mb-3">
-                                <span
-                                    data-plugin="counterup"><?php echo isset($thong_ke_home['total_price'])?number_format($thong_ke_home['total_price']):0 ?></span>
-                                VNĐ
-                            </h3>
-
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                <?php endif; ?>
                 <div class="col-xl-3 col-md-6">
                     <div class="card">
                         <div class="card-body">
@@ -58,8 +57,7 @@ $thong_ke_home = don_hang_thong_ke_home(); ?>
                                 Giá trung bình
                             </h6>
                             <h3 class="mb-3">
-                                <span
-                                    data-plugin="counterup"><?php echo isset($thong_ke_home['avg_price'])?number_format($thong_ke_home['avg_price']):0 ?></span>
+                                <span data-plugin="counterup"><?php echo isset($thong_ke_home['avg_price']) ? number_format($thong_ke_home['avg_price']) : 0 ?></span>
                                 VNĐ
                             </h3>
 
@@ -75,7 +73,7 @@ $thong_ke_home = don_hang_thong_ke_home(); ?>
                                 Sản phẩm đã bán
                             </h6>
                             <h3 class="mb-3" data-plugin="counterup">
-                                <?php echo isset($thong_ke_home['total_dh'])?number_format($thong_ke_home['total_dh']):0 ?>
+                                <?php echo isset($thong_ke_home['total_dh']) ? number_format($thong_ke_home['total_dh']) : 0 ?>
                             </h3>
                         </div>
                     </div>
@@ -106,17 +104,16 @@ $thong_ke_home = don_hang_thong_ke_home(); ?>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($history_dh_home as $value) : ?>
-                                        <tr>
-                                            <td class="text-truncate"><?php echo $value['ho_ten'] ?></td>
-                                            <td class="text-truncate"><?php echo $value['ten_san_pham'] ?></td>
-                                            <td>
-                                                <span
-                                                    class="badge badge-soft-success p-2"><?php echo $value['ten_danh_muc'] ?></span>
-                                            </td>
-                                            <td class="text-truncate"><?php echo $value['size'] ?></td>
-                                            <td class="text-truncate"><?php echo $value['mau'] ?></td>
-                                            <td class="text-truncate"><?php echo $value['so_luong'] ?></td>
-                                        </tr>
+                                            <tr>
+                                                <td class="text-truncate"><?php echo $value['ho_ten'] ?></td>
+                                                <td class="text-truncate"><?php echo $value['ten_san_pham'] ?></td>
+                                                <td>
+                                                    <span class="badge badge-soft-success p-2"><?php echo $value['ten_danh_muc'] ?></span>
+                                                </td>
+                                                <td class="text-truncate"><?php echo $value['size'] ?></td>
+                                                <td class="text-truncate"><?php echo $value['mau'] ?></td>
+                                                <td class="text-truncate"><?php echo $value['so_luong'] ?></td>
+                                            </tr>
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>

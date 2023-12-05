@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['id'])) {
     $detail_order = detail_history_order($_GET['id']);
-    $total_price = 0;
+    $total_price = payment_price($_GET['id']);
 }
 ?>
 
@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
                 <div class="">
                     <table class="table table-hover">
                         <tbody>
-                            <?php foreach ($detail_order as $value) : $total_price += $value['total_price']; ?>
+                            <?php foreach ($detail_order as $value) : ?>
                                 <tr>
                                     <div class="p-3 bg-secondary my-2" style="--bs-bg-opacity: .09;">
                                         <div class="d-flex justify-content-between align-items-end border-bottom pb-2 mb-1">

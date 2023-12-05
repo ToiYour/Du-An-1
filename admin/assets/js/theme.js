@@ -99,6 +99,8 @@ $(".modal-footer").on("click", ".btn.btn-primary", function () {
     .val();
   if (id_status >= trang_thai_don) {
     alert("Không thể cập nhập trạng thái cũ của đơn hàng");
+  } else if (trang_thai_don - id_status > 1) {
+    alert("Bạn phải cập nhập trạng thái theo từng tiến độ  đơn hàng");
   } else {
     $.post(
       "view/don-hang/update.php",
@@ -114,3 +116,59 @@ $(".modal-footer").on("click", ".btn.btn-primary", function () {
     );
   }
 });
+//=======================================================================================Chat-App================================================================================
+let id_chat;
+let startLoad = false;
+
+function loadMessageChatApp() {
+  if (id_chat != undefined) {
+    $.post(
+      "view/chat/load-message.php",
+      { id_chat: id_chat },
+      function (data, textStatus, jqXHR) {
+        $("ul.messages").html(data);
+      }
+    );
+  }
+}
+
+function loadChat() {
+  $.post(
+    "view/chat/load-chat.php",
+    { id_chat: id_chat },
+    function (data, textStatus, jqXHR) {
+      $("#chat-contact").html(data);
+    }
+  );
+}
+setInterval(loadChat, 1000);
+// Click open chat message
+$(document).on("click", ".media.media-single", function () {
+  id_chat = $(this).data("id-chat");
+  startLoad = true;
+  $.post(
+    "view/chat/detail-chat.php",
+    { id_chat: id_chat },
+    function (data, textStatus, jqXHR) {
+      $(".detail-chat-message").html(data);
+    }
+  );
+});
+//=======================================================================================Gửi message================================================================================
+$(document).on("click", ".bottom_wrapper  .send_message", function () {
+  let content = $(".message_input_wrapper .message_input").val();
+  $.post(
+    "view/chat/detail-chat.php",
+    {
+      create: true,
+      content: content,
+      id_chat: id_chat,
+    },
+    function (data, textStatus, jqXHR) {
+      $(".detail-chat-message").html(data);
+      loadMessageChatApp();
+      $(".message_input_wrapper .message_input").val("");
+    }
+  );
+});
+setInterval(loadMessageChatApp, 1000);

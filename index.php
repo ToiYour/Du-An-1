@@ -11,13 +11,14 @@ include_once 'assets/dao/size.php';
 include_once 'assets/dao/mau.php';
 include_once 'assets/dao/gio-hang.php';
 include_once 'assets/dao/danh-gia.php';
+include_once 'assets/dao/giam-gia.php';
 include_once 'assets/dao/detail-don-hang.php';
 include_once 'PHPMailer-master/sendmail.php';
 include_once 'assets/dao/toast-message.php';
 include_once 'assets/dao/don-hang.php';
 include_once 'assets/dao/detail-don-hang.php';
 include_once 'assets/dao/payment.php';
-
+$list_sales = giam_gia_select();
 $list_danhMuc = loai_select_all();
 $id_danh_muc_all = '';
 foreach ($list_danhMuc as $value) {
