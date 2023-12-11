@@ -18,7 +18,8 @@
                                   chủ</span></a>
                       </li>
                       <li>
-                          <a href="?act=message" class="has-arrow waves-effect"><i class="bx bx-message-rounded-dots"></i><span>Trò chuyện</span></a>
+                          <a href="?act=message" class="waves-effect"><i class="bx bx-message-rounded-dots"></i><span>Trò
+                                  chuyện</span></a>
 
                       </li>
                       <li>

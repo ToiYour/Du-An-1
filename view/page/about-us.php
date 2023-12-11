@@ -38,7 +38,7 @@
                             dignissimos nihil, quos cumque earum eveniet possimus dicta!
                         </p>
                         <div class="munoz-btn-ps_left slide-btn">
-                            <a class="btn" href="shop.html">Shop Now</a>
+                            <a class="btn" href="#">Shop Now</a>
                         </div>
                     </div>
                 </div>

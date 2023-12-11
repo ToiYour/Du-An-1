@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['id']) && $_GET['id']) {
     $detail_product = san_pham_select_by_id($_GET['id']);
-    $cout_feedback =danh_gia_count_by_id($_GET['id']);
+    $cout_feedback = danh_gia_count_by_id($_GET['id']);
 }
 ?>
 <!-- breadcrumb-area start -->
@@ -30,8 +30,7 @@ if (isset($_GET['id']) && $_GET['id']) {
                     <!-- Product Details Left -->
                     <div class="product-large-slider">
                         <div class="pro-large-img ">
-                            <img src="assets/images/product/<?php echo $detail_product['hinh_anh'] ?>"
-                                alt="product-details" />
+                            <img src="assets/images/product/<?php echo $detail_product['hinh_anh'] ?>" alt="product-details" />
                         </div>
                     </div>
                     <!--// Product Details Left -->
@@ -47,32 +46,27 @@ if (isset($_GET['id']) && $_GET['id']) {
 
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>
                                 </ul>
-                                <a href="#reviews">(<span class="count"><?=$cout_feedback?></span> đánh giá)</a>
+                                <a href="#reviews">(<span class="count"><?= $cout_feedback ?></span> đánh giá)</a>
                             </div>
                             <div class="price-box">
-                                <span>Giá: </span><span class="new-price"
-                                    id="price-detail"><?php echo number_format($detail_product['price']) ?>đ</span>
+                                <span>Giá: </span><span class="new-price" id="price-detail"><?php echo number_format($detail_product['price']) ?>đ</span>
                             </div>
                             <p><?php echo $detail_product['mo_ta'] ?></p>
                             <div class="product__details__option">
                                 <div class="product__details__option__size">
                                     <span>Size:</span>
                                     <?php foreach ($list_size as $value) : ?>
-                                    <label for="<?php echo $value['id_size'] ?>" class="" data-bs-toggle="tooltip"
-                                        data-bs-title="<?php echo $value['kich_thuoc'] ?>"><?php echo $value['size'] ?>
-                                        <input type="radio" id="<?php echo $value['id_size'] ?>" name="id_size"
-                                            value="<?php echo $value['id_size'] ?>">
-                                    </label>
+                                        <label for="<?php echo $value['id_size'] ?>" class="" data-bs-toggle="tooltip" data-bs-title="<?php echo $value['kich_thuoc'] ?>"><?php echo $value['size'] ?>
+                                            <input type="radio" id="<?php echo $value['id_size'] ?>" name="id_size" value="<?php echo $value['id_size'] ?>">
+                                        </label>
                                     <?php endforeach ?>
                                 </div>
                                 <div class="product__details__option__color">
                                     <span>Màu:</span>
                                     <?php foreach ($list_color as $value) : ?>
-                                    <label class="c-<?php echo $value['id_mau'] ?>"
-                                        for="sp-<?php echo $value['id_mau'] ?>">
-                                        <input type="radio" id="sp-<?php echo $value['id_mau'] ?>" name="id_mau"
-                                            value="<?php echo $value['id_mau'] ?>">
-                                    </label>
+                                        <label class="c-<?php echo $value['id_mau'] ?>" for="sp-<?php echo $value['id_mau'] ?>">
+                                            <input type="radio" id="sp-<?php echo $value['id_mau'] ?>" name="id_mau" value="<?php echo $value['id_mau'] ?>">
+                                        </label>
                                     <?php endforeach ?>
                                 </div>
                             </div>
@@ -95,8 +89,7 @@ if (isset($_GET['id']) && $_GET['id']) {
                                 <li class="product-sku">Mã hàng:
                                     <span><?php echo $detail_product['id_san_pham'] ?></span>
                                 </li>
-                                <li class="product-stock-status">Thể loại: <a
-                                        href=""><?php echo $detail_product['ten_danh_muc'] ?></a></li>
+                                <li class="product-stock-status">Thể loại: <a href=""><?php echo $detail_product['ten_danh_muc'] ?></a></li>
                             </ul>
                         </div>
                     </div>

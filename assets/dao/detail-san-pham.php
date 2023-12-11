@@ -62,3 +62,8 @@ function check_so_luong_detail_product($id_san_pham, $id_size, $id_mau)
     $sql = "SELECT COUNT(*) FROM chi_tiet_san_pham WHERE id_san_pham =? AND id_size =? AND id_mau =?";
     return pdo_query_value($sql, $id_san_pham, $id_size, $id_mau) > 0;
 }
+function detail_san_pham_update_soLuong_sum($id_chi_tiet_san_pham, $so_luong)
+{
+    $sql = "UPDATE chi_tiet_san_pham SET so_luong=(SELECT so_luong FROM (SELECT chi_tiet_san_pham.so_luong FROM chi_tiet_san_pham WHERE id_chi_tiet_san_pham = ? LIMIT 1) AS quantyti) +? WHERE id_chi_tiet_san_pham = ?";
+    return pdo_execute($sql, $id_chi_tiet_san_pham, $so_luong, $id_chi_tiet_san_pham);
+}

@@ -11,7 +11,17 @@ function san_pham_update($id_san_pham, $ten_san_pham, $price, $mo_ta, $hinh_anh,
     $sql = "UPDATE san_pham SET ten_san_pham=?,price=?,mo_ta=?,hinh_anh=?,luot_xem=?,id_danh_muc=? WHERE  id_san_pham=?";
     pdo_execute($sql, $ten_san_pham, $price, $mo_ta, $hinh_anh, $luot_xem, $id_danh_muc, $id_san_pham);
 }
-
+function san_pham_update_display($id_san_pham)
+{
+    $sql = "UPDATE san_pham SET display_san_pham='1' WHERE  id_san_pham=?";
+    if (is_array($id_san_pham)) {
+        foreach ($id_san_pham as $ma) {
+            pdo_execute($sql, $ma);
+        }
+    } else {
+        pdo_execute($sql, $id_san_pham);
+    }
+}
 function san_pham_delete($id_san_pham)
 {
     $sql = "DELETE FROM san_pham WHERE  id_san_pham=?";

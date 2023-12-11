@@ -169,12 +169,17 @@ if (isset($_GET['act']) && $_GET['act']) {
             break;
         case 'cancel-order':
             if (isset($_GET['id'])) {
-                $sql = "SELECT `id_trang_thai_don` FROM `don_hang` WHERE id_don_hang= ?";
+                $sql = "SELECT id_trang_thai_don FROM don_hang WHERE id_don_hang= ?";
                 $status = pdo_query_one($sql, $_GET['id']);
                 if ($status['id_trang_thai_don'] > 1) {
                     include_once 'view/trang-chu/detail-order.php';
                     showErrorToast('Xin lỗi bạn! đơn hàng đã cập nhập trạng thái không thể huỷ được!');
                 } else {
+                    $query_up_sl = "SELECT id_chi_tiet_san_pham, so_luong FROM chi_tiet_don_hang WHERE id_don_hang = ?";
+                    $order = pdo_query($query_up_sl,  $_GET['id']);
+                    foreach ($order as $value) {
+                        detail_san_pham_update_soLuong_sum($value['id_chi_tiet_san_pham'], $value['so_luong']);
+                    }
                     $sql = "UPDATE don_hang SET id_trang_thai_don=6 WHERE id_don_hang = ?";
                     pdo_execute($sql, $_GET['id']);
                     include_once 'view/trang-chu/detail-order.php';
@@ -184,7 +189,7 @@ if (isset($_GET['act']) && $_GET['act']) {
             break;
         case 'order-confirm':
             include_once 'assets/jquery/order.php';
-            unset($_SESSION['order']);
+            // unset($_SESSION['order']);
             break;
         case 'feedback-order':
             include_once 'view/trang-chu/feedback-order.php';

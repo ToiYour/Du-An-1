@@ -72,3 +72,8 @@ function danh_gia_feedback($id_san_pham)
     $sql = "SELECT * FROM danh_gia JOIN user ON danh_gia.id_kh = user.id_kh WHERE danh_gia.id_san_pham = ?";
     return pdo_query($sql, $id_san_pham);
 }
+function danh_gia_exist_products($id_don_hang)
+{
+    $sql = "SELECT * FROM `danh_gia` JOIN chi_tiet_san_pham ON danh_gia.id_san_pham = chi_tiet_san_pham.id_san_pham JOIN chi_tiet_don_hang ON chi_tiet_san_pham.id_chi_tiet_san_pham = chi_tiet_don_hang.id_chi_tiet_san_pham WHERE chi_tiet_don_hang.id_chi_tiet_don_hang = ?";
+    return pdo_query_one($sql, $id_don_hang);
+}
