@@ -157,18 +157,32 @@ $(document).on("click", ".media.media-single", function () {
 //=======================================================================================Gửi message================================================================================
 $(document).on("click", ".bottom_wrapper  .send_message", function () {
   let content = $(".message_input_wrapper .message_input").val();
-  $.post(
-    "view/chat/detail-chat.php",
-    {
-      create: true,
-      content: content,
-      id_chat: id_chat,
-    },
-    function (data, textStatus, jqXHR) {
-      $(".detail-chat-message").html(data);
-      loadMessageChatApp();
-      $(".message_input_wrapper .message_input").val("");
-    }
-  );
+  if (content == "") {
+    $(".message_input_wrapper").css("box-shadow", " 0 0 5px red");
+    $(".message_input_wrapper .message_input").attr(
+      "placeholder",
+      "Vui lòng nhập nội dung"
+    );
+  } else {
+    $.post(
+      "view/chat/detail-chat.php",
+      {
+        create: true,
+        content: content,
+        id_chat: id_chat,
+      },
+      function (data, textStatus, jqXHR) {
+        $(".detail-chat-message").html(data);
+        loadMessageChatApp();
+        $(".message_input_wrapper .message_input").val("");
+      }
+    );
+  }
 });
 setInterval(loadMessageChatApp, 1000);
+// Check null
+$(document).on("input", ".message_input_wrapper .message_input", function () {
+  if (this.value != "") {
+    $(".message_input_wrapper").css("box-shadow", "none");
+  }
+});

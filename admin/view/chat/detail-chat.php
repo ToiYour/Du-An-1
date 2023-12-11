@@ -18,7 +18,7 @@ if (isset($_POST['create'])) {
                         <div class="text"><?= $value['content'] ?></div>
                     </div>
                 </div>
-                <span class="align-self-end" style="opacity: 0.6; font-size: 9px; color: #2f2c2ccc; text-align: end; margin-right: 80px;"><?= $value['time'] ?></span>
+                <span class="align-self-end" style="opacity: 0.6; font-size: 12px; color: #2f2c2ccc; text-align: end; margin-right: 80px;"><?= $value['time'] ?></span>
             </li>
         <?php else : ?>
             <li class="message left appeared">
@@ -28,7 +28,7 @@ if (isset($_POST['create'])) {
                         <div class="text"><?= $value['content'] ?></div>
                     </div>
                 </div>
-                <span class=" align-self-start" style="opacity: 0.6; font-size: 9px; color: #2f2c2ccc; text-align: end; margin-left: 80px;"><?= $value['time'] ?></span>
+                <span class=" align-self-start" style="opacity: 0.6; font-size: 12px; color: #2f2c2ccc; text-align: end; margin-left: 80px;"><?= $value['time'] ?></span>
             </li>
     <?php endif;
     endforeach ?>

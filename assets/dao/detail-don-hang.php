@@ -22,12 +22,12 @@ function detail_order_insert($id_don_hang, $id_chi_tiet_san_pham, $so_luong)
 }
 function don_hang_select_all()
 {
-    $sql = "SELECT don_hang.*, trang_thai_don.name_trang_thai_don, user.ho_ten FROM `don_hang` JOIN trang_thai_don ON don_hang.id_trang_thai_don = trang_thai_don.id_trang_thai_don JOIN user ON don_hang.id_kh = user.id_kh";
+    $sql = "SELECT don_hang.*, trang_thai_don.name_trang_thai_don, user.ho_ten FROM `don_hang` JOIN trang_thai_don ON don_hang.id_trang_thai_don = trang_thai_don.id_trang_thai_don JOIN user ON don_hang.id_kh = user.id_kh ORDER BY don_hang.ngay_tao DESC";
     return pdo_query($sql);
 }
 function don_hang_select_all_by()
 {
-    $sql = "SELECT don_hang.*, trang_thai_don.name_trang_thai_don, user.ho_ten FROM `don_hang` JOIN trang_thai_don ON don_hang.id_trang_thai_don = trang_thai_don.id_trang_thai_don JOIN user ON don_hang.id_kh = user.id_kh WHERE don_hang.id_trang_thai_don = 1";
+    $sql = "SELECT don_hang.*, trang_thai_don.name_trang_thai_don, user.ho_ten FROM `don_hang` JOIN trang_thai_don ON don_hang.id_trang_thai_don = trang_thai_don.id_trang_thai_don JOIN user ON don_hang.id_kh = user.id_kh WHERE don_hang.id_trang_thai_don = 1 ORDER BY don_hang.ngay_tao DESC";
     return pdo_query($sql);
 }
 function  detail_don_hang_select_all($id)

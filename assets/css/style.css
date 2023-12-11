@@ -6580,7 +6580,9 @@ img.mfp-img {
 }
 
 .messages .message.left .avatar {
-  background-color: #f5886e;
+  /* background-color: #f5886e; */
+  background-image: url("../images/icon/icon-tu-van.png");
+  background-size: cover;
   float: left;
 }
 
@@ -6600,7 +6602,9 @@ img.mfp-img {
 }
 
 .messages .message.right .avatar {
-  background-color: #fdbf68;
+  /* background-color: #fdbf68; */
+  background-image: url("../images/icon/icon-user.png");
+  background-size: cover;
   float: right;
 }
 

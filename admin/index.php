@@ -174,6 +174,7 @@ if (isset($_GET['act']) && $_GET['act']) {
           }
         }
         if (empty($error_detail_sp)) {
+          san_pham_update_display($arr_detail_sp['id_san_pham']);
           detail_san_pham_insert($arr_detail_sp['so_luong'], $arr_detail_sp['ngay_nhap'], $arr_detail_sp['id_san_pham'], $arr_detail_sp['id_size'], $arr_detail_sp['id_mau']);
           showSuccessToast('Thêm chi tiết sản phẩm thành công!');
         }

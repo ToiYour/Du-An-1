@@ -10,6 +10,7 @@ $list_chat = chat_select();
         <div class="media-body">
             <h6><a href="#">Cuộc trò chuyện: <?= $value['id_chat'] ?></a></h6>
             <small class="text-green"><?php $new_mess = message_new($value['id_chat']);
+                                        echo ($new_mess['id_send'] == 1) ? 'Bạn:  ' : 'Khách hàng:  ';
                                         echo $new_mess['content'] ?><i class="bx bx-check-circle float-right" style="line-height: 20px;"></i></small>
         </div>
     </div>

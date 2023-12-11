@@ -33,8 +33,7 @@
                                 <button class="nav-link flex-fill text-dark px-1" type="button" value="5">Hoàn
                                     thành</button>
                                 <button class="nav-link flex-fill text-dark px-1" value="6">Đã huỷ</button>
-                                <button class="nav-link flex-fill text-dark px-1" value="7">Trả hàng/Hoàn
-                                    tiền</button>
+
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">

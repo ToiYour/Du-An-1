@@ -7,7 +7,7 @@ function chat_insert($id_chat)
 }
 function chat_select()
 {
-    $sql = "SELECT * FROM chat ORDER BY id_chat DESC ";
+    $sql = "SELECT * FROM chat ORDER BY time DESC";
     return pdo_query($sql);
 }
 function message_new($id_chat)

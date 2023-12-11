@@ -16,20 +16,20 @@ $list_chat =  message_select($_POST['id_chat']);
             <div>
                 <div class="avatar"></div>
                 <div class="text_wrapper">
-                    <div class="text"><?= $value['content'] ?></div>
+                    <div class="text"><?= $value['content'] ?></i></div>
                 </div>
             </div>
-            <span class="align-self-end" style="opacity: 0.6; font-size: 9px; color: #2f2c2ccc; text-align: end;"><?= $value['time'] ?></span>
+            <span class="align-self-end" style="opacity: 0.6; font-size: 9px; color: #2f2c2ccc; text-align: end;"><?= $value['time'] ?> <i class="far fa-check"></i></span>
         </li>
     <?php else : ?>
         <li class="message left appeared">
             <div>
                 <div class="avatar"></div>
                 <div class="text_wrapper">
-                    <div class="text"><?= $value['content'] ?></div>
+                    <div class="text"><?= $value['content'] ?></i></div>
                 </div>
             </div>
-            <span class="align-self-start" style="opacity: 0.6; font-size: 9px; color: #2f2c2ccc; text-align: end;"><?= $value['time'] ?></span>
+            <span class="align-self-start" style="opacity: 0.6; font-size: 9px; color: #2f2c2ccc; text-align: end;"><?= $value['time'] ?> <i class="far fa-check"></i></span>
         </li>
 <?php endif;
 endforeach ?>

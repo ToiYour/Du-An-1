@@ -12,7 +12,9 @@ if (isset($_GET['category'])) {
         </div>
     </div>
     <div class="row product-active-row-4">
-        <?php foreach ($product_tt as $value) : ?>
+        <?php foreach ($product_tt as $value) : if ($value['display_san_pham'] == 0) {
+                            continue;
+                        } ?>
         <div class="col-lg-12">
             <!-- single-product-area start -->
             <div class="single-product-area mt-30">
@@ -22,7 +24,7 @@ if (isset($_GET['category'])) {
                         <img class="primary-image" src="assets/images/product/<?php echo $value['hinh_anh'] ?>"
                             alt="" />
                     </a>
-                    <div class="label-product label_new">Mới</div>
+                    <!-- <div class="label-product label_new">Mới</div> -->
                     <div class="action-links">
                         <a href="<?php echo $value['id_san_pham'] ?>" class="quick-view" title="Thêm giỏ hàng"
                             data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i

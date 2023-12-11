@@ -6,7 +6,7 @@ include_once 'method-order.php';
 include_once '../dao/giam-gia.php';
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 $date = date('Y-m-d H:i:s');
-if (isset($_POST['id_voucher']) && $_POST['id_voucher'] != false) {
+if (isset($_POST['id_voucher']) && $_POST['id_voucher'] != '') {
     giam_gia_update_so_luong($_POST['id_voucher']);
 }
 if (isset($_POST['paymentMethod'])) {
